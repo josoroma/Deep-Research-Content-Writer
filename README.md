@@ -186,6 +186,8 @@ Verification on October 9, 2026 passed **794 offline tests with 88.27% coverage*
 
 Configuration loads from `.env`, overridden by environment variables. The system supports Mermaid flowcharts and sequence diagrams when the renderer is installed. The [live example index](runs.example/README.md) records execution outcomes and temporary runtime overrides. These samples do not replace a formal evaluation of editorial quality.
 
+On Ubuntu, AppArmor can prevent Puppeteer's downloaded browser from starting. Set `PUPPETEER_EXECUTABLE_PATH` to an installed Chrome executable with a working sandbox; CI selects the runner's `google-chrome`. See [Puppeteer's Linux sandbox guidance](https://pptr.dev/troubleshooting#issues-with-apparmor-on-ubuntu).
+
 For development and operations, see the [engineering standard](docs/ENGINEERING.md), [architecture decisions](docs/adr/), [authoring runbook](docs/SPECS-LOGS/EVIDENCE-DRIVEN-AUTHORING-RUNBOOK.md), and [API migration runbook](docs/SPECS-LOGS/FASTAPI-MIGRATION-RUNBOOK.md).
 
 The [published walkthrough](https://josoroma.github.io/Deep-Research-Content-Writer/) is served by GitHub Pages from the root of `main`. `index.html` opens the run guide, and `.nojekyll` preserves the static files. The [root homepage](https://josoroma.github.io/) opens the same guide through the separate [`josoroma.github.io` repository](https://github.com/josoroma/josoroma.github.io).

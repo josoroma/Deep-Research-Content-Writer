@@ -24,6 +24,13 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: services/mermaid/package-lock.json
+      - name: Select runner Chrome for Mermaid
+        # Ubuntu's AppArmor profile permits the installed Chrome sandbox.
+        # Puppeteer's downloaded Chrome for Testing uses a different path.
+        run: |
+          chrome_path="$(command -v google-chrome)"
+          echo "PUPPETEER_EXECUTABLE_PATH=$chrome_path" >> "$GITHUB_ENV"
+          "$chrome_path" --version
       - name: Install offline diagram renderer
         run: npm ci --prefix services/mermaid
       - name: Lint, formatting, typing, and offline tests

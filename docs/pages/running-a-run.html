@@ -436,6 +436,7 @@ td.num { min-width: 0; }
       <li><code>make check</code> runs the lock check, Ruff, the format check, mypy in strict mode, and the offline tests with an 80% coverage floor. Sockets are blocked and no key is needed.</li>
       <li><code>cp -n .env.example .env</code>, then fill in the values below. <code>.env</code> is git-ignored.</li>
     </ol>
+    <p>On Ubuntu, AppArmor can prevent Puppeteer's downloaded browser from starting. Set <code>PUPPETEER_EXECUTABLE_PATH</code> to an installed Chrome executable with a working sandbox. CI selects the runner's <code>google-chrome</code>; see <a href="https://pptr.dev/troubleshooting#issues-with-apparmor-on-ubuntu">Puppeteer's Linux sandbox guidance</a>.</p>
     <div class="table-wrap">
       <table>
         <caption>Settings a live run reads from .env</caption>
