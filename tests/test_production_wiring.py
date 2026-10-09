@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import json
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from unittest.mock import patch
 
 from application.run_service import AUTHORING_GATE
+from schemas.authoring import AuthoringState
 from schemas.config import RunSettings
 from schemas.content import utc_now
 from schemas.responses import RunReport, SearchResult, Source
@@ -24,6 +27,12 @@ def _corpus(root: Path) -> RunState:
     root.mkdir(parents=True, exist_ok=True)
     (root / "research").mkdir(exist_ok=True)
     (root / "output").mkdir(exist_ok=True)
+    (root / "output/authoring_state.json").write_text(
+        AuthoringState(
+            contract_version=1, content_started_at=datetime(2026, 10, 9, tzinfo=UTC)
+        ).model_dump_json(),
+        encoding="utf-8",
+    )
 
     records = []
     clean = []
@@ -119,12 +128,16 @@ def test_report_tool_writes_the_run_report_and_records_the_phase(tmp_path: Path)
 
 def test_report_tool_classifies_dangling_citations_as_failure(tmp_path: Path) -> None:
     root = tmp_path / "run"
-    run = _corpus(root)
-    blog = root / content_path(root)
-    blog.write_text(blog.read_text().replace("[S-01]", "[S-99]"), encoding="utf-8")
-    session = ReportSession(root, run, _settings(), RunLedger("openrouter:test"))
-    registry = create_tool_registry(report_session=session, production=True)
-    registry["write_run_report"].invoke({}, tool_runtime(run))
+    moment = datetime(2026, 10, 9, tzinfo=UTC)
+    with patch("services.content_paths.datetime", wraps=datetime) as clock:
+        clock.now.return_value = moment
+        run = _corpus(root)
+        clock.now.return_value = moment + timedelta(seconds=1)
+        blog = root / content_path(root)
+        blog.write_text(blog.read_text().replace("[S-01]", "[S-99]"), encoding="utf-8")
+        session = ReportSession(root, run, _settings(), RunLedger("openrouter:test"))
+        registry = create_tool_registry(report_session=session, production=True)
+        registry["write_run_report"].invoke({}, tool_runtime(run))
     report = RunReport.model_validate_json((root / "output/run.json").read_text())
     assert report.status == "failed"
     assert "dangling_citations" in report.status_reasons
