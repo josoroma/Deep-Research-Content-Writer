@@ -1,0 +1,42 @@
+{
+  "run_id": "rag-vs-fine-tuning-20261009T204551Z",
+  "topic": "RAG vs fine-tuning",
+  "mode": "resume",
+  "revision_id": "f0eea9a-dirty",
+  "status": "failed",
+  "duration_seconds": 484.9116917079955,
+  "phase_timings_seconds": {
+    "fetch": 51.32449083299434,
+    "index": 0.006272708000324201,
+    "resume": 484.9116917079955
+  },
+  "tool_calls": {
+    "collect_source": 30,
+    "fetch_url": 30,
+    "extract_markdown": 20,
+    "build_index": 1,
+    "ls": 6,
+    "glob": 1,
+    "read_file": 50,
+    "write_todos": 3,
+    "task": 1,
+    "grep": 79,
+    "write_file": 2
+  },
+  "tokens_used": 2795149,
+  "cost_usd": 0.0820201474,
+  "cost_available": true,
+  "retries": 4,
+  "url_outcomes": {
+    "robots_disallowed": 1,
+    "extracted": 17,
+    "too_thin": 3,
+    "unreachable": 8,
+    "unsupported_content": 1
+  },
+  "dangling_citations": 0,
+  "metrics_enabled": false,
+  "metrics_flushed": true,
+  "trace_id": "01a12270-ff07-7f31-bdd2-1cf862e7ab19",
+  "trace_export_error": null
+}

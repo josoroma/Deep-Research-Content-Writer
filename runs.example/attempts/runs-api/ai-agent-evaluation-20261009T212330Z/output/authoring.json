@@ -1,0 +1,18 @@
+{
+  "run_id": "ai-agent-evaluation-20261009T212330Z",
+  "workspace": "runs-api/ai-agent-evaluation-20261009T212330Z",
+  "status": "failed",
+  "contract_version": 2,
+  "format_label": "Staged implementation guide with provenance labels on each practice",
+  "synthesis_path": "research/synthesis.json",
+  "summary_path": null,
+  "blog_path": null,
+  "word_count": 0,
+  "citations_checked": 0,
+  "repair_passes": 0,
+  "dangling_source_ids": [],
+  "mismatched_source_ids": [],
+  "violations": [],
+  "reason": "authoring_interrupted",
+  "error": "AuthoringInterrupted"
+}

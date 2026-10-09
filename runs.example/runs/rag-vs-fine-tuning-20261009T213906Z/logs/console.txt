@@ -1,0 +1,5 @@
+run_id: rag-vs-fine-tuning-20261009T213906Z
+workspace: runs/rag-vs-fine-tuning-20261009T213906Z
+status: degraded
+blog_path: runs/rag-vs-fine-tuning-20261009T213906Z/output/2026-10-09-21-39-06-content.md
+blog_exists: True

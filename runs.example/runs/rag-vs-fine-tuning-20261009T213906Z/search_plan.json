@@ -1,0 +1,42 @@
+{
+  "topic": "RAG vs fine-tuning",
+  "variants": [
+    "retrieval augmented generation versus fine tuning architecture comparison",
+    "RAG fine-tuning hybrid approach production evaluation latency cost",
+    "enterprise LLM adaptation data freshness security tradeoffs"
+  ],
+  "provider": "serpapi",
+  "calls": [
+    {
+      "query": "RAG vs fine-tuning",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "retrieval augmented generation versus fine tuning architecture comparison",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "RAG fine-tuning hybrid approach production evaluation latency cost",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "enterprise LLM adaptation data freshness security tradeoffs",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "RAG vs fine-tuning",
+      "page": 2,
+      "per_page": 10
+    },
+    {
+      "query": "RAG vs fine-tuning",
+      "page": 3,
+      "per_page": 10
+    }
+  ],
+  "max_urls": 30
+}

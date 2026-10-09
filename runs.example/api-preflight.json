@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-09T21:50:57.731564+00:00",
+  "base_url": "http://127.0.0.1:8011",
+  "run_profile": "production",
+  "database": "isolated local PostgreSQL 14.22 on 127.0.0.1:55432",
+  "checks": [
+    {
+      "path": "/health/live",
+      "http_status": 200
+    },
+    {
+      "path": "/health/ready",
+      "http_status": 200
+    },
+    {
+      "path": "/openapi.json",
+      "http_status": 200
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "run_id": "rag-vs-fine-tuning-20261009T210440Z",
+  "topic": "RAG vs fine-tuning",
+  "model": "openrouter:deepseek/deepseek-v4.1-flash",
+  "status": "failed",
+  "status_reasons": [
+    "synthesis_invalid",
+    "phase_failed",
+    "too_few_sources"
+  ],
+  "phase_timings_seconds": {},
+  "urls_found": 30,
+  "urls_clean": 30,
+  "urls_fetched": 30,
+  "urls_extracted": 14,
+  "urls_thin": 4,
+  "urls_failed": 0,
+  "extraction_failures": 16,
+  "url_outcomes": [
+    {
+      "rank": 1,
+      "url": "https://www.superannotate.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-01"
+    },
+    {
+      "rank": 2,
+      "url": "https://www.datacamp.com/tutorial/rag-vs-fine-tuning",
+      "outcome": "robots_disallowed",
+      "reason": "robots_rule",
+      "source_id": null
+    },
+    {
+      "rank": 3,
+      "url": "https://vectorize.io/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-03"
+    },
+    {
+      "rank": 4,
+      "url": "https://community.ibm.com/community/user/blogs/wendy-munoz/2025/11/28/rag-vs-fine-tuning-best-practices-using-the-ibm-ai",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 5,
+      "url": "https://www.codelamda.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-05"
+    },
+    {
+      "rank": 6,
+      "url": "https://www.v2solutions.com/whitepapers/rag-vs-fine-tuning-for-enterprise-llms",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-06"
+    },
+    {
+      "rank": 7,
+      "url": "https://www.iguazio.com/blog/rag-vs-fine-tuning",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 8,
+      "url": "https://medium.com/@muhsinunc/rag-vs-fine-tuning-when-to-retrieve-and-when-to-train-65e2a08da6b4",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 9,
+      "url": "https://acquriotech.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-09"
+    },
+    {
+      "rank": 10,
+      "url": "https://www.makebot.ai/blog-en/the-ultimate-guide-to-rag-vs-fine-tuning-choosing-the-right-method-for-your-llm",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-10"
+    },
+    {
+      "rank": 11,
+      "url": "https://medium.com/genai-llms/rag-vs-fine-tuning-choosing-the-right-approach-for-ai-products-d91c7f690744",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 12,
+      "url": "https://radixweb.com/blog/rag-vs-fine-tuning",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 13,
+      "url": "https://www.solutelabs.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-13"
+    },
+    {
+      "rank": 14,
+      "url": "https://www.interviewquery.com/questions/finetuning-vs-rag",
+      "outcome": "unreachable",
+      "reason": "robots_unavailable",
+      "source_id": null
+    },
+    {
+      "rank": 15,
+      "url": "https://arxiv.org/abs/2406.06399",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-15"
+    },
+    {
+      "rank": 16,
+      "url": "https://aclanthology.org/2024.inlg-main.15",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-16"
+    },
+    {
+      "rank": 17,
+      "url": "https://thangasami.medium.com/beyond-accuracy-what-everyone-misses-when-evaluating-rag-9658a82f3f72",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 18,
+      "url": "https://cohere.com/blog/rag-vs-fine-tuning",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 19,
+      "url": "https://cobusgreyling.medium.com/fine-tuning-llms-with-retrieval-augmented-generation-rag-c66e56aec858",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 20,
+      "url": "https://medium.com/@alexchen3292/rag-evaluation-tools-how-to-evaluate-retrieval-augmented-generation-applications-45aba7b8ffe3",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 21,
+      "url": "https://hackernoon.com/building-reliable-llm-systems-with-fine-tuning-rag-and-prompt-engineering",
+      "outcome": "robots_disallowed",
+      "reason": "robots_rule",
+      "source_id": null
+    },
+    {
+      "rank": 22,
+      "url": "https://daily.dev/posts/rag-vs-fine-tuning-for-enterprise-llms-6vrvfy1xb",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 23,
+      "url": "https://www.researchgate.net/figure/Comparison-of-Fine-Tuning-RAG-and-Hybrid-Approach-for-quick-decision-making_tbl1_403054782",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 24,
+      "url": "https://www.alibabacloud.com/blog/601723",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-24"
+    },
+    {
+      "rank": 25,
+      "url": "https://www.alpsagility.com/enterprise-generative-ai-rag-to-agentic-workflows",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-25"
+    },
+    {
+      "rank": 26,
+      "url": "https://pub.towardsai.net/why-tiny-language-models-are-quietly-replacing-big-llms-in-enterprise-analytics-807e0b9eb9be",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 27,
+      "url": "https://ai-de.net/projects/enterprise-rag",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-27"
+    },
+    {
+      "rank": 28,
+      "url": "https://www.csoonline.com/article/4163888/securing-rag-pipelines-in-enterprise-saas.html",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-28"
+    },
+    {
+      "rank": 29,
+      "url": "https://machinelearningmastery.com/rag-vs-fine-tuning-for-domain-adaptation-when-to-use-which",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 30,
+      "url": "https://www.analyticsvidhya.com/blog/2024/05/fine-tuning-vs-rag",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-30"
+    }
+  ],
+  "blog_path": "output/2026-10-09-21-04-40-content.md",
+  "citation_count": 0,
+  "tokens_used": 0,
+  "cost_usd": 0.0,
+  "duration_seconds": 15.08919637499639,
+  "retries": 0
+}

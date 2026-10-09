@@ -1,0 +1,602 @@
+{
+  "captured_on": "2026-10-09",
+  "scope": {
+    "cli": "Normal CLI main/routes with fake search/model/fetch/extraction and scripted authoring injected; no public CLI fixture switch.",
+    "api": "FastAPI TestClient and MemoryJobStore, real ResearchWorker with fixture profile. Resume prepared by interrupting after index.",
+    "limits": "No live providers. Docker unavailable; separate PostgreSQL-backed processes not rerun.",
+    "display": "Guide replaces run/job IDs, timestamps, and workspace prefixes; response projections are labeled excerpts."
+  },
+  "cli": {
+    "full": {
+      "args": [
+        "Research telemetry quality",
+        "--goal",
+        "Explain the available telemetry and its limits",
+        "--pages",
+        "1",
+        "--per-page",
+        "10",
+        "--max-urls",
+        "3"
+      ],
+      "stdout": "run_id: research-telemetry-quality-20261009T195134Z\nworkspace: <temporary-root>/cli/research-telemetry-quality-20261009T195134Z\nstatus: completed\nblog_path: <temporary-root>/cli/research-telemetry-quality-20261009T195134Z/output/2026-10-09-19-51-34-content.md\nblog_exists: True\n",
+      "exit": 0
+    },
+    "search": {
+      "args": [
+        "Research telemetry quality",
+        "--goal",
+        "Explain the available telemetry and its limits",
+        "--search-only",
+        "--pages",
+        "1",
+        "--per-page",
+        "10",
+        "--max-urls",
+        "3"
+      ],
+      "stdout": "{\n  \"run_id\": \"research-telemetry-quality-20261009T195135Z\",\n  \"workspace\": \"<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z\",\n  \"status\": \"completed\",\n  \"provider\": \"fake\",\n  \"search_plan_path\": \"<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z/search_plan.json\",\n  \"raw_results_path\": \"<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z/search_results.json\",\n  \"clean_results_path\": \"<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z/clean_results.json\",\n  \"counts\": {\n    \"raw\": 10,\n    \"denied\": 0,\n    \"duplicates\": 0,\n    \"capped\": 7,\n    \"kept\": 3\n  },\n  \"error\": null\n}\n",
+      "exit": 0
+    },
+    "corpus": {
+      "args": [
+        "--corpus-only",
+        "--workspace",
+        "<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z"
+      ],
+      "stdout": "{\n  \"run_id\": \"research-telemetry-quality-20261009T195135Z\",\n  \"workspace\": \"<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z\",\n  \"status\": \"completed\",\n  \"urls_processed\": 3,\n  \"sources_written\": 3,\n  \"sources_indexed\": 3,\n  \"outcomes\": {\n    \"extracted\": 3\n  },\n  \"index_path\": \"research/index.md\",\n  \"files\": [\n    \"research/001_fixture-source-s-01.md\",\n    \"research/002_fixture-source-s-02.md\",\n    \"research/003_fixture-source-s-03.md\",\n    \"research/index.md\",\n    \"corpus_state.json\"\n  ],\n  \"error\": null\n}\n",
+      "exit": 0
+    },
+    "author": {
+      "args": [
+        "--author-only",
+        "--workspace",
+        "<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z"
+      ],
+      "stdout": "{\n  \"run_id\": \"research-telemetry-quality-20261009T195135Z\",\n  \"workspace\": \"<temporary-root>/staged-cli/research-telemetry-quality-20261009T195135Z\",\n  \"status\": \"completed\",\n  \"contract_version\": 2,\n  \"format_label\": \"Evidence review\",\n  \"synthesis_path\": \"research/synthesis.json\",\n  \"summary_path\": \"research/summary.md\",\n  \"blog_path\": \"output/2026-10-09-19-51-35-content.md\",\n  \"word_count\": 2020,\n  \"citations_checked\": 3,\n  \"repair_passes\": 0,\n  \"dangling_source_ids\": [],\n  \"mismatched_source_ids\": [],\n  \"violations\": [],\n  \"reason\": null,\n  \"error\": null\n}\n",
+      "exit": 0
+    }
+  },
+  "api": {
+    "live": {
+      "status": 200,
+      "headers": {
+        "content-length": "18",
+        "content-type": "application/json",
+        "x-request-id": "b4e55648-e278-4371-89d3-88f76674c6ad",
+        "x-process-time-ms": "1.26"
+      },
+      "body": {
+        "status": "alive"
+      }
+    },
+    "ready": {
+      "status": 200,
+      "headers": {
+        "content-length": "18",
+        "content-type": "application/json",
+        "x-request-id": "991e975f-e35e-4e9b-87c4-58dc6f7df55f",
+        "x-process-time-ms": "0.36"
+      },
+      "body": {
+        "status": "ready"
+      }
+    },
+    "submit": {
+      "status": 202,
+      "headers": {
+        "content-length": "171",
+        "content-type": "application/json",
+        "location": "/v1/jobs/9f07f5d5-f87d-4086-b81a-f89a4e787733",
+        "x-request-id": "guide-request-1",
+        "x-process-time-ms": "5.16"
+      },
+      "body": {
+        "job_id": "9f07f5d5-f87d-4086-b81a-f89a4e787733",
+        "status": "queued",
+        "operation": "research",
+        "run_id": null,
+        "links": {
+          "status": "/v1/jobs/9f07f5d5-f87d-4086-b81a-f89a4e787733"
+        }
+      }
+    },
+    "replay": {
+      "status": 200,
+      "headers": {
+        "content-length": "171",
+        "content-type": "application/json",
+        "location": "/v1/jobs/9f07f5d5-f87d-4086-b81a-f89a4e787733",
+        "x-request-id": "guide-request-1",
+        "x-process-time-ms": "0.65"
+      },
+      "body": {
+        "job_id": "9f07f5d5-f87d-4086-b81a-f89a4e787733",
+        "status": "queued",
+        "operation": "research",
+        "run_id": null,
+        "links": {
+          "status": "/v1/jobs/9f07f5d5-f87d-4086-b81a-f89a4e787733"
+        }
+      }
+    },
+    "conflict": {
+      "status": 409,
+      "headers": {
+        "content-length": "144",
+        "content-type": "application/json",
+        "x-request-id": "guide-request-1",
+        "x-process-time-ms": "0.62"
+      },
+      "body": {
+        "error": {
+          "code": "idempotency_conflict",
+          "message": "Idempotency-Key was reused with a different request payload",
+          "request_id": "guide-request-1"
+        }
+      }
+    },
+    "job": {
+      "status": 200,
+      "headers": {
+        "content-length": "363",
+        "content-type": "application/json",
+        "x-request-id": "bd7405fd-956f-4a7e-8a72-846f9753bef9",
+        "x-process-time-ms": "0.81"
+      },
+      "body": {
+        "job_id": "9f07f5d5-f87d-4086-b81a-f89a4e787733",
+        "status": "succeeded",
+        "operation": "research",
+        "run_id": "research-telemetry-quality-20261009T195135Z",
+        "phase": "report",
+        "attempt": 1,
+        "status_reasons": [],
+        "error": null,
+        "created_at": "2026-10-09T19:51:35.231562Z",
+        "updated_at": "2026-10-09T19:51:35.382791Z",
+        "links": {
+          "status": "/v1/jobs/9f07f5d5-f87d-4086-b81a-f89a4e787733"
+        }
+      }
+    },
+    "run": {
+      "status": 200,
+      "headers": {
+        "content-length": "282",
+        "content-type": "application/json",
+        "x-request-id": "359eed22-657b-4951-9066-8d179e4dff4c",
+        "x-process-time-ms": "9.46"
+      },
+      "body": {
+        "run_id": "research-telemetry-quality-20261009T195135Z",
+        "topic": "Research telemetry quality",
+        "completed_phases": [
+          "plan",
+          "search",
+          "normalize",
+          "fetch",
+          "index",
+          "synthesize",
+          "write",
+          "citations",
+          "report"
+        ],
+        "execution_status": "succeeded",
+        "report_available": true,
+        "artifacts_available": true
+      }
+    },
+    "report": {
+      "status": 200,
+      "headers": {
+        "content-length": "1065",
+        "content-type": "application/json",
+        "x-request-id": "97fd7063-e49d-4200-b739-1829509d447d",
+        "x-process-time-ms": "0.89"
+      },
+      "body": {
+        "run_id": "research-telemetry-quality-20261009T195135Z",
+        "report": {
+          "run_id": "research-telemetry-quality-20261009T195135Z",
+          "topic": "Research telemetry quality",
+          "model": "openrouter:deepseek/deepseek-v4.1-flash",
+          "status": "succeeded",
+          "status_reasons": [],
+          "phase_timings_seconds": {
+            "plan": 0.0004277909974916838,
+            "search": 0.0010675000012270175,
+            "normalize": 0.0007084579992806539,
+            "fetch": 0.003215832999558188,
+            "index": 0.0013299999991431832,
+            "research": 0.14653462499700254
+          },
+          "urls_found": 3,
+          "urls_clean": 3,
+          "urls_fetched": 3,
+          "urls_extracted": 3,
+          "urls_thin": 0,
+          "urls_failed": 0,
+          "extraction_failures": 0,
+          "url_outcomes": [
+            {
+              "rank": 1,
+              "url": "https://fixture.test/article-1",
+              "outcome": "extracted",
+              "reason": null,
+              "source_id": "S-01"
+            },
+            {
+              "rank": 2,
+              "url": "https://fixture.test/article-2",
+              "outcome": "extracted",
+              "reason": null,
+              "source_id": "S-02"
+            },
+            {
+              "rank": 3,
+              "url": "https://fixture.test/article-3",
+              "outcome": "extracted",
+              "reason": null,
+              "source_id": "S-03"
+            }
+          ],
+          "blog_path": "output/2026-10-09-19-51-35-content.md",
+          "citation_count": 3,
+          "tokens_used": 0,
+          "cost_usd": 0.0,
+          "duration_seconds": 0.14566608300083317,
+          "retries": 0
+        }
+      }
+    },
+    "artifacts": {
+      "status": 200,
+      "headers": {
+        "content-length": "4620",
+        "content-type": "application/json",
+        "x-request-id": "a168d2b9-f53e-43d2-8d0b-8d53e23caec9",
+        "x-process-time-ms": "2.00"
+      },
+      "body": {
+        "artifacts": [
+          {
+            "artifact_id": "clean_results.json",
+            "path": "clean_results.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 555,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/clean_results.json"
+          },
+          {
+            "artifact_id": "corpus_state.json",
+            "path": "corpus_state.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 1496,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/corpus_state.json"
+          },
+          {
+            "artifact_id": "logs/execution.log",
+            "path": "logs/execution.log",
+            "kind": "log",
+            "media_type": "application/x-ndjson; charset=utf-8",
+            "size_bytes": 5811,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/logs/execution.log"
+          },
+          {
+            "artifact_id": "logs/telemetry.json",
+            "path": "logs/telemetry.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 893,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/logs/telemetry.json"
+          },
+          {
+            "artifact_id": "output/2026-10-09-19-51-35-content.md",
+            "path": "output/2026-10-09-19-51-35-content.md",
+            "kind": "markdown",
+            "media_type": "text/markdown; charset=utf-8",
+            "size_bytes": 33570,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/output/2026-10-09-19-51-35-content.md"
+          },
+          {
+            "artifact_id": "output/authoring.json",
+            "path": "output/authoring.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 623,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/output/authoring.json"
+          },
+          {
+            "artifact_id": "output/authoring_state.json",
+            "path": "output/authoring_state.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 517,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/output/authoring_state.json"
+          },
+          {
+            "artifact_id": "output/run.json",
+            "path": "output/run.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 1273,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/output/run.json"
+          },
+          {
+            "artifact_id": "request.json",
+            "path": "request.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 153,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/request.json"
+          },
+          {
+            "artifact_id": "research/001_fixture-source-s-01.md",
+            "path": "research/001_fixture-source-s-01.md",
+            "kind": "markdown",
+            "media_type": "text/markdown; charset=utf-8",
+            "size_bytes": 5627,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/research/001_fixture-source-s-01.md"
+          },
+          {
+            "artifact_id": "research/002_fixture-source-s-02.md",
+            "path": "research/002_fixture-source-s-02.md",
+            "kind": "markdown",
+            "media_type": "text/markdown; charset=utf-8",
+            "size_bytes": 5627,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/research/002_fixture-source-s-02.md"
+          },
+          {
+            "artifact_id": "research/003_fixture-source-s-03.md",
+            "path": "research/003_fixture-source-s-03.md",
+            "kind": "markdown",
+            "media_type": "text/markdown; charset=utf-8",
+            "size_bytes": 5627,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/research/003_fixture-source-s-03.md"
+          },
+          {
+            "artifact_id": "research/index.md",
+            "path": "research/index.md",
+            "kind": "markdown",
+            "media_type": "text/markdown; charset=utf-8",
+            "size_bytes": 354,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/research/index.md"
+          },
+          {
+            "artifact_id": "research/summary.md",
+            "path": "research/summary.md",
+            "kind": "markdown",
+            "media_type": "text/markdown; charset=utf-8",
+            "size_bytes": 1874,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/research/summary.md"
+          },
+          {
+            "artifact_id": "research/synthesis.json",
+            "path": "research/synthesis.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 4969,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/research/synthesis.json"
+          },
+          {
+            "artifact_id": "search_plan.json",
+            "path": "search_plan.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 512,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/search_plan.json"
+          },
+          {
+            "artifact_id": "search_results.json",
+            "path": "search_results.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 1846,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/search_results.json"
+          },
+          {
+            "artifact_id": "search_state.json",
+            "path": "search_state.json",
+            "kind": "json",
+            "media_type": "application/json; charset=utf-8",
+            "size_bytes": 1484,
+            "download_url": "/v1/runs/research-telemetry-quality-20261009T195135Z/artifacts/search_state.json"
+          }
+        ]
+      }
+    },
+    "authoring": {
+      "status": 200,
+      "headers": {
+        "content-disposition": "inline; filename=\"authoring.json\"",
+        "content-length": "623",
+        "content-type": "application/json; charset=utf-8",
+        "x-request-id": "1e052532-0d9b-41b9-9d99-226e2934d076",
+        "x-process-time-ms": "0.54"
+      },
+      "body": {
+        "run_id": "research-telemetry-quality-20261009T195135Z",
+        "workspace": "<temporary-root>/api/research-telemetry-quality-20261009T195135Z",
+        "status": "completed",
+        "contract_version": 2,
+        "format_label": "Evidence review",
+        "synthesis_path": "research/synthesis.json",
+        "summary_path": "research/summary.md",
+        "blog_path": "output/2026-10-09-19-51-35-content.md",
+        "word_count": 2020,
+        "citations_checked": 3,
+        "repair_passes": 0,
+        "dangling_source_ids": [],
+        "mismatched_source_ids": [],
+        "violations": [],
+        "reason": null,
+        "error": null
+      }
+    },
+    "request": {
+      "status": 200,
+      "headers": {
+        "content-disposition": "inline; filename=\"request.json\"",
+        "content-length": "153",
+        "content-type": "application/json; charset=utf-8",
+        "x-request-id": "da21f294-0a84-49e2-9444-1edc82a98182",
+        "x-process-time-ms": "0.54"
+      },
+      "body": {
+        "topic": "Research telemetry quality",
+        "goal": "Explain the available telemetry and its limits",
+        "pages": 1,
+        "per_page": 10,
+        "max_urls": 3
+      }
+    },
+    "openapi_info": {
+      "title": "Content Writer",
+      "version": "0.1.0"
+    },
+    "before_resume": {
+      "status": 200,
+      "headers": {
+        "content-length": "234",
+        "content-type": "application/json",
+        "x-request-id": "b3e945bd-ad4e-4a63-9e40-9d8f839df48e",
+        "x-process-time-ms": "1.81"
+      },
+      "body": {
+        "run_id": "research-telemetry-quality-20261009T195136Z",
+        "topic": "Research telemetry quality",
+        "completed_phases": [
+          "plan",
+          "search",
+          "normalize",
+          "fetch",
+          "index"
+        ],
+        "execution_status": null,
+        "report_available": false,
+        "artifacts_available": true
+      }
+    },
+    "resume": {
+      "status": 202,
+      "headers": {
+        "location": "/v1/jobs/2c717608-402b-4752-a55c-be558941b61a",
+        "content-length": "212",
+        "content-type": "application/json",
+        "x-request-id": "42b24263-fcd0-4dad-a72e-bf5eb1e3abee",
+        "x-process-time-ms": "0.69"
+      },
+      "body": {
+        "job_id": "2c717608-402b-4752-a55c-be558941b61a",
+        "status": "queued",
+        "operation": "research",
+        "run_id": "research-telemetry-quality-20261009T195136Z",
+        "links": {
+          "status": "/v1/jobs/2c717608-402b-4752-a55c-be558941b61a"
+        }
+      }
+    },
+    "resumed_job": {
+      "status": 200,
+      "headers": {
+        "content-length": "363",
+        "content-type": "application/json",
+        "x-request-id": "07134ed8-8fad-4172-820f-ca062ef41d3f",
+        "x-process-time-ms": "0.59"
+      },
+      "body": {
+        "job_id": "2c717608-402b-4752-a55c-be558941b61a",
+        "status": "succeeded",
+        "operation": "research",
+        "run_id": "research-telemetry-quality-20261009T195136Z",
+        "phase": "report",
+        "attempt": 2,
+        "status_reasons": [],
+        "error": null,
+        "created_at": "2026-10-09T19:51:35.433502Z",
+        "updated_at": "2026-10-09T19:51:36.168983Z",
+        "links": {
+          "status": "/v1/jobs/2c717608-402b-4752-a55c-be558941b61a"
+        }
+      }
+    },
+    "completed_resume_error": {
+      "status": 409,
+      "headers": {
+        "content-length": "150",
+        "content-type": "application/json",
+        "x-request-id": "3ad39612-7615-4313-bc92-53da7154eab0",
+        "x-process-time-ms": "0.60"
+      },
+      "body": {
+        "error": {
+          "code": "not_resumable",
+          "message": "Only an interrupted run with a workspace can resume",
+          "request_id": "3ad39612-7615-4313-bc92-53da7154eab0"
+        }
+      }
+    },
+    "download": {
+      "status": 200,
+      "headers": {
+        "content-disposition": "attachment; filename=\"2026-10-09-19-51-35-content.md\"",
+        "content-length": "33570",
+        "content-type": "text/markdown; charset=utf-8"
+      }
+    },
+    "synthesis_excerpt": {
+      "status": 200,
+      "body": {
+        "contract_version": 2,
+        "topic": "Research telemetry quality",
+        "goal": "Explain the available telemetry and its limits",
+        "reader_objective": "Explain the available telemetry and its limits",
+        "objective_origin": "explicit",
+        "format": {
+          "label": "Evidence review",
+          "why": "The source passages support a qualified overview.",
+          "alternatives": [],
+          "confidence": "moderate"
+        }
+      }
+    },
+    "logs": {
+      "status": 200,
+      "headers": {
+        "content-length": "474",
+        "content-type": "application/json",
+        "x-request-id": "d2e9174f-0385-4073-9e0c-c84afcb432eb",
+        "x-process-time-ms": "0.95"
+      },
+      "body": {
+        "records": [
+          {
+            "timestamp": "<timestamp>",
+            "level": "INFO",
+            "phase": "research",
+            "event": "run_started",
+            "fields": {
+              "run_id": "research-telemetry-quality-20261009T195135Z",
+              "trace_id": null,
+              "metrics_enabled": false
+            }
+          },
+          {
+            "timestamp": "<timestamp>",
+            "level": "INFO",
+            "phase": "fetch",
+            "event": "tool_started",
+            "fields": {
+              "run_id": "research-telemetry-quality-20261009T195135Z",
+              "tool": "collect_source",
+              "url": "https://fixture.test/article-1"
+            }
+          }
+        ],
+        "next_cursor": "2"
+      }
+    }
+  }
+}

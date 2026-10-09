@@ -1,0 +1,300 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "clean_results.json",
+      "path": "clean_results.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 12120,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/clean_results.json"
+    },
+    {
+      "artifact_id": "corpus_state.json",
+      "path": "corpus_state.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 21374,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/corpus_state.json"
+    },
+    {
+      "artifact_id": "logs/execution.log",
+      "path": "logs/execution.log",
+      "kind": "log",
+      "media_type": "application/x-ndjson; charset=utf-8",
+      "size_bytes": 109370,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/logs/execution.log"
+    },
+    {
+      "artifact_id": "logs/telemetry.json",
+      "path": "logs/telemetry.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 1181,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/logs/telemetry.json"
+    },
+    {
+      "artifact_id": "output/2026-10-09-21-40-43-content.md",
+      "path": "output/2026-10-09-21-40-43-content.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 38243,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/output/2026-10-09-21-40-43-content.md"
+    },
+    {
+      "artifact_id": "output/authoring.json",
+      "path": "output/authoring.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 627,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/output/authoring.json"
+    },
+    {
+      "artifact_id": "output/authoring_state.json",
+      "path": "output/authoring_state.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 517,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/output/authoring_state.json"
+    },
+    {
+      "artifact_id": "output/run.json",
+      "path": "output/run.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 7032,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/output/run.json"
+    },
+    {
+      "artifact_id": "request.json",
+      "path": "request.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 331,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/request.json"
+    },
+    {
+      "artifact_id": "research/001_ai-agent-evaluation-key-steps-and-methods-fiddler-ai.md",
+      "path": "research/001_ai-agent-evaluation-key-steps-and-methods-fiddler-ai.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 19556,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/001_ai-agent-evaluation-key-steps-and-methods-fiddler-ai.md"
+    },
+    {
+      "artifact_id": "research/004_agent-factory-recap-a-deep-dive-into-agent-evaluation-practi.md",
+      "path": "research/004_agent-factory-recap-a-deep-dive-into-agent-evaluation-practi.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 12302,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/004_agent-factory-recap-a-deep-dive-into-agent-evaluation-practi.md"
+    },
+    {
+      "artifact_id": "research/005_llm-evaluation-framework-trajectories-vs-outputs.md",
+      "path": "research/005_llm-evaluation-framework-trajectories-vs-outputs.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 21348,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/005_llm-evaluation-framework-trajectories-vs-outputs.md"
+    },
+    {
+      "artifact_id": "research/006_ai-agent-evaluation-building-reliable-systems-beyond-simple.md",
+      "path": "research/006_ai-agent-evaluation-building-reliable-systems-beyond-simple.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 25586,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/006_ai-agent-evaluation-building-reliable-systems-beyond-simple.md"
+    },
+    {
+      "artifact_id": "research/008_benchmarking-llm-tool-use-in-the-wild.md",
+      "path": "research/008_benchmarking-llm-tool-use-in-the-wild.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 73747,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/008_benchmarking-llm-tool-use-in-the-wild.md"
+    },
+    {
+      "artifact_id": "research/009_a-comprehensive-survey-of-benchmarks-for-evaluating-tool-and.md",
+      "path": "research/009_a-comprehensive-survey-of-benchmarks-for-evaluating-tool-and.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 30439,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/009_a-comprehensive-survey-of-benchmarks-for-evaluating-tool-and.md"
+    },
+    {
+      "artifact_id": "research/010_a-benchmark-for-tool-selection-given-a-user-query.md",
+      "path": "research/010_a-benchmark-for-tool-selection-given-a-user-query.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 2841,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/010_a-benchmark-for-tool-selection-given-a-user-query.md"
+    },
+    {
+      "artifact_id": "research/012_agentic-tool-use-enterprise.md",
+      "path": "research/012_agentic-tool-use-enterprise.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 16287,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/012_agentic-tool-use-enterprise.md"
+    },
+    {
+      "artifact_id": "research/013_realm-bench-a-real-world-planning-benchmark-for-llms-and-mul.md",
+      "path": "research/013_realm-bench-a-real-world-planning-benchmark-for-llms-and-mul.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 41852,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/013_realm-bench-a-real-world-planning-benchmark-for-llms-and-mul.md"
+    },
+    {
+      "artifact_id": "research/014_what-breaks-when-organisations-lack-shared-metrics-for-ai-ag.md",
+      "path": "research/014_what-breaks-when-organisations-lack-shared-metrics-for-ai-ag.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 7349,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/014_what-breaks-when-organisations-lack-shared-metrics-for-ai-ag.md"
+    },
+    {
+      "artifact_id": "research/015_ai-agent-tool-selection-what-canary-tests-reveal.md",
+      "path": "research/015_ai-agent-tool-selection-what-canary-tests-reveal.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 5816,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/015_ai-agent-tool-selection-what-canary-tests-reveal.md"
+    },
+    {
+      "artifact_id": "research/016_ai-agent-testing-why-84-fail-the-framework-that-fixes-it-wor.md",
+      "path": "research/016_ai-agent-testing-why-84-fail-the-framework-that-fixes-it-wor.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 7583,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/016_ai-agent-testing-why-84-fail-the-framework-that-fixes-it-wor.md"
+    },
+    {
+      "artifact_id": "research/017_ai-agent-metrics-to-define-before-you-build-pedro-pizarro.md",
+      "path": "research/017_ai-agent-metrics-to-define-before-you-build-pedro-pizarro.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 3755,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/017_ai-agent-metrics-to-define-before-you-build-pedro-pizarro.md"
+    },
+    {
+      "artifact_id": "research/018_overview-eval-ai-library-documentation.md",
+      "path": "research/018_overview-eval-ai-library-documentation.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 3690,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/018_overview-eval-ai-library-documentation.md"
+    },
+    {
+      "artifact_id": "research/021_the-percentage-of-tasks-ai-agents-are-currently-failing-at-m.md",
+      "path": "research/021_the-percentage-of-tasks-ai-agents-are-currently-failing-at-m.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 5852,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/021_the-percentage-of-tasks-ai-agents-are-currently-failing-at-m.md"
+    },
+    {
+      "artifact_id": "research/022_from-logs-to-run-reviews-agent-observability-for-production.md",
+      "path": "research/022_from-logs-to-run-reviews-agent-observability-for-production.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 10906,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/022_from-logs-to-run-reviews-agent-observability-for-production.md"
+    },
+    {
+      "artifact_id": "research/023_opentelemetry-for-ai-agents-tracing-multi-step-workflows.md",
+      "path": "research/023_opentelemetry-for-ai-agents-tracing-multi-step-workflows.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 21631,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/023_opentelemetry-for-ai-agents-tracing-multi-step-workflows.md"
+    },
+    {
+      "artifact_id": "research/025_ai-agent-observability-gaps-what-teams-need-to-see-in-produ.md",
+      "path": "research/025_ai-agent-observability-gaps-what-teams-need-to-see-in-produ.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 4041,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/025_ai-agent-observability-gaps-what-teams-need-to-see-in-produ.md"
+    },
+    {
+      "artifact_id": "research/026_ai-observability-for-agent-workflows-now-depends-on-local-fi.md",
+      "path": "research/026_ai-observability-for-agent-workflows-now-depends-on-local-fi.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 16028,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/026_ai-observability-for-agent-workflows-now-depends-on-local-fi.md"
+    },
+    {
+      "artifact_id": "research/028_traceability-and-observability-agent-kernel.md",
+      "path": "research/028_traceability-and-observability-agent-kernel.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 18414,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/028_traceability-and-observability-agent-kernel.md"
+    },
+    {
+      "artifact_id": "research/029_observability-for-ai-agents-logs-metrics-and-traces.md",
+      "path": "research/029_observability-for-ai-agents-logs-metrics-and-traces.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 11884,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/029_observability-for-ai-agents-logs-metrics-and-traces.md"
+    },
+    {
+      "artifact_id": "research/030_agent-evaluation-how-to-evaluate-ai-agents-in-production.md",
+      "path": "research/030_agent-evaluation-how-to-evaluate-ai-agents-in-production.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 54013,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/030_agent-evaluation-how-to-evaluate-ai-agents-in-production.md"
+    },
+    {
+      "artifact_id": "research/index.md",
+      "path": "research/index.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 4105,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/index.md"
+    },
+    {
+      "artifact_id": "research/summary.md",
+      "path": "research/summary.md",
+      "kind": "markdown",
+      "media_type": "text/markdown; charset=utf-8",
+      "size_bytes": 18263,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/summary.md"
+    },
+    {
+      "artifact_id": "research/synthesis.json",
+      "path": "research/synthesis.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 44646,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/research/synthesis.json"
+    },
+    {
+      "artifact_id": "search_plan.json",
+      "path": "search_plan.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 928,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/search_plan.json"
+    },
+    {
+      "artifact_id": "search_results.json",
+      "path": "search_results.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 21872,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/search_results.json"
+    },
+    {
+      "artifact_id": "search_state.json",
+      "path": "search_state.json",
+      "kind": "json",
+      "media_type": "application/json; charset=utf-8",
+      "size_bytes": 21232,
+      "download_url": "/v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/search_state.json"
+    }
+  ]
+}

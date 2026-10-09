@@ -1,0 +1,14 @@
+{
+  "submitted_at": "2026-10-09T21:22:35.716252+00:00",
+  "http_status": 202,
+  "location": "/v1/jobs/bf5e47af-677c-4dc4-b76d-a67f747751d9",
+  "response": {
+    "job_id": "bf5e47af-677c-4dc4-b76d-a67f747751d9",
+    "status": "queued",
+    "operation": "research",
+    "run_id": null,
+    "links": {
+      "status": "/v1/jobs/bf5e47af-677c-4dc4-b76d-a67f747751d9"
+    }
+  }
+}

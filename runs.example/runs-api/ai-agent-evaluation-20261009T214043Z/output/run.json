@@ -1,0 +1,244 @@
+{
+  "run_id": "ai-agent-evaluation-20261009T214043Z",
+  "topic": "AI agent evaluation",
+  "model": "openrouter:deepseek/deepseek-v4.1-flash",
+  "status": "degraded",
+  "status_reasons": [
+    "blog_length",
+    "too_few_sources"
+  ],
+  "phase_timings_seconds": {
+    "plan": 0.0006032079982105643,
+    "search": 50.44977416599431,
+    "normalize": 0.013641208002809435,
+    "fetch": 33.436102833002224,
+    "index": 0.01041912499931641,
+    "research": 5.026984165997419,
+    "citations": 0.025375791999977082
+  },
+  "urls_found": 30,
+  "urls_clean": 30,
+  "urls_fetched": 30,
+  "urls_extracted": 22,
+  "urls_thin": 3,
+  "urls_failed": 0,
+  "extraction_failures": 8,
+  "url_outcomes": [
+    {
+      "rank": 1,
+      "url": "https://www.fiddler.ai/articles/ai-agent-evaluation",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-01"
+    },
+    {
+      "rank": 2,
+      "url": "https://github.com/awslabs/agent-evaluation",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 3,
+      "url": "https://medium.com/@TechforHumans/evaluating-ai-agents-metrics-challenges-and-practices-c5a0444876cd",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 4,
+      "url": "https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-a-deep-dive-into-agent-evaluation-practical-tooling-and-multi-agent-systems",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-04"
+    },
+    {
+      "rank": 5,
+      "url": "https://www.langchain.com/resources/llm-evaluation-framework",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-05"
+    },
+    {
+      "rank": 6,
+      "url": "https://www.comet.com/site/blog/ai-agent-evaluation",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-06"
+    },
+    {
+      "rank": 7,
+      "url": "https://www.cos.io/blog/benchmarking-llm-agents-on-scientific-tasks-introducing-replicatorbench",
+      "outcome": "robots_disallowed",
+      "reason": "robots_rule",
+      "source_id": null
+    },
+    {
+      "rank": 8,
+      "url": "https://arxiv.org/html/2604.06185v1",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-08"
+    },
+    {
+      "rank": 9,
+      "url": "https://huggingface.co/datasets/tuandunghcmut/BFCL_v4_information/blob/main/A%20Comprehensive%20Survey%20of%20Benchmarks%20for%20Evaluating%20Tool%20and%20Function%20Calling%20in%20Large%20Language%20Models.md",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-09"
+    },
+    {
+      "rank": 10,
+      "url": "https://community.openai.com/t/a-benchmark-for-tool-selection-given-a-user-query/730307",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-10"
+    },
+    {
+      "rank": 11,
+      "url": "https://openreview.net/forum?id=oHEaIwPv9s",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 12,
+      "url": "https://labs.scale.com/leaderboard/tool_use_enterprise",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-12"
+    },
+    {
+      "rank": 13,
+      "url": "https://arxiv.org/html/2502.18836v1",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-13"
+    },
+    {
+      "rank": 14,
+      "url": "https://nhimg.org/faq/what-breaks-when-organisations-lack-shared-metrics-for-ai-agent-trustworthiness",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-14"
+    },
+    {
+      "rank": 15,
+      "url": "https://www.aiacceleratorinstitute.com/the-canary-test-ai-agents-keep-failing",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-15"
+    },
+    {
+      "rank": 16,
+      "url": "https://delos.so/blog/ai-agent-testing",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-16"
+    },
+    {
+      "rank": 17,
+      "url": "https://pedropizarrodiaz.it/blog/ai-agent-metrics-before-production.html",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-17"
+    },
+    {
+      "rank": 18,
+      "url": "https://library.eval-ai.com/agent-metrics",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-18"
+    },
+    {
+      "rank": 19,
+      "url": "https://katalon.com/resources-center/blog/metrics-that-matter-for-agentic-testing",
+      "outcome": "unreachable",
+      "reason": "http_404",
+      "source_id": null
+    },
+    {
+      "rank": 20,
+      "url": "https://tldr.takara.ai/p/2605.17467",
+      "outcome": "unreachable",
+      "reason": "robots_unavailable",
+      "source_id": null
+    },
+    {
+      "rank": 21,
+      "url": "https://futurism.com/ai-agents-failing-industry",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-21"
+    },
+    {
+      "rank": 22,
+      "url": "https://www.agentixlabs.com/blog/agent-evaluation-observability/from-logs-to-run-reviews-agent-observability-for-production-agents",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-22"
+    },
+    {
+      "rank": 23,
+      "url": "https://www.buildmvpfast.com/blog/tracing-ai-agent-workflows-opentelemetry-multi-step-2026",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-23"
+    },
+    {
+      "rank": 24,
+      "url": "https://medium.com/@Quaxel/the-agent-reliability-gap-12-early-failure-modes-91dba5a2c1ae",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 25,
+      "url": "https://nhimg.org/community/ai-beyond-identity/ai-agent-observability-gaps-what-teams-need-to-see-in-production",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-25"
+    },
+    {
+      "rank": 26,
+      "url": "https://nhimg.org/articles/ai-observability-for-agent-workflows-now-depends-on-local-first-control",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-26"
+    },
+    {
+      "rank": 27,
+      "url": "https://app.thetestingacademy.com/blog/test-ai-agent-retry-and-recovery-behavior",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 28,
+      "url": "https://kernel.yaala.ai/docs/advanced/traceability",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-28"
+    },
+    {
+      "rank": 29,
+      "url": "https://praesidia.ai/blog/observability-for-ai-agents",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-29"
+    },
+    {
+      "rank": 30,
+      "url": "https://arize.com/ai-agents/agent-evaluation",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-30"
+    }
+  ],
+  "blog_path": "output/2026-10-09-21-40-43-content.md",
+  "citation_count": 22,
+  "tokens_used": 4061634,
+  "cost_usd": 0.09742753099999996,
+  "duration_seconds": 425.68170054200164,
+  "retries": 0
+}

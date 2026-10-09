@@ -1,0 +1,438 @@
+{
+  "run_id": "ai-agent-evaluation-20261009T212330Z",
+  "topic": "AI agent evaluation",
+  "completed_phases": [
+    "plan",
+    "search",
+    "normalize"
+  ],
+  "query_variants": [
+    "benchmarking tool-using LLM agents task datasets",
+    "agent observability tracing and failure analysis",
+    "agent success criteria and bounded retry evaluation"
+  ],
+  "clean_results": [
+    {
+      "url": "https://www.fiddler.ai/articles/ai-agent-evaluation",
+      "title": "AI Agent Evaluation: Key Steps and Methods",
+      "snippet": "AI agent evaluation systematically assesses how well an AI agent performs assigned tasks, makes decisions, and interacts with users or systems.",
+      "rank": 1,
+      "query": "AI agent evaluation"
+    },
+    {
+      "url": "https://github.com/awslabs/agent-evaluation",
+      "title": "awslabs/agent-evaluation: A generative AI-powered ...",
+      "snippet": "Agent Evaluation is a generative AI-powered framework for testing virtual agents. Internally, Agent Evaluation implements an LLM agent (evaluator)",
+      "rank": 2,
+      "query": "AI agent evaluation"
+    },
+    {
+      "url": "https://medium.com/@TechforHumans/evaluating-ai-agents-metrics-challenges-and-practices-c5a0444876cd",
+      "title": "Evaluating AI Agents: Metrics, Challenges, and Practices",
+      "snippet": "Main Metrics for Agent Evaluation · 1. Response Quality · 2. Efficiency and Optimization · 3. User Experience · 4. Tool Usage and Execution · 5.",
+      "rank": 3,
+      "query": "AI agent evaluation"
+    },
+    {
+      "url": "https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-a-deep-dive-into-agent-evaluation-practical-tooling-and-multi-agent-systems",
+      "title": "A Deep Dive into Agent Evaluation, Practical Tooling, and ...",
+      "snippet": "Learn how to effectively evaluate AI agents with a full-stack approach, covering key metrics, measurement methods, and a 5-step evaluation ...",
+      "rank": 4,
+      "query": "AI agent evaluation"
+    },
+    {
+      "url": "https://www.langchain.com/resources/llm-evaluation-framework",
+      "title": "LLM Evaluation Framework: Trajectories vs. Outputs",
+      "snippet": "Trajectory evaluation means scoring the entire execution path an AI agent takes rather than just its final output. This includes every tool call ...",
+      "rank": 5,
+      "query": "AI agent evaluation"
+    },
+    {
+      "url": "https://www.comet.com/site/blog/ai-agent-evaluation",
+      "title": "AI Agent Evaluation: Building Reliable Systems ... - Comet ML",
+      "snippet": "AI agent evaluation requires process-level measurement across sequential decisions. Learn how systematic evaluation determines production ...",
+      "rank": 6,
+      "query": "AI agent evaluation"
+    },
+    {
+      "url": "https://www.cos.io/blog/benchmarking-llm-agents-on-scientific-tasks-introducing-replicatorbench",
+      "title": "Benchmarking LLM Agents on Scientific Tasks",
+      "snippet": "ReplicatorBench, a benchmark for evaluating LLM agents on research replication in the social and behavioral sciences.",
+      "rank": 7,
+      "query": "benchmarking tool-using LLM agents task datasets"
+    },
+    {
+      "url": "https://arxiv.org/html/2604.06185v1",
+      "title": "Benchmarking LLM Tool-Use in the Wild",
+      "snippet": "Current mainstream LLM tool-use benchmarks follow a multi-turn, multi-step paradigm: LLMs function as assistants and engage in multi-turn dialogues with users ...",
+      "rank": 8,
+      "query": "benchmarking tool-using LLM agents task datasets"
+    },
+    {
+      "url": "https://huggingface.co/datasets/tuandunghcmut/BFCL_v4_information/blob/main/A%20Comprehensive%20Survey%20of%20Benchmarks%20for%20Evaluating%20Tool%20and%20Function%20Calling%20in%20Large%20Language%20Models.md",
+      "title": "A Comprehensive Survey of Benchmarks for Evaluating ...",
+      "snippet": "A Comprehensive Survey of Benchmarks for Evaluating Tool and Function Calling in Large Language Models. 1. Introduction to AI Agents and the ...",
+      "rank": 9,
+      "query": "benchmarking tool-using LLM agents task datasets"
+    },
+    {
+      "url": "https://community.openai.com/t/a-benchmark-for-tool-selection-given-a-user-query/730307",
+      "title": "A Benchmark for tool selection given a user query",
+      "snippet": "I am looking for a benchmark dataset which would allow me to evaluate how well GPT matches uesr intent with those functions (as a baseline).",
+      "rank": 10,
+      "query": "benchmarking tool-using LLM agents task datasets"
+    },
+    {
+      "url": "https://openreview.net/forum?id=oHEaIwPv9s",
+      "title": "Benchmarking LLM Agents on Compiling Real-World Open ...",
+      "snippet": "This paper presents Build-Bench, a benchmark designed to evaluate LLMs on software build and compilation tasks. The benchmark collects real open ...",
+      "rank": 11,
+      "query": "benchmarking tool-using LLM agents task datasets"
+    },
+    {
+      "url": "https://labs.scale.com/leaderboard/tool_use_enterprise",
+      "title": "Agentic Tool Use (Enterprise) - Scale Labs Leaderboard",
+      "snippet": "ToolComp, Scale AI's SEAL leaderboard, assesses LLM agents on planning, reasoning, and executing complex tool use. See the latest results and insights.",
+      "rank": 12,
+      "query": "benchmarking tool-using LLM agents task datasets"
+    },
+    {
+      "url": "https://arxiv.org/html/2502.18836v1",
+      "title": "A Real-World Planning Benchmark for LLMs and Multi ...",
+      "snippet": "This benchmark suite provides a comprehensive evaluation framework for assessing both individual LLMs and multi-agent systems in real-world ...",
+      "rank": 13,
+      "query": "benchmarking tool-using LLM agents task datasets"
+    },
+    {
+      "url": "https://www.fiddler.ai/blog/anatomy-ai-agent",
+      "title": "Anatomy of an Agent: Observing the Full Lifecycle ...",
+      "snippet": "Observability at this stage captures input/output traces, errors, latency, tool effectiveness, and success or failure signals. These are ...",
+      "rank": 14,
+      "query": "agent observability tracing and failure analysis"
+    },
+    {
+      "url": "https://nhimg.org/community/ai-beyond-identity/ai-agent-observability-what-teams-need-to-trace-beyond-text-output",
+      "title": "AI agent observability: what teams need to trace beyond ...",
+      "snippet": "AI agent observability must cover tool calls, state changes, reasoning traces, and error recovery. AI agent observability must cover tool calls ...",
+      "rank": 15,
+      "query": "agent observability tracing and failure analysis"
+    },
+    {
+      "url": "https://www.mintmcp.com/blog/opentelemetry-ai-agents",
+      "title": "OpenTelemetry for AI Agents: Implementing Observability ...",
+      "snippet": "Distributed tracing can materially reduce debugging time by exposing end-to-end MCP tool invocations, reasoning steps, and downstream failures ...",
+      "rank": 16,
+      "query": "agent observability tracing and failure analysis"
+    },
+    {
+      "url": "https://towardsai.com/p/machine-learning/a-guide-to-ai-agent-evaluation-and-observability",
+      "title": "A Guide to AI Agent Evaluation and Observability",
+      "snippet": "AI agent observability is the practice of making an agent a “glass box” by collecting and analyzing its internal telemetry data.",
+      "rank": 17,
+      "query": "agent observability tracing and failure analysis"
+    },
+    {
+      "url": "https://www.jetadmin.io/blog/ai-agent-observability",
+      "title": "AI Agent Observability: What to Trace, Log and Monitor",
+      "snippet": "Agent observability tracks decisions and outcomes, because agents fail in their reasoning, not their servers.",
+      "rank": 18,
+      "query": "agent observability tracing and failure analysis"
+    },
+    {
+      "url": "https://www.tracify.tech/blog",
+      "title": "Blog | Tracify",
+      "snippet": "Agentic AI observability means tracing the reasoning chain and tool-call graph a multi-step agent produces, not just its final answer.",
+      "rank": 19,
+      "query": "agent observability tracing and failure analysis"
+    },
+    {
+      "url": "https://docs.fiddler.ai/observability/agentic",
+      "title": "Agentic Observability",
+      "snippet": "Agentic observability provides specialized observability for AI agents and multi-step workflows through dedicated dashboards, metrics, and trace ...",
+      "rank": 20,
+      "query": "agent observability tracing and failure analysis"
+    },
+    {
+      "url": "https://openreview.net/attachment?id=C4vsSnUJuH&name=originally_submitted_PDF",
+      "title": "Agent Evaluation Should Be Agentified for Openness, ...",
+      "snippet": "Under this paradigm, an agent assessment involves three participant roles: a delegator, a judge agent (or assessor agent), and one or more subject agents (or ...",
+      "rank": 21,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://www.kunalganglani.com/blog/agent-evaluation-roadmap-teams",
+      "title": "Agent Eval Roadmap Small Teams [2026] 30-Min Plan",
+      "snippet": "Agent evaluation is how you prove an AI agent keeps doing the right thing as you change prompts, tools, and models.",
+      "rank": 22,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://theagentobserver.com/how-to-evaluate-ai-agent-performance",
+      "title": "How to Evaluate AI Agent Performance: A Builder's Guide",
+      "snippet": "This guide covers the core metrics builders use—task completion rate, tool use accuracy, latency, and error recovery—and explains how to construct evaluation ...",
+      "rank": 23,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://www.codiste.com/ai-agent-evaluation-framework",
+      "title": "AI Agent Evaluation Framework: Metrics, Test Sets and CI ...",
+      "snippet": "Agent evaluation checks what changed in your systems. It suits work where a retry is acceptable, such as a research or coding assistant.",
+      "rank": 24,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://www.channel.tel/blog/sre-ai-agents-slo-error-budget-cx",
+      "title": "SRE for AI Agents: SLOs, Error Budgets, and Reliability - Chanl",
+      "snippet": "The agent's task success rate drifts from 94% to 81% over three weeks. Chanl gives you the evaluation infrastructure to measure what APM misses ...",
+      "rank": 25,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://stanleycyang.com/writing/ai-agent-evals-ci",
+      "title": "AI Agent Evals in CI: A Release Gate for Prompts, Models, and ...",
+      "snippet": "An agent evaluation suite should answer a release question: did this change make the system meaningfully worse on tasks and risks we care about?",
+      "rank": 26,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://blaxel.ai/blog/agent-infrastructure-reliability-buying-criterion",
+      "title": "Agent Infrastructure Reliability: The Real Buying Criterion",
+      "snippet": "Vendor evaluations for agent infrastructure usually emphasize the criteria easiest to demo or compare: boot and resume latency, SDK quality, ...",
+      "rank": 27,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://agenticlab.sunilprakash.com/evidence/baseline-eval-report",
+      "title": "Baseline Evaluation Report — Evidence",
+      "snippet": "Baseline evaluation of the Document Intelligence Agent across 30 test cases covering 11 categories. Documents pass rates, failure distribution, and per-case ...",
+      "rank": 28,
+      "query": "agent success criteria and bounded retry evaluation"
+    },
+    {
+      "url": "https://arize.com/ai-agents/agent-evaluation",
+      "title": "Agent evaluation: How to evaluate AI agents in production",
+      "snippet": "Agent evaluation is the process of testing whether an AI agent can complete its assigned task correctly and behave as expected while doing so. It measures both ...",
+      "rank": 29,
+      "query": "AI agent evaluation"
+    },
+    {
+      "url": "https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon",
+      "title": "Evaluating AI agents: Real-world lessons from building ...",
+      "snippet": "The AI agent evaluation library operates across three layers: calculating and generating evaluation metrics for the agent's final output, ...",
+      "rank": 30,
+      "query": "AI agent evaluation"
+    }
+  ],
+  "url_outcomes": {
+    "https://www.fiddler.ai/articles/ai-agent-evaluation": {
+      "rank": 1,
+      "url": "https://www.fiddler.ai/articles/ai-agent-evaluation",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://github.com/awslabs/agent-evaluation": {
+      "rank": 2,
+      "url": "https://github.com/awslabs/agent-evaluation",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://medium.com/@TechforHumans/evaluating-ai-agents-metrics-challenges-and-practices-c5a0444876cd": {
+      "rank": 3,
+      "url": "https://medium.com/@TechforHumans/evaluating-ai-agents-metrics-challenges-and-practices-c5a0444876cd",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-a-deep-dive-into-agent-evaluation-practical-tooling-and-multi-agent-systems": {
+      "rank": 4,
+      "url": "https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-a-deep-dive-into-agent-evaluation-practical-tooling-and-multi-agent-systems",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.langchain.com/resources/llm-evaluation-framework": {
+      "rank": 5,
+      "url": "https://www.langchain.com/resources/llm-evaluation-framework",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.comet.com/site/blog/ai-agent-evaluation": {
+      "rank": 6,
+      "url": "https://www.comet.com/site/blog/ai-agent-evaluation",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.cos.io/blog/benchmarking-llm-agents-on-scientific-tasks-introducing-replicatorbench": {
+      "rank": 7,
+      "url": "https://www.cos.io/blog/benchmarking-llm-agents-on-scientific-tasks-introducing-replicatorbench",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://arxiv.org/html/2604.06185v1": {
+      "rank": 8,
+      "url": "https://arxiv.org/html/2604.06185v1",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://huggingface.co/datasets/tuandunghcmut/BFCL_v4_information/blob/main/A%20Comprehensive%20Survey%20of%20Benchmarks%20for%20Evaluating%20Tool%20and%20Function%20Calling%20in%20Large%20Language%20Models.md": {
+      "rank": 9,
+      "url": "https://huggingface.co/datasets/tuandunghcmut/BFCL_v4_information/blob/main/A%20Comprehensive%20Survey%20of%20Benchmarks%20for%20Evaluating%20Tool%20and%20Function%20Calling%20in%20Large%20Language%20Models.md",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://community.openai.com/t/a-benchmark-for-tool-selection-given-a-user-query/730307": {
+      "rank": 10,
+      "url": "https://community.openai.com/t/a-benchmark-for-tool-selection-given-a-user-query/730307",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://openreview.net/forum?id=oHEaIwPv9s": {
+      "rank": 11,
+      "url": "https://openreview.net/forum?id=oHEaIwPv9s",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://labs.scale.com/leaderboard/tool_use_enterprise": {
+      "rank": 12,
+      "url": "https://labs.scale.com/leaderboard/tool_use_enterprise",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://arxiv.org/html/2502.18836v1": {
+      "rank": 13,
+      "url": "https://arxiv.org/html/2502.18836v1",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.fiddler.ai/blog/anatomy-ai-agent": {
+      "rank": 14,
+      "url": "https://www.fiddler.ai/blog/anatomy-ai-agent",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://nhimg.org/community/ai-beyond-identity/ai-agent-observability-what-teams-need-to-trace-beyond-text-output": {
+      "rank": 15,
+      "url": "https://nhimg.org/community/ai-beyond-identity/ai-agent-observability-what-teams-need-to-trace-beyond-text-output",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.mintmcp.com/blog/opentelemetry-ai-agents": {
+      "rank": 16,
+      "url": "https://www.mintmcp.com/blog/opentelemetry-ai-agents",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://towardsai.com/p/machine-learning/a-guide-to-ai-agent-evaluation-and-observability": {
+      "rank": 17,
+      "url": "https://towardsai.com/p/machine-learning/a-guide-to-ai-agent-evaluation-and-observability",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.jetadmin.io/blog/ai-agent-observability": {
+      "rank": 18,
+      "url": "https://www.jetadmin.io/blog/ai-agent-observability",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.tracify.tech/blog": {
+      "rank": 19,
+      "url": "https://www.tracify.tech/blog",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://docs.fiddler.ai/observability/agentic": {
+      "rank": 20,
+      "url": "https://docs.fiddler.ai/observability/agentic",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://openreview.net/attachment?id=C4vsSnUJuH&name=originally_submitted_PDF": {
+      "rank": 21,
+      "url": "https://openreview.net/attachment?id=C4vsSnUJuH&name=originally_submitted_PDF",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.kunalganglani.com/blog/agent-evaluation-roadmap-teams": {
+      "rank": 22,
+      "url": "https://www.kunalganglani.com/blog/agent-evaluation-roadmap-teams",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://theagentobserver.com/how-to-evaluate-ai-agent-performance": {
+      "rank": 23,
+      "url": "https://theagentobserver.com/how-to-evaluate-ai-agent-performance",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.codiste.com/ai-agent-evaluation-framework": {
+      "rank": 24,
+      "url": "https://www.codiste.com/ai-agent-evaluation-framework",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://www.channel.tel/blog/sre-ai-agents-slo-error-budget-cx": {
+      "rank": 25,
+      "url": "https://www.channel.tel/blog/sre-ai-agents-slo-error-budget-cx",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://stanleycyang.com/writing/ai-agent-evals-ci": {
+      "rank": 26,
+      "url": "https://stanleycyang.com/writing/ai-agent-evals-ci",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://blaxel.ai/blog/agent-infrastructure-reliability-buying-criterion": {
+      "rank": 27,
+      "url": "https://blaxel.ai/blog/agent-infrastructure-reliability-buying-criterion",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://agenticlab.sunilprakash.com/evidence/baseline-eval-report": {
+      "rank": 28,
+      "url": "https://agenticlab.sunilprakash.com/evidence/baseline-eval-report",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://arize.com/ai-agents/agent-evaluation": {
+      "rank": 29,
+      "url": "https://arize.com/ai-agents/agent-evaluation",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    },
+    "https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon": {
+      "rank": 30,
+      "url": "https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon",
+      "outcome": "pending",
+      "reason": null,
+      "source_id": null
+    }
+  }
+}

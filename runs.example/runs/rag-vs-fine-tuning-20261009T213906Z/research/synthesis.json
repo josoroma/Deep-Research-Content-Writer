@@ -1,0 +1,1133 @@
+{
+  "contract_version": 2,
+  "run_id": "rag-vs-fine-tuning-20261009T213906Z",
+  "topic": "RAG vs fine-tuning",
+  "goal": "Help an engineering team choose between RAG, fine-tuning, and a hybrid approach for enterprise AI assistants by comparing data freshness, evaluation, latency, cost, and security while preserving evidence limits and avoiding unsupported rankings.",
+  "input_fingerprint": "f1350372afd30a20bc6e401440d5eed3470120f338cd6e0f9e35e60f2f8154e5",
+  "reader_objective": "Help an engineering team choose between RAG, fine-tuning, and a hybrid approach for enterprise AI assistants by comparing data freshness, evaluation, latency, cost, and security while preserving evidence limits and avoiding unsupported rankings.",
+  "objective_origin": "explicit",
+  "considered_source_ids": [
+    "S-01",
+    "S-03",
+    "S-04",
+    "S-06",
+    "S-08",
+    "S-09",
+    "S-10",
+    "S-11",
+    "S-13",
+    "S-15",
+    "S-17",
+    "S-20",
+    "S-21",
+    "S-25",
+    "S-26",
+    "S-28",
+    "S-29",
+    "S-30"
+  ],
+  "evidence_types": [
+    "vendor and consultancy blog posts on LLM customization",
+    "enterprise whitepaper with comparison tables",
+    "practitioner decision frameworks and scorecards from development agencies",
+    "cloud and GPU-platform marketing content with cost and completion-time estimates",
+    "security-industry blog posts, FAQ guidance, and link digests",
+    "second-hand summaries of one academic benchmark study (MMLU) and one academic method paper (RAFT)",
+    "general technology-press practitioner article on model optimization"
+  ],
+  "limitations": [
+    "Only 18 of 30 ranked URLs were extracted (S-02, S-05, S-07, S-12, S-14, S-16, S-18, S-19, S-22, S-23, S-24, S-27 are absent), so the corpus is a partial sample of the search results and nothing can be said about the missing pages.",
+    "Nearly every source is vendor-authored: company blogs, a whitepaper, GPU-cloud marketing, retrieval-platform marketing, and security-vendor posts, several ending in calls to contact sales or start an assessment.",
+    "No source reports its own controlled measurement of latency, cost, accuracy, or retrieval quality for RAG versus fine-tuning; the only benchmark discussion is a vendor post summarising external papers, which are not themselves in the corpus.",
+    "Figures are quoted in incompatible units and years (per-hour GPU hosting, per-query token cost, one-time training spend, percentage case-volume reductions) and cannot be combined into a total cost of ownership.",
+    "Security sources (S-25, S-26, S-28, S-30) address LLM security in general — prompt injection, jailbreaks, rate limiting, EU AI Act scope, attack-surface framing — rather than the RAG-versus-fine-tuning tradeoff; only S-13, S-15 and S-20 discuss per-document access control in a way that bears on the choice.",
+    "Publication dates range from January 2024 to October 2026, so the corpus mixes advice written before and after long-context prompting, prompt caching, agentic retrieval, and preference-optimization shifts; older and newer sources disagree partly because they describe different capability baselines.",
+    "Several headline numbers are unsourced or single-source (outdated-answer anecdotes, tone-satisfaction effects, adoption forecasts, vendor deal ratios, one claim that fine-tuning makes leakage less likely)."
+  ],
+  "findings": [
+    {
+      "finding_id": "F-01",
+      "statement": "The sources converge on a reframing rather than a contest: retrieval governs what an assistant knows and how current that knowledge is, while fine-tuning governs how it behaves (style, format, task shape), so the two are complementary capabilities instead of interchangeable substitutes.",
+      "evidence": [
+        {
+          "source_id": "S-20",
+          "excerpt": "| **Best for** | Teaching the model *facts* (dynamic knowledge) | Teaching the model *behavior* (style, format, voice) |",
+          "role": "supports",
+          "context": "Comparison-table row separating what each technique is best at."
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "Fine-tuning shifts behavior, not knowledge. Teams who fine-tune on a product catalog routinely watch the model hallucinate SKUs that don’t exist, confidently citing specs from a generation ago. For facts, use RAG. Full stop.",
+          "role": "supports",
+          "context": "Listed under the mistakes that waste weeks."
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "Consider two options: you could train the model to internalize the content, or you could supply the content to the model on demand. When comparing fine-tuning and RAG, this distinction is a useful framing.",
+          "role": "supports",
+          "context": "IBM Developer framing built on static versus dynamic data."
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "| How it works | AI looks up fresh info from documents, then answers. | AI is trained with examples so it “remembers” skills and tone. | AI is trained for tone/skills but also looks up fresh info when needed. |",
+          "role": "supports",
+          "context": "Quick-comparison table row."
+        }
+      ],
+      "qualifications": [
+        "The framing is asserted by the same vendor-authored sources that sell implementation services; none of them tests it empirically or against a controlled task set.",
+        "S-20 itself presents the framing as the answer to 'is RAG better than fine-tuning', which is an editorial position rather than an experimental result."
+      ]
+    },
+    {
+      "finding_id": "F-02",
+      "statement": "Freshness is the best-supported differentiator in the corpus: retrieval-based systems absorb new or corrected information by updating a document store or index, whereas a fine-tuned model is a snapshot of its training data whose currency depends on a retraining cadence.",
+      "evidence": [
+        {
+          "source_id": "S-01",
+          "excerpt": "**Knowledge updates:** RAG is like your always-updated AI assistant, integrating the latest information without needing frequent retraining. This makes it ideal for industries where staying current is crucial. Fine-tuning, on the other hand, is more like a specialist trained for a specific job. It excels within its domain but requires periodic updates and retraining to keep up with new information.",
+          "role": "supports",
+          "context": "Feature-by-feature comparison of the two approaches."
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "**Freshness:** You don’t need to retrain the whole model when data changes; just update the document store.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "- **Real-time updates:** RAG integrates fresh data without retraining, ideal for dynamic fields like legal or news.",
+          "role": "supports",
+          "context": "Listed under advantages of RAG in an enterprise whitepaper."
+        },
+        {
+          "source_id": "S-10",
+          "excerpt": "RAG can give models access to new data that changes frequently. You can do it regularly by updating the records in your vector database.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "A fine-tuned model is a snapshot, and the moment your docs shift, the snapshot is stale. RAG trades freshness for a retrieval hop.",
+          "role": "supports",
+          "context": "First of six decision questions."
+        },
+        {
+          "source_id": "S-13",
+          "excerpt": "The RAG approach supports fresh data that’s constantly updated, private data that you connect, large-scale and multimodal data, and more",
+          "role": "supports",
+          "context": "Google Cloud overview of methods for bringing data to foundation models."
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "| **Knowledge is dynamic, proprietary, or larger than the context window** | **RAG** (start with hybrid retrieval + re-ranker) | Updates in minutes, citable sources, no retraining cost. |",
+          "role": "supports",
+          "context": "Decision-matrix row keyed to the dominant constraint."
+        }
+      ],
+      "qualifications": [
+        "Every source making this claim is a vendor or consultancy blog; none measures how quickly an update propagates or whether accuracy holds after an update.",
+        "The magnitude of the freshness advantage is never quantified (no update-latency or drift measurements appear anywhere in the corpus)."
+      ]
+    },
+    {
+      "finding_id": "F-03",
+      "statement": "Cost evidence is directional rather than measured: retrieval is described as cheap to set up with ongoing per-query and storage costs, fine-tuning as a large one-time training investment with cheaper per-query inference, with quoted ranges such as low-five-figures for a retrieval pilot and $1,000–$20,000 for a LoRA training run.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "RAG is cheap to start, linear to run. Setup: 1–2 weeks of engineering, <$100 of embedding spend for most corpora. Per-query cost: the retrieval hop (~$0.0001) plus the LLM call ($0.005–$0.02). No GPU, no training, no ops. You can be in production in a week.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "adapter on a good dataset: 3–6 weeks, $1,000–$20,000 depending on",
+          "role": "supports",
+          "context": "Sentence continues on the following line in the source; figure is for training a LoRA adapter."
+        },
+        {
+          "source_id": "S-11",
+          "excerpt": "- Cost: Low five figures (infrastructure + dev time + API/model fees)",
+          "role": "supports",
+          "context": "Vendor's estimate for an enterprise-IT RAG build, paired in the same list with a '1 to 2 weeks' completion time."
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "- **RAG setup is cheaper and faster** (just upload and index your docs). But at scale, runtime costs can grow because every query does retrieval.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-03",
+          "excerpt": "According to 1001epochs.ch, you can expect to pay between $0.53 and $7.34 per hour.",
+          "role": "supports",
+          "context": "Second-hand hosting-cost range for a 70B model, cited as context for operational cost rather than for training."
+        }
+      ],
+      "qualifications": [
+        "Figures come from vendor blogs and a GPU-cloud vendor's scenario lists; scopes differ (embedding spend, per-query token cost, GPU-hour hosting, one-time training spend) and none is audited or reproducible.",
+        "The $0.53–$7.34 per hour figure is a second-hand citation of another site about hosting a 70B model, not a measured cost of either technique."
+      ]
+    },
+    {
+      "finding_id": "F-04",
+      "statement": "Sources disagree about retrieval's cost trajectory: one enterprise whitepaper presents RAG as cost-efficient with minimal overhead, while other sources stress that per-query retrieval and larger prompts make retrieval more expensive at scale.",
+      "evidence": [
+        {
+          "source_id": "S-06",
+          "excerpt": "**Cost-efficient:** Reduces expensive retraining cycles, ensuring scalable enterprise adaptation with minimal overhead.",
+          "role": "supports",
+          "context": "Advantage-of-RAG bullet in the whitepaper."
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "But at scale, runtime costs can grow because every query does retrieval.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "| **Cost profile** | Higher per-query (retrieval + larger prompts) | Higher upfront (training, evals); lower per-query |",
+          "role": "supports",
+          "context": "RAG versus fine-tuning comparison table."
+        }
+      ],
+      "qualifications": [
+        "The disagreement is about framing rather than measurements: no source in the corpus provides a cost model, token accounting, or a worked total-cost comparison.",
+        "S-06 is a service-provider whitepaper whose summary section also markets the provider's own AI strategy services."
+      ]
+    },
+    {
+      "finding_id": "F-05",
+      "statement": "The economic crossover between the two approaches is asserted rather than derived: one source states that below roughly 100,000 queries per month the economics favour retrieval, and another says fine-tuning becomes cheaper per answer once deployed.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "Below ~100k queries/month, the economics favour RAG.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "- **Fine-Tuning is expensive upfront** (needs data prep, training, and GPUs) but can be cheaper per answer once deployed.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "Neither source shows the arithmetic, token counts, or price assumptions behind the crossover, and both are vendor-authored.",
+        "The threshold is stated in queries per month while the other cost figures in the corpus are per-query or one-time, so the two cannot be reconciled from this evidence."
+      ]
+    },
+    {
+      "finding_id": "F-06",
+      "statement": "Latency evidence is directional and partly contested: retrieval adds a hop quoted at 100–400 ms (and 3–10x for agentic multi-step retrieval), several sources say fine-tuning answers faster because knowledge is internalized, and one source warns that a fine-tuned model may be larger or more complex and therefore slower at inference.",
+      "evidence": [
+        {
+          "source_id": "S-17",
+          "excerpt": "6. **What’s your latency budget?** RAG adds a retrieval hop, typically 100 to 400 milliseconds. For most apps, that’s invisible. For voice interfaces, real-time gaming, or high-frequency trading copilots, it’s disqualifying.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "- **Latency** : Agentic RAG is 3-10x slower per query (multiple retrieval and generation rounds).",
+          "role": "supports",
+          "context": "Comparison of naive RAG with agentic RAG."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "| Latency | Faster inference since responses are generated directly. Best for real-time apps with static data. | Slower due to retrieval before generation. Optimized setups reduce lag but remain slightly slower. |",
+          "role": "supports",
+          "context": "Cost/latency/accuracy comparison table with fine-tuning in the left column and RAG in the right."
+        },
+        {
+          "source_id": "S-01",
+          "excerpt": "**Latency:** RAG involves heavy data retrieval, which makes it thorough but sometimes slow, leading to higher latency. Fine-tuning is quicker, as it doesn’t need to retrieve data and can deliver answers almost instantly, although it requires significant setup initially.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "| Latency (Speed) | Slower — has to search + answer. | Faster — answers directly. | Medium — depends on balance. |",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-21",
+          "excerpt": "This process is like an open-book test—minimal prep but longer response times compared to pre-trained knowledge.",
+          "role": "supports",
+          "context": "Open-book analogy for retrieval."
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "- **Tradeoffs in Inference Speed:** A fine-tuned model may be larger or more complex than a retrieval-based alternative, which can impact**inference speed** , especially in production environments with latency constraints.",
+          "role": "contradicts",
+          "context": "Undercuts the blanket claim that fine-tuned models are always the lower-latency option."
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "- **Internalized Knowledge:** The model doesn’t need to retrieve information externally; instead, it can generate contextually aware, fluent answers based on what it has learned, resulting in faster**response generation** and consistent tone.",
+          "role": "qualifies",
+          "context": "The same source states both this faster-generation claim and the inference-speed caveat above, so it is internally unresolved."
+        }
+      ],
+      "qualifications": [
+        "No controlled latency benchmark appears in the corpus; the 100–400 ms hop and the 3–10x agentic multiplier are practitioner estimates from vendor or consultancy posts.",
+        "Latency is not decomposed by pipeline configuration (embedding, reranking, cache hit rate, model size), so the numbers cannot be applied directly to a given architecture."
+      ]
+    },
+    {
+      "finding_id": "F-07",
+      "statement": "Evaluation practice is the corpus's most concrete operational material: build a small eval set with expected answers before changing anything, re-run it after every change to chunking, embedding, retrieval, or prompt, use task-specific evals rather than training loss, and compare against a strong retrieval baseline — but no source reports the results of any such evaluation.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "Build a 100-query eval set with expected answers on day one. Run it after every change to chunking, embedding, retrieval, or prompt. If accuracy drops below the previous release, revert.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "Testing retrieval quality only with a handful of hand-picked queries instead of a real eval set. Skipping evals entirely and shipping on vibes.",
+          "role": "supports",
+          "context": "Listed among common mistakes teams make."
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "Most AI project failures trace back to inadequate measurement, not model choice. If you can’t measure retrieval precision and groundedness, you aren’t shipping, you’re hoping. A 30-prompt evaluation set, run weekly, catches most regressions before users do.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "**Evaluate** — Use task-specific evals (not just loss) and compare against a strong RAG baseline before declaring success.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "- Evaluating context quality independently from model quality",
+          "role": "supports",
+          "context": "Context-engineering bullet on separating context quality from model quality."
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "After training, the fine-tuned model is tested to evaluate improvements in task-specific accuracy and the**trustworthy results** it delivers. Benchmarking against baseline models is essential to confirm that performance gains are meaningful and sustainable.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "The prescribed eval-set sizes (100 queries, 30 prompts) are vendor heuristics; no source shares the eval sets, metric definitions, or pass thresholds.",
+        "No source reports a before/after score for a real deployment, so the guidance can be adopted but its sufficiency cannot be judged from this corpus."
+      ]
+    },
+    {
+      "finding_id": "F-08",
+      "statement": "Only one research-grade comparison is discussed in the corpus, and it reaches the reader second-hand: a GPU-cloud vendor post summarises a 2024 Microsoft Research MMLU study and a Berkeley RAFT paper, then cautions that the accuracy advantage applies to informational questions rather than all tasks.",
+      "evidence": [
+        {
+          "source_id": "S-21",
+          "excerpt": "published by Microsoft Research in January 2024 compared the performance of RAG, fine-tuning, and fine-tuning used in conjunction with RAG on the Massively Multilingual Language Understanding Evaluation (MMLU) benchmark.",
+          "role": "supports",
+          "context": "Sentence begins with a link to the arXiv paper in the source."
+        },
+        {
+          "source_id": "S-21",
+          "excerpt": "While this study shows RAG often outperforms on informational accuracy, this is only one of many use cases. Fine-tuning could perform better than RAG at other tasks like sentiment analysis, NSFW content detection, and tone of voice curation.",
+          "role": "qualifies",
+          "context": "Explicit scope limit attached to the benchmark result."
+        },
+        {
+          "source_id": "S-21",
+          "excerpt": "The paper’s results found that RAFT improves performance for all specialized domains across PubMed, HotPot, HuggingFace, Torch Hub, and Tensorflow Hub.",
+          "role": "supports",
+          "context": "Second-hand report of the RAFT paper's findings."
+        }
+      ],
+      "qualifications": [
+        "The underlying papers (arXiv 2312.05934 and 2403.10131) are not part of the extracted corpus, and no scores, sample sizes, or confidence intervals are reproduced.",
+        "The summarising source is a GPU-cloud vendor whose post also promotes running these workloads on its platform."
+      ]
+    },
+    {
+      "finding_id": "F-09",
+      "statement": "Retrieval is the layer that can enforce authorization per document and per caller and that can return inspectable, citable evidence; a fine-tuned model stores learned content in weights that cannot be inspected or filtered per user.",
+      "evidence": [
+        {
+          "source_id": "S-13",
+          "excerpt": "RAG also has the benefit that you can control who has access to which grounding data (based on who’s calling the model).",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "- You need strict access control per-document (RAG can filter at retrieval time)",
+          "role": "supports",
+          "context": "Listed among the conditions under which RAG still wins despite long-context prompting."
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "RAG returns the document it used to answer. Fine-tuning bakes facts into weights you cannot inspect. Regulated industries almost always need the receipt, and fine-tuning without RAG rarely survives a compliance review.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "| Privacy & Compliance | Sensitive docs must be stored securely; ACLs matter. | Data used in training must respect consent & bias audits. | Need both retrieval security + clean training data. |",
+          "role": "supports",
+          "context": "Comparison-table row for RAG, fine-tuning, and hybrid."
+        }
+      ],
+      "qualifications": [
+        "The per-document filtering claim is architectural reasoning from three vendor sources; none reports implementing or testing an access-control scheme.",
+        "'fine-tuning without RAG rarely survives a compliance review' is an unsourced assertion from a development agency's blog."
+      ]
+    },
+    {
+      "finding_id": "F-10",
+      "statement": "Retrieval also expands the exposure surface: connectors, index copies, cached context, and prompt/response logs create additional places where sensitive data is stored or reused, so retrieval security depends on scoping, classification, and least privilege rather than on the technique itself.",
+      "evidence": [
+        {
+          "source_id": "S-26",
+          "excerpt": "AI increases the attack surface because it expands where sensitive data is stored, copied, queried, and reused.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "If the access model is too coarse, the AI can become a convenient front end to data the requester should never have reached directly.",
+          "role": "supports",
+          "context": "Section explicitly discussing retrieval-augmented generation and copilots."
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "- Prompt and response logging can preserve sensitive material longer than intended.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "**What to verify:** Confirm that access granted to the AI service is narrower than access available to the underlying business user or support role. The most common mistake is assuming that human authorisation automatically makes machine-mediated access acceptable.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "- **Security and Compliance:** Since RAG often pulls from internal sources,**data security** and access control must be tightly managed. A poorly configured knowledge base could expose sensitive content to unauthorized users",
+          "role": "supports",
+          "context": "Listed under challenges of RAG."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "The Microsoft Copilot incident revealed how weak access controls can lead to data leaks.",
+          "role": "supports",
+          "context": "Vendor post opening its secure-retrieval argument with a public incident."
+        }
+      ],
+      "qualifications": [
+        "S-26 is anonymous FAQ-style content from a non-human-identity vendor, and S-30 is retrieval-platform marketing that uses the same Copilot incident to introduce its own product.",
+        "No source quantifies how much extra exposure a retrieval stack adds, and none examines a specific enterprise access-control implementation."
+      ]
+    },
+    {
+      "finding_id": "F-11",
+      "statement": "Fine-tuning relocates security obligations rather than removing them: training data must respect consent and bias audits, and one study summarised in the corpus claims fine-tuning can degrade safety alignment and jailbreak resistance, while another source asserts the opposite direction of leakage risk without evidence.",
+      "evidence": [
+        {
+          "source_id": "S-15",
+          "excerpt": "| Privacy & Compliance | Sensitive docs must be stored securely; ACLs matter. | Data used in training must respect consent & bias audits. | Need both retrieval security + clean training data. |",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "considers the risks associated with fine-tuning Large Language Models (LLMs) and the potential implications for safety and security. By examining the impact of fine-tuning on model alignment and susceptibility to jailbreak instructions, the study reveals significant disparities between the original foundation model and fine-tuned variants.",
+          "role": "supports",
+          "context": "Digest entry summarising a third-party vendor study on fine-tuning and safety alignment."
+        },
+        {
+          "source_id": "S-25",
+          "excerpt": "Does it always work? Probably not. Does it generally work? Yes, because you are providing guard rails for the LLM from which they shouldn’t deviate.",
+          "role": "qualifies",
+          "context": "Security vendor's own hedge about fine-tuning as a control."
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "Fine-Tuning keeps all data inside the model, so it’s less likely to leak private files.",
+          "role": "qualifies",
+          "context": "FAQ answer asserting a leakage advantage for fine-tuning, which points the other way from the alignment findings; it is a single unsourced claim."
+        }
+      ],
+      "qualifications": [
+        "The alignment claim arrives as a one-paragraph digest summary of someone else's study; neither the study nor any measurement is in the corpus.",
+        "S-15's 'less likely to leak private files' statement sits beside its own table row requiring consent and bias audits for training data, so the corpus is internally inconsistent on this point."
+      ]
+    },
+    {
+      "finding_id": "F-12",
+      "statement": "Security coverage in the corpus is mostly generic LLM-security material — prompt injection, jailbreaks, rate limiting, EU AI Act scope, and attack-surface framing — rather than evidence about which customization approach is safer in a RAG-versus-fine-tuning decision.",
+      "evidence": [
+        {
+          "source_id": "S-25",
+          "excerpt": "Let’s take a look at some pre-existing security issues that generative AI and LLMs could amplify and then consider what tactics and tools might be used to protect users against these threats.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "Today let us focus on the top security concerns surrounding Large Language Models.",
+          "role": "supports",
+          "context": "Link digest covering incidents, CISO guides, and regulation."
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "Failure to comply with this regulation may lead to fines of up to 35M Euro.",
+          "role": "supports",
+          "context": "Regulatory exposure stated for the EU AI Act, without tying it to any architecture choice."
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "That tradeoff is especially visible in retrieval-augmented generation, enterprise copilots, and agentic tools, where the system must be trusted to fetch relevant context on behalf of the user.",
+          "role": "qualifies",
+          "context": "One of the few security sources that touches retrieval architecture directly."
+        }
+      ],
+      "qualifications": [
+        "S-25 dates from January 2024 and S-28 from June 2024; both predate the agentic-retrieval and long-context patterns the newest sources discuss.",
+        "S-28 is a curated link digest rather than original analysis, so its claims are at least one step removed from primary sources."
+      ]
+    },
+    {
+      "finding_id": "F-13",
+      "statement": "Audit and compliance requirements pull designs toward retrieval: citations let a reviewer trace an answer to a specific source, regulated-domain guidance in the corpus points to retrieval or hybrid, and the corpus frames regulatory exposure under the EU AI Act as context for that choice.",
+      "evidence": [
+        {
+          "source_id": "S-17",
+          "excerpt": "RAG returns the document it used to answer. Fine-tuning bakes facts into weights you cannot inspect. Regulated industries almost always need the receipt, and fine-tuning without RAG rarely survives a compliance review.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-13",
+          "excerpt": "The first question to consider is: do you need the model to always give a citation of a source grounded in your data? If yes, you will need to use RAG.",
+          "role": "supports",
+          "context": "Google Cloud decision logic making citation a gate."
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "| Regulated or Audited | RAG / Hybrid | Traceability, compliance-friendly |",
+          "role": "supports",
+          "context": "Domain-guidance table row."
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "Failure to comply with this regulation may lead to fines of up to 35M Euro.",
+          "role": "supports",
+          "context": "Cited only as regulatory context; the source does not analyse architecture choices."
+        }
+      ],
+      "qualifications": [
+        "No source in the corpus cites a specific regulatory requirement that mandates citation or forbids weight-embedded knowledge for assistants.",
+        "The strongest compliance phrasing ('rarely survives a compliance review') is an unsourced assertion in a development agency's blog post."
+      ]
+    },
+    {
+      "finding_id": "F-14",
+      "statement": "The corpus converges on a staged path rather than a single choice: start with retrieval because it is faster and cheaper to iterate and because it exposes which behaviour gaps remain, measure under real traffic, then fine-tune only the residual voice, format, or narrow-reasoning gaps, with hybrid described as the usual production endpoint.",
+      "evidence": [
+        {
+          "source_id": "S-17",
+          "excerpt": "- Ship RAG first, because it’s faster, cheaper to iterate, and reveals which parts of model behavior actually break under real traffic.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "- Fine-tune only what RAG can’t reach, which is usually voice, structured outputs, and narrow reasoning patterns.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "Does the required knowledge change more than once a month? RAG. Do you need to cite sources to the user? RAG. Does the base model keep breaking an output schema a prompt can't fix? Fine-tune. Do you have >10,000 labelled examples of the behaviour you want? Fine-tune. Two yeses from the same column? Start there.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "Try in this order: (1) Prompt engineering with a frontier model. (2) Prompt engineering + RAG. (3) Prompt engineering + RAG + a small LoRA adapter for style/format. Only move down the list when the prior step demonstrably fails on your eval set.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-11",
+          "excerpt": "- Start with RAG for immediate deployment and user feedback",
+          "role": "supports",
+          "context": "First item in a vendor's staged hybrid implementation list."
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "An AI strategy can combine fine-tuning and RAG to meet enterprise needs. This results in an LLM that functions as a subject matter expert in a specific field, deeply understanding specific content and terminology while staying current.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "- **Hybrid: Ideal for complex needs requiring retrieval and refined generation**",
+          "role": "supports",
+          "context": "Key-takeaways bullet."
+        }
+      ],
+      "qualifications": [
+        "The sequencing advice comes from development agencies and platform vendors who sell the staged work; no source reports a deployment where the sequence was followed and measured.",
+        "The ordering also assumes the reader can afford two rounds of investment, which the corpus does not test against budget-constrained teams."
+      ]
+    },
+    {
+      "finding_id": "F-15",
+      "statement": "Hybrid is described consistently at the architecture level — fine-tuning for tone, format, or domain reasoning plus retrieval for facts, sometimes named RAFT — with an explicit warning that it adds routing decisions and synchronisation between model checkpoints and retrieval indexes.",
+      "evidence": [
+        {
+          "source_id": "S-17",
+          "excerpt": "The hybrid pattern, sometimes called RAFT (retrieval-augmented fine-tuning), has fine-tuning handle tone and format while retrieval handles facts. Most non-trivial LLM systems end up there.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-01",
+          "excerpt": "**Retrieval augmented fine-tuning (RAFT)****:** For example, using RAG to retrieve relevant information and then fine-tuning the model on that data (RAFT) can lead to more accurate and tailored outputs.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "Hybrid setups combine the strengths of both — Fine-Tuning’s consistency and RAG’s freshness.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "- **Synchronization of Model and Knowledge Base:** As your domain evolves, you must ensure that updates to the fine-tuned model remain aligned with updates to the retrieval database.",
+          "role": "qualifies",
+          "context": "Implementation-considerations list; the next sentence warns of incoherent answers when they desynchronise."
+        }
+      ],
+      "qualifications": [
+        "RAFT is described by reference to papers and vendor practice; no source in the corpus reports implementing or measuring a hybrid assistant.",
+        "The complexity warning is qualitative; no source estimates the engineering or evaluation overhead of the coordination layer."
+      ]
+    },
+    {
+      "finding_id": "F-16",
+      "statement": "How much labelled data justifies fine-tuning is not settled in the corpus: quoted thresholds range from 'at least 1,000 clean labeled examples' through 'a few hundred to a few thousand' to '>10,000' examples, depending on the source and the fine-tuning method.",
+      "evidence": [
+        {
+          "source_id": "S-17",
+          "excerpt": "5. **Do you have at least 1,000 clean labeled examples ready to go?** If not, the decision makes itself: RAG first, hybrid later.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "For LoRA/QLoRA on a frontier-class base model, a few hundred to a few thousand high-quality, high-consistency examples is usually enough to change behavior on a narrow task.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "Do you have >10,000 labelled examples of the behaviour you want? Fine-tune.",
+          "role": "qualifies",
+          "context": "Higher threshold than S-20 in a vendor's four-question test."
+        }
+      ],
+      "qualifications": [
+        "None of the thresholds is tied to a measured fine-tuning result or to a stated task difficulty; they are heuristics from vendor playbooks.",
+        "The sources also disagree on weighting quality versus quantity, so the numbers cannot be treated as a data-readiness gate with a single answer."
+      ]
+    },
+    {
+      "finding_id": "F-17",
+      "statement": "The newest sources argue that long-context prompting with prefix caching can replace retrieval for corpora that fit the window and change slowly, which reshapes the cost and freshness calculus while leaving the knowledge/behaviour split intact.",
+      "evidence": [
+        {
+          "source_id": "S-20",
+          "excerpt": "Frontier models now ship with 1M-token context windows (Gemini, GPT-5 class, Claude with extended context).",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "The 2023 rule “always use RAG above 100k tokens” no longer holds.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "- **Cost** : With prompt caching, long-context is often*cheaper* than RAG for steady-state workloads on small corpora — a reversal of the 2024 consensus.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "| **Knowledge fits in 200k–1M tokens and rarely changes** | **Long-context + prompt caching** | Often cheaper than RAG in 2026 once 90% prefix-cache discounts apply. |",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "If your full knowledge base fits in 200,000 tokens, modern models can hold all of it in prompt with caching. No vector store, no retrieval hop, no pipeline to maintain.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "Both sources are 2026-dated vendor blog posts; the cache-discount percentages and the cost reversal are asserted without measurements, and their corpus-size thresholds differ (200k versus up to 1M tokens).",
+        "Long context does not address citation-per-answer or per-document access control, which those same sources still credit to retrieval."
+      ]
+    },
+    {
+      "finding_id": "F-18",
+      "statement": "Distillation and small task-specific models appear as a third lever, justified on cost and latency grounds for narrow, high-volume work rather than as a fix for factual grounding.",
+      "evidence": [
+        {
+          "source_id": "S-29",
+          "excerpt": "- **Cost savings** : Reduced computational demands lead to lower infrastructure and energy costs.",
+          "role": "supports",
+          "context": "Benefits list for distilled models in enterprise deployments."
+        },
+        {
+          "source_id": "S-13",
+          "excerpt": "The clever technique of distillation combines two goals: creating a smaller model that is faster and quicker to process data, *and* making that model more specific to your tasks.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "| **You have a narrow, high-volume task and need low latency/cost** | **Distilled SLM (small task-specific model)** | A 1–7B model fine-tuned on your data often beats a frontier API for that one job. |",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "S-29 is a sponsored practitioner column about distillation that does not compare distillation with RAG or fine-tuning on any measured task.",
+        "The 'often beats a frontier API' claim is a vendor assertion with no benchmark, dataset, or evaluation detail attached."
+      ]
+    },
+    {
+      "finding_id": "F-19",
+      "statement": "Most of the corpus is vendor-authored — company blogs, a whitepaper, GPU-cloud and retrieval-platform marketing — and its quantitative claims are presented as vendor experience (deal ratios, client outcomes, pilot ranges) rather than as measurement.",
+      "evidence": [
+        {
+          "source_id": "S-20",
+          "excerpt": "Most clients come out of AEMI with a clear answer to the RAG-vs-fine-tuning question and a sequenced plan for the first 90 days of implementation.",
+          "role": "supports",
+          "context": "Sales section describing the vendor's own assessment product."
+        },
+        {
+          "source_id": "S-11",
+          "excerpt": "We've seen pharmaceutical companies build internal chatbots to help R&D teams surface insights from decades of drug discovery data.",
+          "role": "supports",
+          "context": "Named-industry scenario presented without client, dates, or metrics."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "- **A Global Financial Software Provider** :[Xero](https://www.coveo.com/en/resources/case-studies/xero-generative-answering) achieved a 20% reduction in support case volume by integrating Coveo’s secure generative self-service solutions.",
+          "role": "supports",
+          "context": "Vendor case-study bullet tying an outcome to the vendor's own platform rather than to RAG or fine-tuning as such."
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "[CodeLamda](https://www.codelamda.com/services/ai-development), the ratio is roughly 70% pure",
+          "role": "supports",
+          "context": "Sentence continues on the next line with the rest of the agency's client ratio (pure RAG, hybrid, pure fine-tuning); presented as agency experience, not data."
+        }
+      ],
+      "qualifications": [
+        "S-30's 20% figure is attached to the vendor's product deployment, so it does not isolate the effect of retrieval versus fine-tuning.",
+        "Several sources close with calls to book a call, start an assessment, or contact sales, which is context for how their comparisons are framed."
+      ]
+    },
+    {
+      "finding_id": "F-20",
+      "statement": "Some numbers in the corpus are unsourced and should not be carried into a decision, including a '30% of customers' outdated-answer anecdote, a '20–30%' tone-and-satisfaction effect, and an analyst-firm adoption forecast.",
+      "evidence": [
+        {
+          "source_id": "S-15",
+          "excerpt": "- Businesses lose money if answers are wrong. (Example: a bank chatbot gave outdated rules to 30% of customers in a test).",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "- And in customer service, style matters. A polite, consistent tone can increase satisfaction by 20–30%.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "**By 2025, Gartner predicts 30% of enterprises will adopt generative AI, up from 5% in 2022, fuelled by advancements in model scalability and customization techniques. This shift underscores the need for strategic approaches to harness LLM potential effectively.**",
+          "role": "supports",
+          "context": "Second-hand forecast inside a whitepaper, used as motivation rather than evidence."
+        }
+      ],
+      "qualifications": [
+        "None of these claims carries a citation, dataset, or method, and the anecdotes are unattributed, so they cannot be verified or bounded.",
+        "They are plausible marketing motivators, not inputs to an architecture decision."
+      ]
+    },
+    {
+      "finding_id": "F-21",
+      "statement": "The guidance spans January 2024 to October 2026, and the newest sources explicitly re-date older advice — 2023-era retrieval thresholds, RLHF as the default alignment method, and the 'stuff versus retrieve' rule are declared obsolete — so any recommendation must carry its publication date.",
+      "evidence": [
+        {
+          "source_id": "S-20",
+          "excerpt": "If the last time you read about RAG vs. fine-tuning was 2023 or 2024, the landscape has shifted under your feet. Five developments matter most.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "For most enterprise teams, DPO (Direct Preference Optimization) and its variants (KTO, ORPO) have replaced classic RLHF.",
+          "role": "supports",
+          "context": "One of the five declared shifts; the 2024-dated sources in the corpus still describe RLHF as a live option."
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "| **Knowledge is dynamic, proprietary, or larger than the context window** | **RAG** (start with hybrid retrieval + re-ranker) | Updates in minutes, citable sources, no retraining cost. |",
+          "role": "qualifies",
+          "context": "The freshness case for retrieval survives the 2026 update, but is now conditioned on corpus size and change rate."
+        }
+      ],
+      "qualifications": [
+        "The claim that the landscape shifted is itself made by a vendor blog, and its five 'developments' are asserted without references or measurements.",
+        "The corpus contains only one source dated after mid-2026 (S-11, October 2026), so the newest picture rests on a thin, single-vendor base."
+      ]
+    }
+  ],
+  "gaps": [
+    "No cost model: nothing in the corpus pairs token counts, retrieval volume, model prices, and evaluation labour into a comparable total cost of ownership for the two options.",
+    "No latency measurements: the 100–400 ms retrieval hop and the 3–10x agentic multiplier are unattributed practitioner estimates, not measurements for any named stack.",
+    "No evaluation artifacts: no source shares an eval set, metric definition, groundedness or retrieval-precision score, or before/after result for a RAG, fine-tuned, or hybrid assistant.",
+    "No primary benchmark: the MMLU and RAFT studies are cited second-hand and are absent from the corpus, so their magnitudes, conditions, and limits cannot be checked.",
+    "No evidence on hybrid orchestration failure modes: the routing rules and the risk of a fine-tuned model contradicting a fresher retrieval layer are named but never measured.",
+    "No data on the cost or latency of enforcing per-document access control inside a retrieval pipeline, which is exactly the control the corpus recommends.",
+    "No independent or third-party assessment of any vendor claim in the corpus, and no coverage of the twelve URLs that failed extraction (S-02, S-05, S-07, S-12, S-14, S-16, S-18, S-19, S-22, S-23, S-24, S-27)."
+  ],
+  "format": {
+    "label": "Comparative decision brief: dimension-by-dimension tradeoff analysis with an explicit evidence-strength column and a staged decision guide",
+    "why": "The reader has to make one architecture call across five named dimensions, and the corpus supports exactly that shape: every dimension has directional claims, several dimensions have internal disagreement, and none has measurement. A dimension-by-dimension brief lets each dimension carry its own confidence, states where sources conflict (for example retrieval cost at scale, or whether fine-tuning is always faster), and ends with the staged path the sources actually converge on instead of a winner. The matrix keeps the reader's five criteria visible so no dimension is silently dropped, and the evidence-strength column is the mechanism that preserves the corpus's limits rather than hiding them.",
+    "alternatives": [
+      "A ranked recommendation ('choose RAG', 'choose hybrid') would be shorter but unsupportable: the sources themselves reject a universal winner and the corpus has no measurement to rank on.",
+      "A pros-and-cons explainer would suit a reader learning the concepts, but this reader already has a decision to make and needs per-dimension disagreement surfaced.",
+      "A benchmark-style literature review is not available: the corpus holds no primary evaluations, only one second-hand summary of external papers.",
+      "A step-by-step implementation tutorial fails the evidence test because the corpus describes architectures and decision rules rather than verified procedures or measured outcomes.",
+      "A pure timeline would overstate the 2024-to-2026 shift, which rests mainly on one updated vendor guide."
+    ],
+    "confidence": "limited"
+  },
+  "outline": [
+    {
+      "section_id": "scope-and-evidence-limits",
+      "title": "How to read this brief: what the corpus can and cannot settle",
+      "level": 2,
+      "purpose": "Give the reader the provenance of the evidence up front — eighteen extracted pages, almost all vendor-authored, dated between January 2024 and October 2026 — and set the rule that no overall winner will be declared, only per-dimension judgments with stated confidence.",
+      "finding_ids": [
+        "F-19",
+        "F-20",
+        "F-21"
+      ],
+      "limitation": "This section's own basis is corpus metadata rather than content: twelve of the thirty ranked URLs were never extracted, so the sample cannot be characterised as representative of available guidance."
+    },
+    {
+      "section_id": "reframing-facts-versus-behaviour",
+      "title": "The reframing the sources agree on: knowledge versus behaviour",
+      "level": 2,
+      "purpose": "Establish the shared framing that retrieval changes what the assistant knows and fine-tuning changes how it behaves, so the rest of the brief compares capabilities instead of crowning a technique.",
+      "finding_ids": [
+        "F-01",
+        "F-14",
+        "F-15"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "freshness",
+      "title": "Data freshness and knowledge updates",
+      "level": 2,
+      "purpose": "Show the dimension with the strongest and most convergent support, and give the reader the operational consequence: update an index versus run a retraining cadence.",
+      "finding_ids": [
+        "F-02",
+        "F-17",
+        "F-21"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "freshness-cadence",
+      "title": "Why the update cadence, not the technique, is the first filter",
+      "level": 3,
+      "purpose": "Turn the freshness finding into a concrete question for the reader's assistant: how often do the underlying facts or policies change, and who owns the update path in each architecture.",
+      "finding_ids": [
+        "F-02",
+        "F-14"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "evaluation",
+      "title": "Evaluation and measurement",
+      "level": 2,
+      "purpose": "Present the corpus's most actionable material as practice while flagging that no source reports results, so the team knows what to build and that it cannot borrow anyone's numbers.",
+      "finding_ids": [
+        "F-07",
+        "F-08"
+      ],
+      "limitation": "No source in this corpus reports an eval set, metric definition, or measured score for either approach; the guidance is prescriptive only."
+    },
+    {
+      "section_id": "evaluation-practices",
+      "title": "The measurement practices the corpus prescribes",
+      "level": 3,
+      "purpose": "Collect the recurring prescriptions — a small labelled eval set before any change, re-runs after every pipeline change, task-specific evals rather than loss, comparison against a retrieval baseline — into a checklist a team can adopt.",
+      "finding_ids": [
+        "F-07",
+        "F-14"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "evaluation-benchmark-evidence",
+      "title": "The only research-grade comparison reaches the reader second-hand",
+      "level": 3,
+      "purpose": "Explain precisely what the MMLU and RAFT references do and do not establish, so the team does not cite them as proof that retrieval wins on accuracy.",
+      "finding_ids": [
+        "F-08"
+      ],
+      "limitation": "The referenced papers are not in the corpus, and the summarising source is a vendor blog."
+    },
+    {
+      "section_id": "latency",
+      "title": "Latency",
+      "level": 2,
+      "purpose": "Lay out the retrieval-hop cost, the agentic multiplier, and the contested claim that fine-tuning is always faster, so the team can size a latency budget rather than rely on a slogan.",
+      "finding_ids": [
+        "F-06",
+        "F-17",
+        "F-20"
+      ],
+      "limitation": "There are no controlled latency benchmarks in the corpus, and the quoted figures are unattributed practitioner estimates."
+    },
+    {
+      "section_id": "latency-retrieval-hop",
+      "title": "The retrieval hop: what the numbers claim and what they omit",
+      "level": 3,
+      "purpose": "Give the reader the 100–400 ms and 3–10x figures with their provenance and the configuration detail they leave out, plus the long-context branch where no retrieval hop exists.",
+      "finding_ids": [
+        "F-06",
+        "F-17"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "latency-finetuning-claim",
+      "title": "The contested claim that fine-tuning always answers faster",
+      "level": 3,
+      "purpose": "Show the conflict between the sources that treat internalized knowledge as faster and the source warning that a fine-tuned model may be larger or more complex, so latency is treated as an empirical question for the team's own stack.",
+      "finding_ids": [
+        "F-06"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "cost",
+      "title": "Cost",
+      "level": 2,
+      "purpose": "Separate setup cost from per-query cost, present the quoted ranges with their sources, and make the disagreement about retrieval cost at scale explicit instead of averaging it away.",
+      "finding_ids": [
+        "F-03",
+        "F-04",
+        "F-05"
+      ],
+      "limitation": "All figures are vendor estimates in incompatible units; no total-cost model exists in the corpus."
+    },
+    {
+      "section_id": "cost-shapes",
+      "title": "Two cost shapes: paying to index versus paying to train",
+      "level": 3,
+      "purpose": "Contrast the retrieval cost profile (fast, cheap setup; per-query and storage ongoing) with the fine-tuning profile (large one-time training; cheaper inference), using the corpus's own ranges.",
+      "finding_ids": [
+        "F-03",
+        "F-16"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "cost-scale-and-conflict",
+      "title": "Where the cost claims conflict and where the crossover is asserted",
+      "level": 3,
+      "purpose": "Show the reader that one whitepaper calls retrieval cost-efficient while other sources describe rising retrieval cost at scale, and present the ~100k-queries-per-month crossover as an unverified assertion.",
+      "finding_ids": [
+        "F-04",
+        "F-05"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "security",
+      "title": "Security, access control, and compliance",
+      "level": 2,
+      "purpose": "Compare the two options on authorization, exposure surface, training-data obligations, and auditability, while stating that the security sources are mostly generic rather than tradeoff-specific.",
+      "finding_ids": [
+        "F-09",
+        "F-10",
+        "F-11",
+        "F-12",
+        "F-13"
+      ],
+      "limitation": "Only a minority of the security sources (S-13, S-15, S-20, S-26) address retrieval or weight-embedded knowledge directly; the rest are general LLM-security guidance, partly predating current architectures."
+    },
+    {
+      "section_id": "security-access-control",
+      "title": "Access control is enforced at retrieval time, not at generation time",
+      "level": 3,
+      "purpose": "Explain why per-document and per-caller filtering plus citable evidence makes retrieval the natural control point for assistants that must respect entitlements.",
+      "finding_ids": [
+        "F-09",
+        "F-13"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "security-exposure-surface",
+      "title": "Retrieval widens the exposure surface as well as controlling it",
+      "level": 3,
+      "purpose": "Balance the previous section with connectors, index copies, cache, and logging paths, and with the least-privilege and scoping tests the corpus recommends.",
+      "finding_ids": [
+        "F-10",
+        "F-12"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "security-fine-tuning-tradeoffs",
+      "title": "Fine-tuning's security trade is not free",
+      "level": 3,
+      "purpose": "Cover training-data consent and audit obligations plus the cited claim that fine-tuning can degrade safety alignment, and note the corpus's internal inconsistency about leakage risk.",
+      "finding_ids": [
+        "F-11",
+        "F-09"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "staged-path",
+      "title": "A staged path the evidence supports",
+      "level": 2,
+      "purpose": "Convert the dimensions into a sequence the team can execute: retrieval first for changing or citable knowledge, a measurement period, then targeted fine-tuning for residual gaps, with hybrid as the likely endpoint.",
+      "finding_ids": [
+        "F-14",
+        "F-15",
+        "F-16",
+        "F-02",
+        "F-10"
+      ],
+      "limitation": "The sequencing is recommended by vendor and agency playbooks; no source reports a deployment that followed it and was measured."
+    },
+    {
+      "section_id": "staged-rag-first",
+      "title": "Start with retrieval, then measure, then fine-tune the gaps",
+      "level": 3,
+      "purpose": "Justify the ordering from the sources' reasoning — cheaper iteration, faster learning under real traffic, and observable failure modes — and attach the measurement requirement from the evaluation section.",
+      "finding_ids": [
+        "F-14",
+        "F-07"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "staged-hybrid-patterns",
+      "title": "Hybrid patterns: what they buy and what they cost in complexity",
+      "level": 3,
+      "purpose": "Describe the fine-tune-for-behaviour plus retrieve-for-facts architecture, name RAFT, and state the routing and synchronisation burden it adds.",
+      "finding_ids": [
+        "F-15",
+        "F-01"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "staged-data-readiness",
+      "title": "Data-readiness gates before committing to fine-tuning",
+      "level": 3,
+      "purpose": "Show that the corpus's example-count thresholds diverge, so the team must pick its own gate based on the task and count its genuinely labelled examples.",
+      "finding_ids": [
+        "F-16",
+        "F-07"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "third-options",
+      "title": "Third options that bypass the retrieval-versus-fine-tuning choice",
+      "level": 2,
+      "purpose": "Give the reader the alternatives the newest sources raise — long-context prompting with caching and distillation into small task-specific models — so the decision space is complete, with their limits stated.",
+      "finding_ids": [
+        "F-17",
+        "F-18",
+        "F-21"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "third-long-context",
+      "title": "Long context plus prefix caching for small, slow-moving corpora",
+      "level": 3,
+      "purpose": "Explain when a static corpus that fits the window makes retrieval unnecessary, and why citation and per-document access control still argue for retrieval.",
+      "finding_ids": [
+        "F-17",
+        "F-09"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "third-distillation",
+      "title": "Distillation and small task-specific models for narrow, high-volume work",
+      "level": 3,
+      "purpose": "Position distillation as a cost and latency lever that does not solve grounding, so it complements rather than replaces the main decision.",
+      "finding_ids": [
+        "F-18",
+        "F-03"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "open-questions",
+      "title": "What would change this recommendation, and what the corpus cannot answer",
+      "level": 2,
+      "purpose": "List the missing measurements and the conditions that would flip the staged path — measured cost at the team's volume, a latency budget under a real pipeline, evidence that retrieval quality cannot be repaired, or a compliance requirement — so the team knows which pilot result to look for.",
+      "finding_ids": [],
+      "limitation": "This section rests entirely on corpus absences: no measured cost, latency, or evaluation data exists in the eighteen extracted sources, so its questions cannot be answered from this research."
+    }
+  ],
+  "diagrams": [
+    {
+      "diagram_id": "staged-decision-path",
+      "section_id": "staged-path",
+      "kind": "flowchart",
+      "purpose": "Show the branch points the sources actually support — does the knowledge change faster than a retraining cadence, does the team need citations or per-document access control, does the baseline only fail on voice, format, or narrow reasoning — and where each answer leads within the staged path.",
+      "finding_ids": [
+        "F-02",
+        "F-09",
+        "F-14",
+        "F-16",
+        "F-17"
+      ],
+      "caption": "Figure 1. The staged path as the corpus states it: knowledge that changes often, needs citation, or must respect per-document entitlements points to retrieval first, because updates arrive by re-indexing rather than retraining and answers can carry inspectable sources [S-17][S-20][S-13]; a static corpus that fits the context window is the branch where long-context prompting with caching can remove the retrieval hop entirely [S-20][S-17]; after a measurement period, only the failures that retrieval cannot fix — voice, output format, narrow reasoning — justify a LoRA-style fine-tune, and enough labelled examples is the gate on that step [S-17][S-04][S-20]. The diagram omits any ranking of the options because no source in this corpus provides measured comparisons."
+    }
+  ],
+  "closing_rationale": "This is a decision brief rather than a tutorial or a ranked verdict because the reader's goal names five criteria and the corpus supplies directional claims for each without a single measurement. The framing that survives every source is that retrieval governs knowledge and freshness while fine-tuning governs behaviour [S-20][S-17][S-09], which makes the five dimensions the natural organising structure instead of a winner's podium. Freshness is the one dimension supported by many independent pages [S-01][S-06][S-10][S-13][S-15][S-17][S-20], so it carries the confidence and does most of the work in a staged path of retrieval first, measurement, then targeted fine-tuning [S-17][S-04][S-20]. Cost, latency, and evaluation are presented with their conflicts intact: retrieval is called both cost-efficient [S-06] and costlier at scale [S-15][S-20]; fine-tuning is called the faster option [S-01][S-06][S-15] while another same-source passage warns a fine-tuned model may be slower to serve [S-08]; and the only benchmark discussion arrives second-hand with an explicit scope limit [S-21]. Security is where the corpus is thinnest in the sense that matters: retrieval clearly owns per-document enforcement and citation [S-13][S-20][S-17], retrieval also widens the exposure surface through connectors and logs [S-26][S-08], fine-tuning shifts obligations to training-data consent and audit [S-15] and is claimed to weaken safety alignment [S-28] — but most security pages are generic LLM-security material about jailbreaks, prompt injection, and regulation rather than tradeoff analysis [S-25][S-28]. Confidence is therefore limited: vendor-authored sources, twelve unextracted URLs, no controlled benchmarks, and at least three unsourced statistics that a reader should discard [S-15][S-06]. The brief ends with the questions whose answers would actually move the decision, so the team can run the pilot that is missing from the literature rather than choosing on rhetoric."
+}

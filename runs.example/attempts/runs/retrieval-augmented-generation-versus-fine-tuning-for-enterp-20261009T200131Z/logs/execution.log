@@ -1,0 +1,2 @@
+{"timestamp": "2026-10-09T20:01:31.080609+00:00", "level": "INFO", "run_id": "retrieval-augmented-generation-versus-fine-tuning-for-enterp-20261009T200131Z", "phase": "research", "event": "run_started", "trace_id": "01a12241-a9a2-7cf3-a92c-03da2022f0c1", "metrics_enabled": false}
+{"timestamp": "2026-10-09T20:01:31.636694+00:00", "level": "ERROR", "run_id": "retrieval-augmented-generation-versus-fine-tuning-for-enterp-20261009T200131Z", "phase": "research", "event": "run_finished", "status": "failed", "duration_seconds": 0.649137915999745, "reason": null}

@@ -1,0 +1,243 @@
+{
+  "run_id": "ai-agent-evaluation-20261009T212330Z",
+  "topic": "AI agent evaluation",
+  "model": "openrouter:deepseek/deepseek-v4.1-flash",
+  "status": "failed",
+  "status_reasons": [
+    "authoring_interrupted",
+    "phase_failed"
+  ],
+  "phase_timings_seconds": {
+    "plan": 0.0006615000020246953,
+    "search": 7.174799708001956,
+    "normalize": 0.012184874998638406,
+    "fetch": 35.36375566600327,
+    "index": 0.008202249999158084,
+    "research": 25.161181790994306
+  },
+  "urls_found": 30,
+  "urls_clean": 30,
+  "urls_fetched": 30,
+  "urls_extracted": 25,
+  "urls_thin": 3,
+  "urls_failed": 0,
+  "extraction_failures": 5,
+  "url_outcomes": [
+    {
+      "rank": 1,
+      "url": "https://www.fiddler.ai/articles/ai-agent-evaluation",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-01"
+    },
+    {
+      "rank": 2,
+      "url": "https://github.com/awslabs/agent-evaluation",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 3,
+      "url": "https://medium.com/@TechforHumans/evaluating-ai-agents-metrics-challenges-and-practices-c5a0444876cd",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 4,
+      "url": "https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-a-deep-dive-into-agent-evaluation-practical-tooling-and-multi-agent-systems",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-04"
+    },
+    {
+      "rank": 5,
+      "url": "https://www.langchain.com/resources/llm-evaluation-framework",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-05"
+    },
+    {
+      "rank": 6,
+      "url": "https://www.comet.com/site/blog/ai-agent-evaluation",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-06"
+    },
+    {
+      "rank": 7,
+      "url": "https://www.cos.io/blog/benchmarking-llm-agents-on-scientific-tasks-introducing-replicatorbench",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-07"
+    },
+    {
+      "rank": 8,
+      "url": "https://arxiv.org/html/2604.06185v1",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-08"
+    },
+    {
+      "rank": 9,
+      "url": "https://huggingface.co/datasets/tuandunghcmut/BFCL_v4_information/blob/main/A%20Comprehensive%20Survey%20of%20Benchmarks%20for%20Evaluating%20Tool%20and%20Function%20Calling%20in%20Large%20Language%20Models.md",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-09"
+    },
+    {
+      "rank": 10,
+      "url": "https://community.openai.com/t/a-benchmark-for-tool-selection-given-a-user-query/730307",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-10"
+    },
+    {
+      "rank": 11,
+      "url": "https://openreview.net/forum?id=oHEaIwPv9s",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 12,
+      "url": "https://labs.scale.com/leaderboard/tool_use_enterprise",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-12"
+    },
+    {
+      "rank": 13,
+      "url": "https://arxiv.org/html/2502.18836v1",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-13"
+    },
+    {
+      "rank": 14,
+      "url": "https://www.fiddler.ai/blog/anatomy-ai-agent",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-14"
+    },
+    {
+      "rank": 15,
+      "url": "https://nhimg.org/community/ai-beyond-identity/ai-agent-observability-what-teams-need-to-trace-beyond-text-output",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-15"
+    },
+    {
+      "rank": 16,
+      "url": "https://www.mintmcp.com/blog/opentelemetry-ai-agents",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-16"
+    },
+    {
+      "rank": 17,
+      "url": "https://towardsai.com/p/machine-learning/a-guide-to-ai-agent-evaluation-and-observability",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-17"
+    },
+    {
+      "rank": 18,
+      "url": "https://www.jetadmin.io/blog/ai-agent-observability",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-18"
+    },
+    {
+      "rank": 19,
+      "url": "https://www.tracify.tech/blog",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 20,
+      "url": "https://docs.fiddler.ai/observability/agentic",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-20"
+    },
+    {
+      "rank": 21,
+      "url": "https://openreview.net/attachment?id=C4vsSnUJuH&name=originally_submitted_PDF",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 22,
+      "url": "https://www.kunalganglani.com/blog/agent-evaluation-roadmap-teams",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-22"
+    },
+    {
+      "rank": 23,
+      "url": "https://theagentobserver.com/how-to-evaluate-ai-agent-performance",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-23"
+    },
+    {
+      "rank": 24,
+      "url": "https://www.codiste.com/ai-agent-evaluation-framework",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-24"
+    },
+    {
+      "rank": 25,
+      "url": "https://www.channel.tel/blog/sre-ai-agents-slo-error-budget-cx",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-25"
+    },
+    {
+      "rank": 26,
+      "url": "https://stanleycyang.com/writing/ai-agent-evals-ci",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-26"
+    },
+    {
+      "rank": 27,
+      "url": "https://blaxel.ai/blog/agent-infrastructure-reliability-buying-criterion",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-27"
+    },
+    {
+      "rank": 28,
+      "url": "https://agenticlab.sunilprakash.com/evidence/baseline-eval-report",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-28"
+    },
+    {
+      "rank": 29,
+      "url": "https://arize.com/ai-agents/agent-evaluation",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-29"
+    },
+    {
+      "rank": 30,
+      "url": "https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-30"
+    }
+  ],
+  "blog_path": "output/2026-10-09-21-23-30-content.md",
+  "citation_count": 0,
+  "tokens_used": 4698770,
+  "cost_usd": 0.07369563128000002,
+  "duration_seconds": 519.0580188329986,
+  "retries": 0
+}

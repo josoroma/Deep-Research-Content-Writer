@@ -1,0 +1,46 @@
+[
+  {
+    "run_id": "rag-vs-fine-tuning-20261009T213906Z",
+    "synthesis_valid": true,
+    "format": "Comparative decision brief: dimension-by-dimension tradeoff analysis with an explicit evidence-strength column and a staged decision guide",
+    "citation_gate": {
+      "citations_checked": 18,
+      "dangling_source_ids": [],
+      "mismatched_source_ids": []
+    },
+    "document_gate": {
+      "present": true,
+      "word_count": 5402,
+      "headings_valid": true,
+      "within_length": false,
+      "reason": "blog_length",
+      "violations": []
+    },
+    "planned_diagrams": 1,
+    "rendered_mermaid_blocks": 1,
+    "top_toc": true,
+    "last_section": "## Why this format"
+  },
+  {
+    "run_id": "ai-agent-evaluation-20261009T214043Z",
+    "synthesis_valid": true,
+    "format": "Evidence-graded implementation guide (practitioner playbook with documented-vs-untested labeling)",
+    "citation_gate": {
+      "citations_checked": 22,
+      "dangling_source_ids": [],
+      "mismatched_source_ids": []
+    },
+    "document_gate": {
+      "present": true,
+      "word_count": 5160,
+      "headings_valid": true,
+      "within_length": false,
+      "reason": "blog_length",
+      "violations": []
+    },
+    "planned_diagrams": 2,
+    "rendered_mermaid_blocks": 2,
+    "top_toc": true,
+    "last_section": "## Why this format"
+  }
+]

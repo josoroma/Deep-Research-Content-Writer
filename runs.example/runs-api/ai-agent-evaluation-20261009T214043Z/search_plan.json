@@ -1,0 +1,42 @@
+{
+  "topic": "AI agent evaluation",
+  "variants": [
+    "benchmarking tool-using LLM agents task datasets",
+    "measuring agent task success rate failure taxonomy",
+    "agent observability tracing retries production deployment"
+  ],
+  "provider": "serpapi",
+  "calls": [
+    {
+      "query": "AI agent evaluation",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "benchmarking tool-using LLM agents task datasets",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "measuring agent task success rate failure taxonomy",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "agent observability tracing retries production deployment",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "AI agent evaluation",
+      "page": 2,
+      "per_page": 10
+    },
+    {
+      "query": "AI agent evaluation",
+      "page": 3,
+      "per_page": 10
+    }
+  ],
+  "max_urls": 30
+}

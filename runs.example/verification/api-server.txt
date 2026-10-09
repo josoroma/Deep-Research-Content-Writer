@@ -1,0 +1,24 @@
+INFO:     Started server process [50696]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8011 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57802 - "GET /health/live HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57803 - "GET /health/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57805 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61788 - "POST /v1/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:62025 - "GET /v1/jobs/bf5e47af-677c-4dc4-b76d-a67f747751d9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63208 - "GET /v1/jobs/bf5e47af-677c-4dc4-b76d-a67f747751d9 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63372 - "POST /v1/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:63619 - "GET /v1/jobs/532ff862-7d5c-449a-932d-2050fb6961d8 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64291 - "GET /v1/jobs/532ff862-7d5c-449a-932d-2050fb6961d8 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64293 - "GET /v1/runs/ai-agent-evaluation-20261009T214043Z HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64294 - "GET /v1/runs/ai-agent-evaluation-20261009T214043Z/report HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64295 - "GET /v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64296 - "GET /v1/runs/ai-agent-evaluation-20261009T214043Z/artifacts/output/2026-10-09-21-40-43-content.md HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64297 - "GET /health/live HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64298 - "GET /health/ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64300 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [50696]

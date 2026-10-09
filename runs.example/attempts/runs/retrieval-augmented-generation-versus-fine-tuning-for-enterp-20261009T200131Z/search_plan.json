@@ -1,0 +1,42 @@
+{
+  "topic": "Retrieval-augmented generation versus fine-tuning for enterprise AI assistants",
+  "variants": [
+    "RAG vs fine-tuning architecture tradeoffs for enterprise LLM assistants",
+    "Evaluating retrieval-augmented generation and fine-tuned models in production: latency, cost, and security",
+    "Hybrid approach combining retrieval-augmented generation and fine-tuning for enterprise AI: data freshness and evaluation"
+  ],
+  "provider": "serpapi",
+  "calls": [
+    {
+      "query": "Retrieval-augmented generation versus fine-tuning for enterprise AI assistants",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "RAG vs fine-tuning architecture tradeoffs for enterprise LLM assistants",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "Evaluating retrieval-augmented generation and fine-tuned models in production: latency, cost, and security",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "Hybrid approach combining retrieval-augmented generation and fine-tuning for enterprise AI: data freshness and evaluation",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "Retrieval-augmented generation versus fine-tuning for enterprise AI assistants",
+      "page": 2,
+      "per_page": 10
+    },
+    {
+      "query": "Retrieval-augmented generation versus fine-tuning for enterprise AI assistants",
+      "page": 3,
+      "per_page": 10
+    }
+  ],
+  "max_urls": 30
+}

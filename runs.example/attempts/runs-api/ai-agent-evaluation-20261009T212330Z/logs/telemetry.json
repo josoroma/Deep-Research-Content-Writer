@@ -1,0 +1,47 @@
+{
+  "run_id": "ai-agent-evaluation-20261009T212330Z",
+  "topic": "AI agent evaluation",
+  "mode": "research",
+  "status": "failed",
+  "duration_seconds": 519.059465540995,
+  "phase_timings_seconds": {
+    "plan": 0.0006615000020246953,
+    "search": 7.174799708001956,
+    "normalize": 0.012184874998638406,
+    "fetch": 35.36375566600327,
+    "index": 0.008202249999158084,
+    "research": 25.161181790994306
+  },
+  "tool_calls": {
+    "plan_search": 1,
+    "google_search": 6,
+    "normalize_results": 1,
+    "collect_source": 30,
+    "fetch_url": 30,
+    "extract_markdown": 28,
+    "build_index": 1,
+    "ls": 5,
+    "glob": 1,
+    "read_file": 53,
+    "write_todos": 3,
+    "task": 1,
+    "grep": 140,
+    "write_file": 1,
+    "validate_synthesis": 6,
+    "edit_file": 1
+  },
+  "tokens_used": 4698770,
+  "cost_usd": 0.07369563128000002,
+  "cost_available": true,
+  "retries": 0,
+  "url_outcomes": {
+    "unreachable": 2,
+    "extracted": 25,
+    "too_thin": 3
+  },
+  "dangling_citations": 0,
+  "metrics_enabled": false,
+  "metrics_flushed": true,
+  "trace_id": null,
+  "trace_export_error": null
+}

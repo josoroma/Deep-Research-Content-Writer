@@ -1,0 +1,23 @@
+{
+  "run_id": "rag-vs-fine-tuning-20261009T210440Z",
+  "topic": "RAG vs fine-tuning",
+  "mode": "resume",
+  "status": "failed",
+  "duration_seconds": 15.128840084005788,
+  "phase_timings_seconds": {
+    "resume": 15.128840084005788
+  },
+  "tool_calls": {
+    "write_todos": 1
+  },
+  "tokens_used": 67897,
+  "cost_usd": 0.001310008,
+  "cost_available": true,
+  "retries": 0,
+  "url_outcomes": {},
+  "dangling_citations": 0,
+  "metrics_enabled": false,
+  "metrics_flushed": true,
+  "trace_id": null,
+  "trace_export_error": null
+}

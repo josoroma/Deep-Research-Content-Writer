@@ -1,0 +1,18 @@
+{
+  "run_id": "ai-agent-evaluation-20261009T214043Z",
+  "topic": "AI agent evaluation",
+  "completed_phases": [
+    "plan",
+    "search",
+    "normalize",
+    "fetch",
+    "index",
+    "synthesize",
+    "write",
+    "citations",
+    "report"
+  ],
+  "execution_status": "degraded",
+  "report_available": true,
+  "artifacts_available": true
+}

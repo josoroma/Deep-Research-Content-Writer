@@ -1,0 +1,18 @@
+{
+  "run_id": "rag-vs-fine-tuning-20261009T212523Z",
+  "workspace": "runs/rag-vs-fine-tuning-20261009T212523Z",
+  "status": "failed",
+  "contract_version": 2,
+  "format_label": "evidence-graded decision brief with a dimension-by-dimension trade-off comparison",
+  "synthesis_path": "research/synthesis.json",
+  "summary_path": null,
+  "blog_path": null,
+  "word_count": 0,
+  "citations_checked": 0,
+  "repair_passes": 0,
+  "dangling_source_ids": [],
+  "mismatched_source_ids": [],
+  "violations": [],
+  "reason": "authoring_interrupted",
+  "error": "AuthoringInterrupted"
+}

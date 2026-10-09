@@ -1,0 +1,60 @@
+{
+  "job": {
+    "job_id": "532ff862-7d5c-449a-932d-2050fb6961d8",
+    "status": "degraded",
+    "operation": "research",
+    "run_id": "ai-agent-evaluation-20261009T214043Z",
+    "phase": "report",
+    "attempt": 1,
+    "status_reasons": [
+      "blog_length",
+      "too_few_sources"
+    ],
+    "error": null,
+    "created_at": "2026-10-09T15:40:41.520198-06:00",
+    "updated_at": "2026-10-09T15:47:48.783752-06:00",
+    "links": {
+      "status": "/v1/jobs/532ff862-7d5c-449a-932d-2050fb6961d8"
+    }
+  },
+  "run": {
+    "run_id": "ai-agent-evaluation-20261009T214043Z",
+    "topic": "AI agent evaluation",
+    "completed_phases": [
+      "plan",
+      "search",
+      "normalize",
+      "fetch",
+      "index",
+      "synthesize",
+      "write",
+      "citations",
+      "report"
+    ],
+    "execution_status": "degraded",
+    "report_available": true,
+    "artifacts_available": true
+  },
+  "report": {
+    "status": "degraded",
+    "status_reasons": [
+      "blog_length",
+      "too_few_sources"
+    ],
+    "urls_found": 30,
+    "urls_clean": 30,
+    "urls_fetched": 30,
+    "urls_extracted": 22,
+    "citation_count": 22,
+    "duration_seconds": 425.68170054200164
+  },
+  "artifact_count": 37,
+  "download": {
+    "http_status": 200,
+    "content_type": "text/markdown; charset=utf-8",
+    "content_disposition": "attachment; filename=\"2026-10-09-21-40-43-content.md\"",
+    "content_length": 38243,
+    "sha256": "08e293f2de5b7c254006adfaf9328f43401bf7d003a6eaa123cb5fe488506f95",
+    "workspace_bytes_identical": true
+  }
+}

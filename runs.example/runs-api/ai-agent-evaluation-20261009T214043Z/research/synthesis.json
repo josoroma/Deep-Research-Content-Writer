@@ -1,0 +1,909 @@
+{
+  "contract_version": 2,
+  "run_id": "ai-agent-evaluation-20261009T214043Z",
+  "topic": "AI agent evaluation",
+  "goal": "Create a practical implementation guide for evaluating tool-using AI agents, covering task datasets, success criteria, failure analysis, observability, and bounded retries; distinguish documented techniques from untested examples.",
+  "input_fingerprint": "cb1d18821e9389ee30e154f0c5b525cea79344fdd57b5b03b6888b887ebc165e",
+  "reader_objective": "Create a practical implementation guide for evaluating tool-using AI agents, covering task datasets, success criteria, failure analysis, observability, and bounded retries, while distinguishing documented techniques from untested examples.",
+  "objective_origin": "explicit",
+  "considered_source_ids": [
+    "S-01",
+    "S-04",
+    "S-05",
+    "S-06",
+    "S-08",
+    "S-09",
+    "S-10",
+    "S-12",
+    "S-13",
+    "S-14",
+    "S-15",
+    "S-16",
+    "S-17",
+    "S-18",
+    "S-21",
+    "S-22",
+    "S-23",
+    "S-25",
+    "S-26",
+    "S-28",
+    "S-29",
+    "S-30"
+  ],
+  "evidence_types": [
+    "vendor engineering blog (Fiddler, Google Cloud, LangChain, Comet, Arize, Praesidia, AgentixLabs, BuildMVPFast, Agent Kernel)",
+    "peer-reviewed/preprint benchmark paper (WildToolBench, REALM-Bench)",
+    "benchmark survey (tool and function-calling benchmark survey)",
+    "leaderboard documentation (Scale ToolComp, Eval AI Library metric docs)",
+    "practitioner/AI-news reporting (Futurism, AI Accelerator Institute, Delos, Pedro Pizarro, NHI Mgmt Group)",
+    "community forum post (OpenAI developer community)"
+  ],
+  "limitations": [
+    "Most procedural guidance in this corpus comes from vendor engineering blogs that also market an evaluation or observability product (S-01, S-04, S-05, S-06, S-18, S-22, S-23, S-26, S-28, S-29, S-30); their recommended workflows are documented practice, not independently validated results.",
+    "Only S-08, S-09, S-12 and S-13 report measured benchmark results; the remaining sources assert failure rates, cost figures and incident statistics without exposing methodology in the fetched text.",
+    "Several headline statistics are secondhand: S-16 attributes an 84% production-failure figure to Gartner/MIT/Stanford without a primary citation, and S-15 reports a canary-tool preprint through a practitioner news site rather than the paper itself.",
+    "No source in the corpus reports a controlled, head-to-head comparison of the evaluation practices it recommends, so relative effectiveness of the techniques cannot be established from this evidence.",
+    "Version and timeframe assumptions differ: S-23 documents OpenTelemetry GenAI conventions moving repositories in mid-2026, while S-09 cites 2024 leaderboard numbers, so tool and benchmark details are time-sensitive."
+  ],
+  "findings": [
+    {
+      "finding_id": "F-01",
+      "statement": "Agent evaluation must score the execution path, not only the final answer, because a correct or fluent output can hide broken reasoning, unsafe actions, or an inefficient run.",
+      "evidence": [
+        {
+          "source_id": "S-05",
+          "excerpt": "Correct final answers can hide broken reasoning.",
+          "role": "supports",
+          "context": "LangChain argues output-only scoring leaves hidden failures invisible until they compound."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "A convincing response can follow an inefficient, unsafe, or partially failed run",
+          "role": "supports",
+          "context": "Arize's guide on why final-answer evaluation misses most of an agent run."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "An agent can produce correct output through an inefficient or incorrect process.",
+          "role": "supports",
+          "context": "Comet describes silent failures in agentic systems."
+        }
+      ],
+      "qualifications": [
+        "All three sources are vendor engineering blogs, so this is documented practitioner consensus rather than an independently measured result."
+      ]
+    },
+    {
+      "finding_id": "F-02",
+      "statement": "Because agent behavior is non-deterministic, evaluation must be repeated and statistical rather than a single deterministic pass/fail check.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "Because agents are non-deterministic, you can give the same prompt twice and get two different--but equally valid--outcomes.",
+          "role": "supports",
+          "context": "Google Cloud's Agent Factory recap contrasting agent evaluation with unit tests."
+        },
+        {
+          "source_id": "S-16",
+          "excerpt": "Statistical output demands statistical evaluation.",
+          "role": "supports",
+          "context": "Delos argues traditional determinism assumptions do not hold for LLM agents."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "Pass^k measures whether all *k* attempts succeed, providing a stricter measure of consistency.",
+          "role": "supports",
+          "context": "Arize describes pass@1, pass@k and pass^k as reliability measures."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "The same input triggers different tool selections, reasoning paths and outputs across multiple runs.",
+          "role": "supports",
+          "context": "Comet on why traces cannot be replayed identically."
+        }
+      ],
+      "qualifications": [
+        "The pass@k / pass^k framing is attributed to Anthropic's guide by S-30; the corpus does not include that primary source."
+      ]
+    },
+    {
+      "finding_id": "F-03",
+      "statement": "Task datasets for agents need ground truth that includes expected tool calls and reasoning steps, organized into happy-path, edge-case, and adversarial categories and seeded from real production requests.",
+      "evidence": [
+        {
+          "source_id": "S-05",
+          "excerpt": "For AI agents, ground truth must include expected tool calls and reasoning steps.",
+          "role": "supports",
+          "context": "LangChain on building pre-production evaluation datasets."
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "Most teams organize test cases into three categories:",
+          "role": "supports",
+          "context": "Introduces happy path, edge cases, and adversarial inputs."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "Start with common production requests, high-risk edge cases, and failures collected from traces, evaluator results, or human review.",
+          "role": "supports",
+          "context": "Arize's step 2, building an evaluation dataset."
+        }
+      ],
+      "qualifications": [
+        "The three-category split and the production-seeded approach are practitioner conventions; no source measures how much coverage they achieve."
+      ]
+    },
+    {
+      "finding_id": "F-04",
+      "statement": "When no dataset exists, a documented cold-start recipe generates synthetic tasks, expert solutions, imperfect attempts, and automatic scoring.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "**Generate Tasks:** Ask an LLM to generate realistic user tasks.",
+          "role": "supports",
+          "context": "Step 1 of Google Cloud's four-step synthetic-data recipe."
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "**Score Automatically:** Use an LLM-as-a-judge to compare the imperfect attempts against the perfect solutions and score them.",
+          "role": "supports",
+          "context": "Step 4 of the same recipe."
+        }
+      ],
+      "qualifications": [
+        "This recipe is presented in a single vendor demo (Google Cloud ADK/Vertex AI) and is not independently validated in the corpus."
+      ]
+    },
+    {
+      "finding_id": "F-05",
+      "statement": "Success criteria should be defined before building, tied to a specific production decision, and recorded as a metric contract that states what each number cannot prove.",
+      "evidence": [
+        {
+          "source_id": "S-17",
+          "excerpt": "First decide which production decision the evidence must support: release, expand, constrain, redesign or stop.",
+          "role": "supports",
+          "context": "Pedro Pizarro argues metrics should follow the decision, not the dashboard."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "Define success before choosing [evaluators](https://arize.com/docs/ax/evaluate/create-evaluators).",
+          "role": "supports",
+          "context": "Arize's step 1 of the evaluation loop."
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "A system can be fast, cheap and wrong.",
+          "role": "supports",
+          "context": "Why technical-operation metrics are not task-success metrics."
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "The right threshold depends on the workflow, impact and review model. A suggested number in a workshop is a hypothesis, not evidence.",
+          "role": "qualifies",
+          "context": "Warns against treating proposed thresholds as validated."
+        }
+      ],
+      "qualifications": [
+        "The metric-contract format is one practitioner's proposal (S-17); no source tests whether it improves outcomes."
+      ]
+    },
+    {
+      "finding_id": "F-06",
+      "statement": "Outcome evaluation should inspect the resulting system state rather than trusting the agent's own confirmation message.",
+      "evidence": [
+        {
+          "source_id": "S-30",
+          "excerpt": "The agent’s confirmation message cannot establish those conditions.",
+          "role": "supports",
+          "context": "Arize's refund example: the evaluator must inspect affected systems."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "task completion often lives in the resulting state",
+          "role": "supports",
+          "context": "Why Terminal-Bench-style environment checks capture what final-answer grading misses."
+        }
+      ],
+      "qualifications": [
+        "Illustrated with a worked refund scenario rather than measured across deployments."
+      ]
+    },
+    {
+      "finding_id": "F-07",
+      "statement": "Tool selection and parameter extraction should be evaluated separately from downstream response quality, because routing failures otherwise masquerade as quality failures.",
+      "evidence": [
+        {
+          "source_id": "S-30",
+          "excerpt": "Evaluate the router separately from the downstream skill so a routing failure does not get mistaken for a response-quality failure.",
+          "role": "supports",
+          "context": "Arize's router-evaluation section."
+        },
+        {
+          "source_id": "S-18",
+          "excerpt": "| [Tool Correctness](https://library.eval-ai.com/tool-correctness/) | Whether correct tools were called | 0 | 0.5 |",
+          "role": "supports",
+          "context": "Eval AI Library lists tool correctness as a distinct agent metric."
+        },
+        {
+          "source_id": "S-18",
+          "excerpt": "agent metrics evaluate **behavioral properties**",
+          "role": "supports",
+          "context": "Framing agent metrics as behavioral rather than answer-quality measures."
+        }
+      ],
+      "qualifications": [
+        "S-18 is product documentation for a metrics library, so the metric list reflects that vendor's design choices."
+      ]
+    },
+    {
+      "finding_id": "F-08",
+      "statement": "LLM-as-a-judge is the practical default for trajectory scoring, but judges are biased and inconsistent, so they require structured rubrics, multiple passes, and calibration against human labels.",
+      "evidence": [
+        {
+          "source_id": "S-05",
+          "excerpt": "LLM judges exhibit bias and inconsistency, like scoring responses differently based on presentation order, favoring verbose answers over concise ones, and drifting in their scoring behavior over time.",
+          "role": "supports",
+          "context": "LangChain treats judge reliability as a design constraint."
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "**Inherent Biases:** LLM Judges are susceptible to multiple biases that distort evaluations.",
+          "role": "supports",
+          "context": "The benchmark survey catalogues position, verbosity and self-enhancement bias."
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "The best strategy is to combine them in a **calibration loop**",
+          "role": "supports",
+          "context": "Google Cloud recommends calibrating a judge against a human-labelled golden dataset."
+        }
+      ],
+      "qualifications": [
+        "The bias taxonomy in S-09 is a literature synthesis; the corpus does not include the underlying bias studies."
+      ]
+    },
+    {
+      "finding_id": "F-09",
+      "statement": "Human review should be reserved for boundaries of uncertainty and consequence, typically through sampled review queues rather than exhaustive scoring.",
+      "evidence": [
+        {
+          "source_id": "S-30",
+          "excerpt": "Human review belongs at the boundary of uncertainty and consequence",
+          "role": "supports",
+          "context": "Arize on where human judgment enters the evaluation pipeline."
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "Set a human review queue for 1-5% of runs.",
+          "role": "supports",
+          "context": "AgentixLabs' release checklist for production agents."
+        }
+      ],
+      "qualifications": [
+        "The 1-5% sampling figure is one team's starting heuristic, not a validated threshold."
+      ]
+    },
+    {
+      "finding_id": "F-10",
+      "statement": "Observability requires complete per-run traces that preserve hierarchical structure across tool calls, retrieval, prompt versions, cost and latency, because flat logs and uptime metrics cannot explain agent failures.",
+      "evidence": [
+        {
+          "source_id": "S-22",
+          "excerpt": "If you only do one thing, capture a complete per-run trace.",
+          "role": "supports",
+          "context": "AgentixLabs' minimum observability baseline."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "Agent traces form trees or graphs rather than sequences.",
+          "role": "supports",
+          "context": "Comet on why hierarchical trace views are needed for debugging."
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "Traditional tracing tools display spans in a flat, linear sequence.",
+          "role": "supports",
+          "context": "LangChain on losing conversational context when spans are linearized."
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "Uptime is not quality.",
+          "role": "supports",
+          "context": "Availability can be high while answers are wrong or harmful."
+        }
+      ],
+      "qualifications": [
+        "Trace-element checklists differ slightly across S-06, S-22 and S-23; no source reconciles them into one schema."
+      ]
+    },
+    {
+      "finding_id": "F-11",
+      "statement": "OpenTelemetry GenAI semantic conventions are the emerging standard for agent tracing, but they remain in Development status, so emitted versions and field mappings must be pinned as versioned infrastructure.",
+      "evidence": [
+        {
+          "source_id": "S-23",
+          "excerpt": "The status has not changed: the GenAI and MCP conventions are still Development, with no public stabilization date.",
+          "role": "supports",
+          "context": "BuildMVPFast tracking the conventions' repository move in 2026."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "[OpenTelemetry’s GenAI semantic conventions](https://opentelemetry.io/blog/2025/ai-agent-observability/) provide emerging standards for structured trace logging",
+          "role": "supports",
+          "context": "Comet on standards for cross-framework trace logging."
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "OpenTelemetry is the standard to adopt for this.",
+          "role": "supports",
+          "context": "Praesidia recommends OTel for distributed tracing of agent hops."
+        },
+        {
+          "source_id": "S-23",
+          "excerpt": "a multi-step AI agent is a distributed system",
+          "role": "supports",
+          "context": "Framing each agent step as a service boundary with its own failure modes."
+        }
+      ],
+      "qualifications": [
+        "S-23 is a practitioner blog reporting on the OpenTelemetry project; the corpus does not include the specification itself."
+      ]
+    },
+    {
+      "finding_id": "F-12",
+      "statement": "Bounded retries and loop control should be explicit evaluation targets: retry limits, required escalations, iteration counts, and cost per successful outcome.",
+      "evidence": [
+        {
+          "source_id": "S-30",
+          "excerpt": "Code checks for retry limits and required escalations; LLM judge for recovery quality",
+          "role": "supports",
+          "context": "Arize's recovery-and-escalation evaluator pattern."
+        },
+        {
+          "source_id": "S-23",
+          "excerpt": "| agent.iteration_count | Detect infinite loops in ReAct agents |",
+          "role": "supports",
+          "context": "A trace attribute recommended for loop detection."
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "Track cost per successful outcome, not cost per request.",
+          "role": "supports",
+          "context": "AgentixLabs' checklist item tying cost to outcomes."
+        }
+      ],
+      "qualifications": [
+        "No source specifies concrete retry limits or backoff parameters; the guidance is to make limits explicit and measurable, not what the limits should be."
+      ]
+    },
+    {
+      "finding_id": "F-13",
+      "statement": "Failure analysis benefits from a predefined failure taxonomy, and benchmark error analysis shows wrong-tool and redundant-call errors dominate over parameter-level errors.",
+      "evidence": [
+        {
+          "source_id": "S-25",
+          "excerpt": "Define semantic failure classes up front",
+          "role": "supports",
+          "context": "NHI Mgmt Group summarizing HoneyHive guidance on production controls."
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "Create a failure taxonomy: hallucination, tool error, policy refusal, partial answer, loop.",
+          "role": "supports",
+          "context": "A concrete taxonomy from a production observability checklist."
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "“Wrong Name / Missing Info” and “Redundant Call” (23.06% in Gemini-2.0-Thinking) emerge as the most prevalent errors",
+          "role": "supports",
+          "context": "WildToolBench error analysis across 57 models."
+        }
+      ],
+      "qualifications": [
+        "The WildToolBench error distribution is specific to its 1,024-task dataset and may not transfer to other domains."
+      ]
+    },
+    {
+      "finding_id": "F-14",
+      "statement": "Benchmarks are useful for capability assessment but do not guarantee production success, and contamination plus idealized scenarios limit how much their scores mean.",
+      "evidence": [
+        {
+          "source_id": "S-06",
+          "excerpt": "Benchmark performance doesn’t guarantee production success.",
+          "role": "supports",
+          "context": "Comet on the gap between controlled benchmarks and production traffic."
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "**Benchmark Integrity:** As models get more powerful, there's a risk that benchmark questions leak into their training data, making scores less meaningful.",
+          "role": "supports",
+          "context": "Google Cloud lists benchmark integrity as an open challenge."
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "A high score on a foundational benchmark like BFCL does not guarantee high performance on an agentic benchmark like MCP-Atlas.",
+          "role": "supports",
+          "context": "The survey shows GPT-4o scoring 83.59% on BFCL but 7.2% on MCP-Atlas."
+        }
+      ],
+      "qualifications": [
+        "The BFCL/MCP-Atlas contrast is drawn from leaderboard snapshots cited by S-09, not from a controlled study in the corpus."
+      ]
+    },
+    {
+      "finding_id": "F-15",
+      "statement": "Benchmark evidence shows tool-using agents still fail a large share of realistic tasks, with session-level success far below task-level success.",
+      "evidence": [
+        {
+          "source_id": "S-08",
+          "excerpt": "none of the mainstream LLMs achieve a session accuracy higher than 15%",
+          "role": "supports",
+          "context": "WildToolBench results across 57 models."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "even top-performing agents succeed on only 81.8 percent of tasks",
+          "role": "supports",
+          "context": "Terminal-bench 2.0 result cited by Comet."
+        },
+        {
+          "source_id": "S-21",
+          "excerpt": "failed to complete [real-world office tasks](https://futurism.com/professors-company-ai-agents) 70 percent of the time",
+          "role": "supports",
+          "context": "Futurism reporting a Carnegie Mellon paper on office tasks."
+        }
+      ],
+      "qualifications": [
+        "These figures come from different benchmarks with different task distributions and cannot be compared directly; S-21 is secondhand news reporting."
+      ]
+    },
+    {
+      "finding_id": "F-16",
+      "statement": "Evaluation cost is a first-order constraint, so teams sample traffic and reserve expensive methods for high-value or high-risk cases.",
+      "evidence": [
+        {
+          "source_id": "S-06",
+          "excerpt": "Comprehensive agent evaluation is expensive.",
+          "role": "supports",
+          "context": "Comet on balancing evaluation cost against quality insight."
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "Sampling strategies that balance coverage with evaluation cost",
+          "role": "supports",
+          "context": "LangChain's production-monitoring checklist."
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "Trajectory evaluation adds real overhead",
+          "role": "qualifies",
+          "context": "LangChain notes trajectory evaluation is not always worth it."
+        }
+      ],
+      "qualifications": [
+        "No source quantifies the cost of specific evaluation configurations beyond noting that some exceed the baseline agent workload."
+      ]
+    },
+    {
+      "finding_id": "F-17",
+      "statement": "Production failures should be converted into regression tests, closing a loop from monitoring through human review back into the evaluation dataset.",
+      "evidence": [
+        {
+          "source_id": "S-05",
+          "excerpt": "The production monitoring loop closes when failures flow back into your test datasets.",
+          "role": "supports",
+          "context": "LangChain's agent improvement loop."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "**Production trace → confirmed failure → regression case → experiment → deployment**",
+          "role": "supports",
+          "context": "Arize's step 6 pipeline."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "Failed traces provide the most valuable training data.",
+          "role": "supports",
+          "context": "Comet on turning failures into optimization input."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "Do not copy every failed [trace](https://arize.com/glossary/trace/) into the dataset.",
+          "role": "qualifies",
+          "context": "Warns against indiscriminate trace capture into the regression suite."
+        }
+      ],
+      "qualifications": [
+        "The loop is described consistently across vendors but no source measures its effect on defect rates."
+      ]
+    },
+    {
+      "finding_id": "F-18",
+      "statement": "In multi-agent systems, per-agent scores mislead; evaluation must be end-to-end because failures propagate across handoffs and shared state.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "If you evaluate Agent A alone, its task completion score might be zero because it didn't actually issue the refund.",
+          "role": "supports",
+          "context": "Google Cloud's two-agent refund handoff example."
+        },
+        {
+          "source_id": "S-01",
+          "excerpt": "failures in one agent can propagate to others, complicating evaluation and troubleshooting",
+          "role": "supports",
+          "context": "Fiddler lists multi-agent interaction as a core evaluation challenge."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "A single failure midway through a 20-step workflow cascades unpredictably.",
+          "role": "supports",
+          "context": "Comet on compounding failures in sequential decisions."
+        }
+      ],
+      "qualifications": [
+        "The multi-agent guidance is illustrated with hypothetical scenarios; S-13's REALM-Bench is the only multi-agent benchmark in the corpus and reports no comparative results in the fetched text."
+      ]
+    },
+    {
+      "finding_id": "F-19",
+      "statement": "Trustworthiness and governance metrics extend beyond accuracy to tool-use safety, prompt-injection resilience, escalation rates, and classification of telemetry as sensitive data.",
+      "evidence": [
+        {
+          "source_id": "S-14",
+          "excerpt": "A usable trust scorecard usually includes:",
+          "role": "supports",
+          "context": "NHI Mgmt Group lists task success, tool-use safety, injection resilience, provenance, escalation and incident history."
+        },
+        {
+          "source_id": "S-14",
+          "excerpt": "High benchmark accuracy does not mean the agent is safe with real data.",
+          "role": "supports",
+          "context": "Warning against over-optimising a single metric."
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "Classify AI telemetry as sensitive operational data",
+          "role": "supports",
+          "context": "NHI Mgmt Group on governing traces, prompts and evaluation outputs."
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "observability portability risk",
+          "role": "supports",
+          "context": "Names the risk that reusable telemetry widens exposure without matching access controls."
+        }
+      ],
+      "qualifications": [
+        "S-14 and S-26 are security-governance publications that reference NIST, OWASP and MITRE frameworks; the corpus does not include those primary standards."
+      ]
+    },
+    {
+      "finding_id": "F-20",
+      "statement": "Diagnostic probe tools (canaries) can surface tool-selection weaknesses, and a model's capability tier does not predict its safety under such probes.",
+      "evidence": [
+        {
+          "source_id": "S-15",
+          "excerpt": "The capability tier fails to predict safety on its own.",
+          "role": "supports",
+          "context": "AI Accelerator Institute reporting a canary-tool study."
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "Susceptibility to canary traps (what the paper calls the canary susceptibility rate, or CSR) varied by a factor of roughly 36 across the eight models tested.",
+          "role": "supports",
+          "context": "Reported spread of canary susceptibility across eight models."
+        }
+      ],
+      "qualifications": [
+        "This is secondhand reporting of a preprint (arXiv 2608.04719) by a practitioner news site; the paper itself is not in the corpus and the result is not peer-reviewed here."
+      ]
+    },
+    {
+      "finding_id": "F-21",
+      "statement": "Benchmark design involves explicit trade-offs between realism and reproducibility, and a reliability paradox in which more realistic benchmarks require less reliable LLM-judge scoring.",
+      "evidence": [
+        {
+          "source_id": "S-09",
+          "excerpt": "This reveals a core trade-off: prioritizing the unpredictable realism of the live web or the controlled, reproducible environment of a scientific experiment.",
+          "role": "supports",
+          "context": "The survey contrasts ToolBench's live APIs with BFCL's curated tools."
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "the more realistic and challenging our benchmarks become, the less reliable our methods for evaluating them become",
+          "role": "supports",
+          "context": "The survey's stated paradox for the field."
+        },
+        {
+          "source_id": "S-12",
+          "excerpt": "This yields process supervision labels with correct steps and incorrect steps for each prompt.",
+          "role": "supports",
+          "context": "Scale's ToolComp annotates intermediate steps, not just final answers."
+        },
+        {
+          "source_id": "S-13",
+          "excerpt": "Each problem is evaluated across five key dimensions:",
+          "role": "supports",
+          "context": "REALM-Bench scores planning quality, coordination, adaptation, resource management and constraint satisfaction."
+        }
+      ],
+      "qualifications": [
+        "S-12 and S-13 are benchmark design documents; they describe intended evaluation dimensions rather than reporting comparative outcomes."
+      ]
+    },
+    {
+      "finding_id": "F-22",
+      "statement": "Metrics should be layered across technical operation, task completion, and value/risk, and aggregate scores can hide regressions in specific tools or high-risk tasks.",
+      "evidence": [
+        {
+          "source_id": "S-17",
+          "excerpt": "Level 1 tells you whether the system is stable.",
+          "role": "supports",
+          "context": "Introduces the three-level metric model (runs, does the work, worth operating)."
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "Effective agent evaluation requires assessing three distinct components: the foundation model powering the agent, individual components coordinating workflows and final outputs delivered to users.",
+          "role": "supports",
+          "context": "Comet's foundation/component/output layering."
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "An overall pass rate can improve while one tool, workflow, or high-risk task becomes less reliable.",
+          "role": "supports",
+          "context": "Arize on why aggregate scores mislead."
+        }
+      ],
+      "qualifications": [
+        "The two layering schemes (S-17 and S-06) are similar but not identical; neither is validated against outcomes."
+      ]
+    },
+    {
+      "finding_id": "F-23",
+      "statement": "The evaluation ecosystem remains fragmented: practitioners still ask for basic tool-selection benchmarks, and observability tooling is stitched together from many overlapping platforms.",
+      "evidence": [
+        {
+          "source_id": "S-10",
+          "excerpt": "I am looking for a benchmark dataset which would allow me to evaluate how well GPT matches uesr intent with those functions (as a baseline).",
+          "role": "supports",
+          "context": "A 2024 OpenAI community post seeking a tool-selection benchmark."
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "Agent Kernel provides comprehensive observability capabilities through integration with popular tracing platforms.",
+          "role": "supports",
+          "context": "A framework that integrates Langfuse, OpenLLMetry and Logfire rather than standardising on one."
+        },
+        {
+          "source_id": "S-25",
+          "excerpt": "Distributed execution, unstructured context, and schema-flexible tool use break traditional logging, metrics, and tracing models",
+          "role": "supports",
+          "context": "NHI Mgmt Group summarizing HoneyHive on why classic observability models fail for agents."
+        }
+      ],
+      "qualifications": [
+        "S-10 is a single forum post from 2024 and may not represent the current state of available benchmarks."
+      ]
+    }
+  ],
+  "gaps": [
+    "No source reports a controlled experiment comparing evaluation strategies (for example, trajectory scoring versus output-only scoring) on the same agent and task set.",
+    "Concrete retry limits, backoff parameters, and loop-termination thresholds are not specified anywhere in the corpus; only the need to make them explicit and measurable is documented.",
+    "Cost figures for evaluation are asserted qualitatively (S-06) but no source provides measured cost-per-evaluation or sampling-budget guidance beyond a 1-5% human-review heuristic (S-22).",
+    "The corpus contains no primary OpenTelemetry specification, no primary Anthropic evaluation guide, and no primary canary-tool paper; those are referenced secondhand.",
+    "Multi-agent evaluation is discussed conceptually (S-01, S-04, S-13) but no source reports measured end-to-end multi-agent results.",
+    "There is no evidence on how to set release thresholds or guardrail values; S-17 explicitly says a proposed number is a hypothesis, not evidence."
+  ],
+  "format": {
+    "label": "Evidence-graded implementation guide (practitioner playbook with documented-vs-untested labeling)",
+    "why": "The goal asks for a practical implementation guide covering datasets, success criteria, failure analysis, observability, and bounded retries. The corpus supplies concrete procedural material for each of those areas (Arize's six-step loop in S-30, Google Cloud's five-step ADK loop and synthetic-data recipe in S-04, LangChain's trajectory-evaluation and dataset workflow in S-05, and OpenTelemetry instrumentation in S-23/S-29), while the benchmark papers (S-08, S-09, S-12, S-13) supply measured limits on how well agents actually perform. A guide format lets the plan sequence those procedures in the order a team would implement them and attach an explicit documented-versus-untested label to each step, which is exactly the distinction the goal requests.",
+    "alternatives": [
+      "A benchmark literature review would foreground S-08, S-09, S-12 and S-13 but would drop the operational guidance the goal explicitly asks for.",
+      "A decision brief comparing observability platforms would fit the tool-heavy sources (S-22, S-23, S-28, S-29) but the corpus offers no independent comparison, only vendor self-descriptions.",
+      "A step-by-step tutorial with runnable code would overstate the evidence: the corpus shows snippets and demos but no reproducible end-to-end procedure."
+    ],
+    "confidence": "moderate"
+  },
+  "outline": [
+    {
+      "section_id": "sec-why",
+      "title": "Why tool-using agents break output-only evaluation",
+      "level": 2,
+      "purpose": "Establish the reader's mental model: agents are non-deterministic and their correct answers can hide broken reasoning, so evaluation must cover the run, not just the response.",
+      "finding_ids": [
+        "F-01",
+        "F-02"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-criteria",
+      "title": "Define success criteria and a metric contract before you build",
+      "level": 2,
+      "purpose": "Give the reader a starting discipline: pick the production decision first, then define outcome, action, constraint and failure-handling criteria and record what each metric cannot prove.",
+      "finding_ids": [
+        "F-05",
+        "F-22"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-dataset",
+      "title": "Build a task dataset that reflects production",
+      "level": 2,
+      "purpose": "Show how to assemble the evaluation set, including ground truth for tool calls and reasoning steps, and how to seed it from real traffic.",
+      "finding_ids": [
+        "F-03",
+        "F-16"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-coldstart",
+      "title": "Cold start: generating synthetic tasks and ground truth",
+      "level": 3,
+      "purpose": "Present the documented synthetic-data recipe for teams with no dataset, and flag that it is a single vendor demo rather than a validated method.",
+      "finding_ids": [
+        "F-04"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-evaluators",
+      "title": "Choose evaluators: deterministic checks, LLM judges, and human review",
+      "level": 2,
+      "purpose": "Lay out the evaluator-selection rule (use the least subjective method that can decide the case) and the three review patterns.",
+      "finding_ids": [
+        "F-06",
+        "F-07",
+        "F-08",
+        "F-09"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-outcome-state",
+      "title": "Score outcomes against system state, not the agent's message",
+      "level": 3,
+      "purpose": "Explain why the confirmation message is not evidence and how to check persisted state and partial completion.",
+      "finding_ids": [
+        "F-06"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-routing",
+      "title": "Evaluate routing and tool arguments separately",
+      "level": 3,
+      "purpose": "Give the reader the two router axes (tool selection and parameter extraction) and the dataset cases that expose routing errors.",
+      "finding_ids": [
+        "F-07"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-judge-calibration",
+      "title": "Calibrate LLM judges and place human review at the boundary",
+      "level": 3,
+      "purpose": "Cover judge bias, rubric design, multiple passes, and where human review is mandatory.",
+      "finding_ids": [
+        "F-08",
+        "F-09"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-observability",
+      "title": "Instrument observability: complete traces and OpenTelemetry conventions",
+      "level": 2,
+      "purpose": "Specify the minimum trace contents, the hierarchical structure requirement, and the versioning caveat for GenAI semantic conventions.",
+      "finding_ids": [
+        "F-10",
+        "F-11"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-failure-analysis",
+      "title": "Analyze failures with taxonomies and diagnostic probes",
+      "level": 2,
+      "purpose": "Show how to classify failures consistently and how probe tools can isolate tool-selection weaknesses that capability rankings miss.",
+      "finding_ids": [
+        "F-13",
+        "F-20"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-retries-cost",
+      "title": "Bound retries, loops, and evaluation cost",
+      "level": 2,
+      "purpose": "Turn retry limits, escalation, iteration counts and cost-per-success into explicit evaluation targets, and explain sampling to control evaluation spend.",
+      "finding_ids": [
+        "F-12",
+        "F-16"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-loop",
+      "title": "Close the loop: from production failures to regression tests",
+      "level": 2,
+      "purpose": "Describe the trace-to-regression pipeline and the curation rules that keep the regression suite useful.",
+      "finding_ids": [
+        "F-17"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-multiagent",
+      "title": "Evaluate multi-agent and end-to-end behavior",
+      "level": 2,
+      "purpose": "Explain why per-agent scores mislead in handoff systems and what end-to-end evaluation must cover.",
+      "finding_ids": [
+        "F-18"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-benchmarks",
+      "title": "Use benchmarks as one signal, not a guarantee",
+      "level": 2,
+      "purpose": "Help the reader interpret leaderboards: what benchmark results show about current agent limits, and why they do not transfer to production.",
+      "finding_ids": [
+        "F-14",
+        "F-15",
+        "F-21"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-governance",
+      "title": "Governance and trust metrics for production agents",
+      "level": 2,
+      "purpose": "Extend the metric set beyond accuracy to tool-use safety, injection resilience, escalation, and telemetry classification.",
+      "finding_ids": [
+        "F-19"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "sec-documented-vs-untested",
+      "title": "Documented techniques vs. untested examples: reading this guide critically",
+      "level": 2,
+      "purpose": "Give the reader an explicit evidence key so they can tell vendor-documented practice from benchmark-measured results and from single-source demos.",
+      "finding_ids": [
+        "F-04",
+        "F-20",
+        "F-23"
+      ],
+      "limitation": "Most procedural guidance in this corpus is vendor-documented and product-adjacent; only S-08, S-09, S-12 and S-13 report measured results, and no source provides an independent, controlled comparison of the recommended practices."
+    }
+  ],
+  "diagrams": [
+    {
+      "diagram_id": "eval-loop",
+      "section_id": "sec-loop",
+      "kind": "flowchart",
+      "purpose": "Show the repeating evaluation loop from defining success through dataset, tracing, evaluation, comparison, and regression capture, so the reader sees how the sections connect.",
+      "finding_ids": [
+        "F-05",
+        "F-03",
+        "F-17"
+      ],
+      "caption": "The agent evaluation loop: define success criteria, build a task dataset, trace complete runs, evaluate, compare versions, and promote confirmed failures into regression cases. Arize describes this as a repeatable development loop and renders the final step as \"Production trace → confirmed failure → regression case → experiment → deployment\" [S-30], while LangChain notes that \"The production monitoring loop closes when failures flow back into your test datasets.\" [S-05]"
+    },
+    {
+      "diagram_id": "traced-run",
+      "section_id": "sec-observability",
+      "kind": "sequenceDiagram",
+      "purpose": "Illustrate how one agent run decomposes into nested spans (intent classification, retrieval, tool call, drafting, review) and where failures surface, supporting the trace-structure guidance.",
+      "finding_ids": [
+        "F-10",
+        "F-11"
+      ],
+      "caption": "A single agent run as a trace tree: each LLM call, retrieval step and tool call becomes a span with parent-child relationships, token counts and duration. BuildMVPFast shows this span model for a customer-support agent and notes that \"a multi-step AI agent is a distributed system\" [S-23], while Praesidia explains that \"Logs, metrics, and traces address different questions.\" [S-29]"
+    }
+  ],
+  "closing_rationale": "This corpus supports an implementation guide better than a literature review or a platform comparison because it contains step-by-step procedures for exactly the areas the goal names: dataset construction and ground-truth annotation [S-05], a synthetic cold-start recipe [S-04], outcome-versus-trajectory scoring and evaluator selection [S-30], trace instrumentation with OpenTelemetry [S-23][S-29], failure taxonomies [S-22][S-25], and retry/loop and cost controls [S-12][S-22]. The benchmark papers supply the counterweight the goal also asks for: measured evidence that agents still fail large shares of realistic tasks, with session accuracy below 15% on WildToolBench [S-08] and top agents succeeding on only 81.8% of terminal tasks [S-06], plus the warning that benchmark scores do not transfer to production [S-09]. Because most procedural sources are vendor engineering blogs that also sell evaluation or observability products [S-01][S-06][S-22][S-30], the outline ends with an explicit documented-versus-untested section and the plan records limitations and gaps rather than presenting vendor practice as validated method. The two proposed diagrams are limited to relationships the sources actually describe: the evaluation loop [S-30][S-05] and the span structure of a traced run [S-23][S-29]."
+}

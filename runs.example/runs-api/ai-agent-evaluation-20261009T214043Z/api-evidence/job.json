@@ -1,0 +1,18 @@
+{
+  "job_id": "532ff862-7d5c-449a-932d-2050fb6961d8",
+  "status": "degraded",
+  "operation": "research",
+  "run_id": "ai-agent-evaluation-20261009T214043Z",
+  "phase": "report",
+  "attempt": 1,
+  "status_reasons": [
+    "blog_length",
+    "too_few_sources"
+  ],
+  "error": null,
+  "created_at": "2026-10-09T15:40:41.520198-06:00",
+  "updated_at": "2026-10-09T15:47:48.783752-06:00",
+  "links": {
+    "status": "/v1/jobs/532ff862-7d5c-449a-932d-2050fb6961d8"
+  }
+}

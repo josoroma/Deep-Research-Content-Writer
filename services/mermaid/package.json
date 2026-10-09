@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "12.0.0"
+  },
+  "private": true,
+  "name": "research-diagram-renderer",
+  "overrides": {
+    "katex": "0.18.2"
+  }
+}

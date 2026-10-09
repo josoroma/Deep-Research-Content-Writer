@@ -1,0 +1,13 @@
+{
+  "contract_version": 2,
+  "content_started_at": "2026-10-09T20:01:31Z",
+  "content_date": null,
+  "input_fingerprint": "",
+  "synthesis_attempts": 0,
+  "synthesis_completed": false,
+  "generation": "not_started",
+  "repair_passes": 0,
+  "repair_in_progress": false,
+  "draft_fingerprint": null,
+  "synthesis_fingerprint": null
+}

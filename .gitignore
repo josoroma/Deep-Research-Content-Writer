@@ -1,0 +1,39 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+
+# Local research artifacts
+/runs/
+/runs-api/
+/logs/
+
+# Python environments, caches, and packaging
+.venv/
+node_modules/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# Copied into the wheel by ops/build_hooks.py; the canonical files live in ops/api/migrations/
+application/_migrations/
+
+# Generated test reports; committed evidence lives under docs/evidence/
+.coverage
+.coverage.*
+coverage.xml
+!docs/evidence/**/coverage.xml
+htmlcov/
+
+# Operating system files
+.DS_Store
+
+# Local editor settings
+/.vscode/
+
+# Temporary export used by `make audit`
+.audit-requirements.txt

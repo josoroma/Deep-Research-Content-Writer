@@ -1,0 +1,6 @@
+run_id: rag-vs-fine-tuning-20261009T203530Z
+workspace: runs/rag-vs-fine-tuning-20261009T203530Z
+status: failed
+blog_path: runs/rag-vs-fine-tuning-20261009T203530Z/output/2026-10-09-20-35-30-content.md
+blog_exists: False
+error: AuthoringError

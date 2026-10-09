@@ -1,0 +1,8 @@
+{
+  "mode": "research",
+  "topic": "AI agent evaluation",
+  "goal": "Create a practical implementation guide for evaluating tool-using AI agents, covering task datasets, success criteria, failure analysis, observability, and bounded retries; distinguish documented techniques from untested examples.",
+  "pages": 3,
+  "per_page": 10,
+  "max_urls": 30
+}

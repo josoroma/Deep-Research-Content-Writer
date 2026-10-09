@@ -1,0 +1,437 @@
+{
+  "run_id": "rag-vs-fine-tuning-20261009T204551Z",
+  "topic": "RAG vs fine-tuning",
+  "completed_phases": [
+    "plan",
+    "search",
+    "normalize",
+    "fetch",
+    "index",
+    "report"
+  ],
+  "query_variants": [],
+  "clean_results": [
+    {
+      "url": "https://www.superannotate.com/blog/rag-vs-fine-tuning",
+      "title": "RAG vs. fine-tuning: Choosing the right method for your LLM",
+      "snippet": "RAG involves heavy data retrieval, Fine-tuning is quicker, as it doesn't need to retrieve data and can deliver answers almost instantly, ...",
+      "rank": 1,
+      "query": "RAG vs fine-tuning"
+    },
+    {
+      "url": "https://www.datacamp.com/tutorial/rag-vs-fine-tuning",
+      "title": "RAG vs Fine-Tuning: A Comprehensive Tutorial with ...",
+      "snippet": "RAG uses a dynamic learning style, Fine-tuning involves static learning, Fine-tuning is compute-intensive, but it is performed once. fine- ...",
+      "rank": 2,
+      "query": "RAG vs fine-tuning"
+    },
+    {
+      "url": "https://vectorize.io/blog/rag-vs-fine-tuning",
+      "title": "RAG vs. Fine Tuning: Which One is Right for You? - Vectorize.io",
+      "snippet": "Fine-tuning requires a well-curated dataset specific to the task and less external data infrastructure than RAG, but relies on high-quality ...",
+      "rank": 3,
+      "query": "RAG vs fine-tuning"
+    },
+    {
+      "url": "https://community.ibm.com/community/user/blogs/wendy-munoz/2025/11/28/rag-vs-fine-tuning-best-practices-using-the-ibm-ai",
+      "title": "RAG vs. Fine-Tuning: Best Practices Using the IBM AI Stack",
+      "snippet": "RAG gives you real-time grounding from live transaction streams, rules, device data, and fast-changing fraud signals. Fine-tuning captures the ...",
+      "rank": 4,
+      "query": "RAG vs fine-tuning"
+    },
+    {
+      "url": "https://www.codelamda.com/blog/rag-vs-fine-tuning",
+      "title": "RAG vs Fine-Tuning: Which to Use in 2026",
+      "snippet": "RAG changes what the model knows; fine-tuning changes how the model behaves. Teams that get this backwards usually spend six weeks fine-tuning a ...",
+      "rank": 5,
+      "query": "RAG vs fine-tuning"
+    },
+    {
+      "url": "https://www.v2solutions.com/whitepapers/rag-vs-fine-tuning-for-enterprise-llms",
+      "title": "RAG vs Fine Tuning for Enterprise LLM Deployment",
+      "snippet": "While RAG enables real-time access to external data and improves explainability, fine-tuning offers deeper model specialization but at higher cost and lower ...",
+      "rank": 6,
+      "query": "RAG vs fine-tuning"
+    },
+    {
+      "url": "https://www.iguazio.com/blog/rag-vs-fine-tuning",
+      "title": "RAG vs Fine-Tuning: Navigating the Path to Enhanced LLMs",
+      "snippet": "While RAG involves providing external and dynamic resources to trained models, fine-tuning involves further training on specialized datasets, ...",
+      "rank": 7,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://medium.com/@muhsinunc/rag-vs-fine-tuning-when-to-retrieve-and-when-to-train-65e2a08da6b4",
+      "title": "RAG vs. Fine-Tuning: When to Retrieve and When to Train",
+      "snippet": "Retrieval-Augmented Generation (RAG) is about letting a model pull specific, factual information from external sources at inference time.",
+      "rank": 8,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://acquriotech.com/blog/rag-vs-fine-tuning",
+      "title": "RAG vs Fine-tuning for Enterprise GenAI",
+      "snippet": "A practical comparison of RAG and fine-tuning for enterprise GenAI - what each does, when to use which, cost and privacy, and a clear decision framework.",
+      "rank": 9,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://www.makebot.ai/blog-en/the-ultimate-guide-to-rag-vs-fine-tuning-choosing-the-right-method-for-your-llm",
+      "title": "The Ultimate Guide to RAG vs Fine-Tuning",
+      "snippet": "Fine-tuning requires substantial computational resources and training datasets, while RAG is more cost-efficient and scalable, leveraging pre- ...",
+      "rank": 10,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://medium.com/genai-llms/rag-vs-fine-tuning-choosing-the-right-approach-for-ai-products-d91c7f690744",
+      "title": "RAG vs Fine-Tuning: Choosing the Right Approach for AI ...",
+      "snippet": "Both have strengths, but their fit depends on data type, frequency of change, control needs, and speed to market. RAG (Retrieval-Augmented ...",
+      "rank": 11,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://radixweb.com/blog/rag-vs-fine-tuning",
+      "title": "RAG vs Fine-Tuning: Which Is Better for Enterprise GenAI?",
+      "snippet": "RAG vs fine-tuning is a debate about how architectural decisions drive cost benefits and scalability and de-escalate risk in Gen AI. -tuning, ...",
+      "rank": 12,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://www.solutelabs.com/blog/rag-vs-fine-tuning",
+      "title": "Comparing RAG and Fine-Tuning: Costs, Benefits & Real- ...",
+      "snippet": "RAG or fine-tuning? Discover key differences, benefits, challenges, costs, and use cases to decide the best AI path for your business.",
+      "rank": 13,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://www.interviewquery.com/questions/finetuning-vs-rag",
+      "title": "Fine-Tuning VS RAG - AI & Agentic Systems Problem",
+      "snippet": "I would build a Retrieval-Augmented Generation (RAG) system because company policies and internal regulations change frequently, making it impractical to rely ...",
+      "rank": 14,
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs"
+    },
+    {
+      "url": "https://www.databricks.com/blog/rag-vs-fine-tuning",
+      "title": "RAG vs Fine Tuning: Enterprise Decisions for AI Models ...",
+      "snippet": "Fine tuning a model incurs significant upfront training costs but can lower per-inference costs by enabling smaller, specialized adapted models",
+      "rank": 15,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://www.actian.com/blog/databases/should-you-use-rag-or-fine-tune-your-llm",
+      "title": "Should You Use RAG or Fine-Tune Your LLM?",
+      "snippet": "RAG dominates enterprise AI due to flexibility, but fine-tuning excels at scale, latency, and structured outputs. RAG adds recurring costs ...",
+      "rank": 16,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://labelyourdata.com/articles/llm-fine-tuning/rag-evaluation",
+      "title": "RAG Evaluation: Metrics and Benchmarks for Enterprise AI ...",
+      "snippet": "Measuring RAG performance requires tracking three layers: retrieval, generation, and the combined end-to-end pipeline. Computation-based scores ...",
+      "rank": 17,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://arxiv.org/html/2412.11854v1",
+      "title": "Towards Understanding Systems Trade-offs in Retrieval ...",
+      "snippet": "RAG introduces significant latency overhead to both TTFT latency and end-to-end latency, with retrieval making up 41% of the end-to-end ...",
+      "rank": 18,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://montecarlo.ai/blog-rag-vs-fine-tuning",
+      "title": "RAG Vs. Fine Tuning: Which One Should You Choose?",
+      "snippet": "RAG is generally more cost-efficient than fine-tuning because it limits resource costs by leveraging existing data and eliminating the need for extensive ...",
+      "rank": 19,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://www.nextgencodingcompany.com/insights/enterprise-rag-vs-fine-tuning-cost-latency-trade-offs",
+      "title": "Enterprise RAG vs Fine-Tuning: Costs & Latency",
+      "snippet": "Evaluating cost between RAG and fine-tuning requires balancing Operational Expense (OpEx) against Capital/Pipeline Expense (CapEx).",
+      "rank": 20,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://cohere.com/blog/rag-vs-fine-tuning",
+      "title": "Understanding RAG vs Fine-Tuning",
+      "snippet": "RAG can help to reduce the computational costs associated with LLMs by leveraging a smaller, more focused model for generation while relying on a retrieval",
+      "rank": 21,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://medium.com/@shubhodaya.hampiholi/fine-tuning-llms-for-production-a-practical-guide-to-qlora-evaluation-and-deployment-e161a68584c8",
+      "title": "Fine-Tuning LLMs for Production: A Practical Guide to ...",
+      "snippet": "A hands-on engineering guide to fine-tuning large language models with QLoRA — covering dataset design, training pipelines, multi-layer ...",
+      "rank": 22,
+      "query": "evaluating RAG and fine tuning latency cost production"
+    },
+    {
+      "url": "https://arxiv.org/html/2512.05411v2",
+      "title": "A Systematic Framework for Enterprise Knowledge Retrieval",
+      "snippet": "This research presents a systematic empirical framework for metadata enrichment using large language models (LLMs) to enhance document ...",
+      "rank": 23,
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness"
+    },
+    {
+      "url": "https://insights.clearfuture.ai/insights/fine-tuning-vs-retrieval-choosing-the-right-approach-for-enterprise-knowledge-problems",
+      "title": "Fine-Tuning vs. Retrieval-Augmented Search",
+      "snippet": "Fine- tuning is also not a retrieval mechanism. It does not go and find the right document. It generates a response based on patterns it ...",
+      "rank": 24,
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness"
+    },
+    {
+      "url": "https://medium.com/@susmit.vssut/hybrid-search-beats-pure-vector-search-why-semantic-search-alone-isnt-enough-for-enterprise-rag-b9e8dbc17930",
+      "title": "Why Semantic Search Alone Isn't Enough for Enterprise RAG",
+      "snippet": "Rather than choosing between semantic retrieval and keyword matching, Hybrid Search combines both approaches into a single retrieval pipeline.",
+      "rank": 25,
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness"
+    },
+    {
+      "url": "https://arxiv.org/html/2603.18196v2",
+      "title": "Retrieval-Augmented LLMs for Security Incident Analysis",
+      "snippet": "We present a RAG-based system that performs security incident analysis through targeted query-based filtering and LLM semantic reasoning.",
+      "rank": 26,
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness"
+    },
+    {
+      "url": "https://ai-de.net/projects/enterprise-rag",
+      "title": "Enterprise RAG — retrieval-quality build - AI-DE",
+      "snippet": "Comfortable with Python services, vector indexes, and at least one of: BM25 / hybrid retrieval, cross-encoders, or RAGAS-style eval harnesses.",
+      "rank": 27,
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness"
+    },
+    {
+      "url": "https://robert-a-gutierrez.medium.com/building-a-rag-search-service-prototype-using-hybrid-retrieval-re-ranking-and-pii-removal-a-22a25ce38f05",
+      "title": "Building a RAG Search Service Prototype Using Hybrid ...",
+      "snippet": "Retrieval-Augmented Generation is an approach where you retrieve relevant documents from a database and use them as context for a language model ...",
+      "rank": 28,
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness"
+    },
+    {
+      "url": "https://pdfs.semanticscholar.org/2a25/8065e8fba5af36e6bc21149cd65b78e2d99a.pdf",
+      "title": "Optimized Hybrid Retrieval-Augmented Generation ...",
+      "snippet": "This paper describes an optimized hybrid Retrieval-Augmented Generation (RAG) pipeline. It handles exact matches fine but misses synonyms. additional fine- ...",
+      "rank": 29,
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness"
+    },
+    {
+      "url": "https://machinelearningmastery.com/rag-vs-fine-tuning-for-domain-adaptation-when-to-use-which",
+      "title": "RAG vs. Fine-Tuning for Domain Adaptation: When to Use ...",
+      "snippet": "The real decision rule, stripped of all the framework language: RAG handles what the model needs to know, fine-tuning handles how the model ...",
+      "rank": 30,
+      "query": "RAG vs fine-tuning"
+    }
+  ],
+  "url_outcomes": {
+    "https://www.superannotate.com/blog/rag-vs-fine-tuning": {
+      "rank": 1,
+      "url": "https://www.superannotate.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-01"
+    },
+    "https://www.datacamp.com/tutorial/rag-vs-fine-tuning": {
+      "rank": 2,
+      "url": "https://www.datacamp.com/tutorial/rag-vs-fine-tuning",
+      "outcome": "robots_disallowed",
+      "reason": "robots_rule",
+      "source_id": null
+    },
+    "https://vectorize.io/blog/rag-vs-fine-tuning": {
+      "rank": 3,
+      "url": "https://vectorize.io/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-03"
+    },
+    "https://community.ibm.com/community/user/blogs/wendy-munoz/2025/11/28/rag-vs-fine-tuning-best-practices-using-the-ibm-ai": {
+      "rank": 4,
+      "url": "https://community.ibm.com/community/user/blogs/wendy-munoz/2025/11/28/rag-vs-fine-tuning-best-practices-using-the-ibm-ai",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    "https://www.codelamda.com/blog/rag-vs-fine-tuning": {
+      "rank": 5,
+      "url": "https://www.codelamda.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-05"
+    },
+    "https://www.v2solutions.com/whitepapers/rag-vs-fine-tuning-for-enterprise-llms": {
+      "rank": 6,
+      "url": "https://www.v2solutions.com/whitepapers/rag-vs-fine-tuning-for-enterprise-llms",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-06"
+    },
+    "https://www.iguazio.com/blog/rag-vs-fine-tuning": {
+      "rank": 7,
+      "url": "https://www.iguazio.com/blog/rag-vs-fine-tuning",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    "https://medium.com/@muhsinunc/rag-vs-fine-tuning-when-to-retrieve-and-when-to-train-65e2a08da6b4": {
+      "rank": 8,
+      "url": "https://medium.com/@muhsinunc/rag-vs-fine-tuning-when-to-retrieve-and-when-to-train-65e2a08da6b4",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    "https://acquriotech.com/blog/rag-vs-fine-tuning": {
+      "rank": 9,
+      "url": "https://acquriotech.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-09"
+    },
+    "https://www.makebot.ai/blog-en/the-ultimate-guide-to-rag-vs-fine-tuning-choosing-the-right-method-for-your-llm": {
+      "rank": 10,
+      "url": "https://www.makebot.ai/blog-en/the-ultimate-guide-to-rag-vs-fine-tuning-choosing-the-right-method-for-your-llm",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-10"
+    },
+    "https://medium.com/genai-llms/rag-vs-fine-tuning-choosing-the-right-approach-for-ai-products-d91c7f690744": {
+      "rank": 11,
+      "url": "https://medium.com/genai-llms/rag-vs-fine-tuning-choosing-the-right-approach-for-ai-products-d91c7f690744",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    "https://radixweb.com/blog/rag-vs-fine-tuning": {
+      "rank": 12,
+      "url": "https://radixweb.com/blog/rag-vs-fine-tuning",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    "https://www.solutelabs.com/blog/rag-vs-fine-tuning": {
+      "rank": 13,
+      "url": "https://www.solutelabs.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-13"
+    },
+    "https://www.interviewquery.com/questions/finetuning-vs-rag": {
+      "rank": 14,
+      "url": "https://www.interviewquery.com/questions/finetuning-vs-rag",
+      "outcome": "unreachable",
+      "reason": "robots_unavailable",
+      "source_id": null
+    },
+    "https://www.databricks.com/blog/rag-vs-fine-tuning": {
+      "rank": 15,
+      "url": "https://www.databricks.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-15"
+    },
+    "https://www.actian.com/blog/databases/should-you-use-rag-or-fine-tune-your-llm": {
+      "rank": 16,
+      "url": "https://www.actian.com/blog/databases/should-you-use-rag-or-fine-tune-your-llm",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-16"
+    },
+    "https://labelyourdata.com/articles/llm-fine-tuning/rag-evaluation": {
+      "rank": 17,
+      "url": "https://labelyourdata.com/articles/llm-fine-tuning/rag-evaluation",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-17"
+    },
+    "https://arxiv.org/html/2412.11854v1": {
+      "rank": 18,
+      "url": "https://arxiv.org/html/2412.11854v1",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-18"
+    },
+    "https://montecarlo.ai/blog-rag-vs-fine-tuning": {
+      "rank": 19,
+      "url": "https://montecarlo.ai/blog-rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-19"
+    },
+    "https://www.nextgencodingcompany.com/insights/enterprise-rag-vs-fine-tuning-cost-latency-trade-offs": {
+      "rank": 20,
+      "url": "https://www.nextgencodingcompany.com/insights/enterprise-rag-vs-fine-tuning-cost-latency-trade-offs",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-20"
+    },
+    "https://cohere.com/blog/rag-vs-fine-tuning": {
+      "rank": 21,
+      "url": "https://cohere.com/blog/rag-vs-fine-tuning",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    "https://medium.com/@shubhodaya.hampiholi/fine-tuning-llms-for-production-a-practical-guide-to-qlora-evaluation-and-deployment-e161a68584c8": {
+      "rank": 22,
+      "url": "https://medium.com/@shubhodaya.hampiholi/fine-tuning-llms-for-production-a-practical-guide-to-qlora-evaluation-and-deployment-e161a68584c8",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    "https://arxiv.org/html/2512.05411v2": {
+      "rank": 23,
+      "url": "https://arxiv.org/html/2512.05411v2",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-23"
+    },
+    "https://insights.clearfuture.ai/insights/fine-tuning-vs-retrieval-choosing-the-right-approach-for-enterprise-knowledge-problems": {
+      "rank": 24,
+      "url": "https://insights.clearfuture.ai/insights/fine-tuning-vs-retrieval-choosing-the-right-approach-for-enterprise-knowledge-problems",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-24"
+    },
+    "https://medium.com/@susmit.vssut/hybrid-search-beats-pure-vector-search-why-semantic-search-alone-isnt-enough-for-enterprise-rag-b9e8dbc17930": {
+      "rank": 25,
+      "url": "https://medium.com/@susmit.vssut/hybrid-search-beats-pure-vector-search-why-semantic-search-alone-isnt-enough-for-enterprise-rag-b9e8dbc17930",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    "https://arxiv.org/html/2603.18196v2": {
+      "rank": 26,
+      "url": "https://arxiv.org/html/2603.18196v2",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-26"
+    },
+    "https://ai-de.net/projects/enterprise-rag": {
+      "rank": 27,
+      "url": "https://ai-de.net/projects/enterprise-rag",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-27"
+    },
+    "https://robert-a-gutierrez.medium.com/building-a-rag-search-service-prototype-using-hybrid-retrieval-re-ranking-and-pii-removal-a-22a25ce38f05": {
+      "rank": 28,
+      "url": "https://robert-a-gutierrez.medium.com/building-a-rag-search-service-prototype-using-hybrid-retrieval-re-ranking-and-pii-removal-a-22a25ce38f05",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    "https://pdfs.semanticscholar.org/2a25/8065e8fba5af36e6bc21149cd65b78e2d99a.pdf": {
+      "rank": 29,
+      "url": "https://pdfs.semanticscholar.org/2a25/8065e8fba5af36e6bc21149cd65b78e2d99a.pdf",
+      "outcome": "unsupported_content",
+      "reason": "non_html_content_type",
+      "source_id": null
+    },
+    "https://machinelearningmastery.com/rag-vs-fine-tuning-for-domain-adaptation-when-to-use-which": {
+      "rank": 30,
+      "url": "https://machinelearningmastery.com/rag-vs-fine-tuning-for-domain-adaptation-when-to-use-which",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    }
+  }
+}

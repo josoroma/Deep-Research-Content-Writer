@@ -1,0 +1,212 @@
+[
+  {
+    "url": "https://www.fiddler.ai/articles/ai-agent-evaluation",
+    "title": "AI Agent Evaluation: Key Steps and Methods",
+    "snippet": "AI agent evaluation systematically assesses how well an AI agent performs assigned tasks, makes decisions, and interacts with users or systems.",
+    "rank": 1,
+    "query": "AI agent evaluation"
+  },
+  {
+    "url": "https://github.com/awslabs/agent-evaluation",
+    "title": "awslabs/agent-evaluation: A generative AI-powered ...",
+    "snippet": "Agent Evaluation is a generative AI-powered framework for testing virtual agents. Internally, Agent Evaluation implements an LLM agent (evaluator)",
+    "rank": 2,
+    "query": "AI agent evaluation"
+  },
+  {
+    "url": "https://medium.com/@TechforHumans/evaluating-ai-agents-metrics-challenges-and-practices-c5a0444876cd",
+    "title": "Evaluating AI Agents: Metrics, Challenges, and Practices",
+    "snippet": "Main Metrics for Agent Evaluation · 1. Response Quality · 2. Efficiency and Optimization · 3. User Experience · 4. Tool Usage and Execution · 5.",
+    "rank": 3,
+    "query": "AI agent evaluation"
+  },
+  {
+    "url": "https://cloud.google.com/blog/topics/developers-practitioners/agent-factory-recap-a-deep-dive-into-agent-evaluation-practical-tooling-and-multi-agent-systems",
+    "title": "A Deep Dive into Agent Evaluation, Practical Tooling, and ...",
+    "snippet": "Learn how to effectively evaluate AI agents with a full-stack approach, covering key metrics, measurement methods, and a 5-step evaluation ...",
+    "rank": 4,
+    "query": "AI agent evaluation"
+  },
+  {
+    "url": "https://www.langchain.com/resources/llm-evaluation-framework",
+    "title": "LLM Evaluation Framework: Trajectories vs. Outputs",
+    "snippet": "Trajectory evaluation means scoring the entire execution path an AI agent takes rather than just its final output. This includes every tool call ...",
+    "rank": 5,
+    "query": "AI agent evaluation"
+  },
+  {
+    "url": "https://www.comet.com/site/blog/ai-agent-evaluation",
+    "title": "AI Agent Evaluation: Building Reliable Systems ... - Comet ML",
+    "snippet": "AI agent evaluation requires process-level measurement across sequential decisions. Learn how systematic evaluation determines production ...",
+    "rank": 6,
+    "query": "AI agent evaluation"
+  },
+  {
+    "url": "https://www.cos.io/blog/benchmarking-llm-agents-on-scientific-tasks-introducing-replicatorbench",
+    "title": "Benchmarking LLM Agents on Scientific Tasks",
+    "snippet": "ReplicatorBench, a benchmark for evaluating LLM agents on research replication in the social and behavioral sciences.",
+    "rank": 7,
+    "query": "benchmarking tool-using LLM agents task datasets"
+  },
+  {
+    "url": "https://arxiv.org/html/2604.06185v1",
+    "title": "Benchmarking LLM Tool-Use in the Wild",
+    "snippet": "Current mainstream LLM tool-use benchmarks follow a multi-turn, multi-step paradigm: LLMs function as assistants and engage in multi-turn dialogues with users ...",
+    "rank": 8,
+    "query": "benchmarking tool-using LLM agents task datasets"
+  },
+  {
+    "url": "https://huggingface.co/datasets/tuandunghcmut/BFCL_v4_information/blob/main/A%20Comprehensive%20Survey%20of%20Benchmarks%20for%20Evaluating%20Tool%20and%20Function%20Calling%20in%20Large%20Language%20Models.md",
+    "title": "A Comprehensive Survey of Benchmarks for Evaluating ...",
+    "snippet": "A Comprehensive Survey of Benchmarks for Evaluating Tool and Function Calling in Large Language Models. 1. Introduction to AI Agents and the ...",
+    "rank": 9,
+    "query": "benchmarking tool-using LLM agents task datasets"
+  },
+  {
+    "url": "https://community.openai.com/t/a-benchmark-for-tool-selection-given-a-user-query/730307",
+    "title": "A Benchmark for tool selection given a user query",
+    "snippet": "I am looking for a benchmark dataset which would allow me to evaluate how well GPT matches uesr intent with those functions (as a baseline).",
+    "rank": 10,
+    "query": "benchmarking tool-using LLM agents task datasets"
+  },
+  {
+    "url": "https://openreview.net/forum?id=oHEaIwPv9s",
+    "title": "Benchmarking LLM Agents on Compiling Real-World Open ...",
+    "snippet": "This paper presents Build-Bench, a benchmark designed to evaluate LLMs on software build and compilation tasks. The benchmark collects real open ...",
+    "rank": 11,
+    "query": "benchmarking tool-using LLM agents task datasets"
+  },
+  {
+    "url": "https://labs.scale.com/leaderboard/tool_use_enterprise",
+    "title": "Agentic Tool Use (Enterprise) - Scale Labs Leaderboard",
+    "snippet": "ToolComp, Scale AI's SEAL leaderboard, assesses LLM agents on planning, reasoning, and executing complex tool use. See the latest results and insights.",
+    "rank": 12,
+    "query": "benchmarking tool-using LLM agents task datasets"
+  },
+  {
+    "url": "https://arxiv.org/html/2502.18836v1",
+    "title": "A Real-World Planning Benchmark for LLMs and Multi ...",
+    "snippet": "This benchmark suite provides a comprehensive evaluation framework for assessing both individual LLMs and multi-agent systems in real-world ...",
+    "rank": 13,
+    "query": "benchmarking tool-using LLM agents task datasets"
+  },
+  {
+    "url": "https://nhimg.org/faq/what-breaks-when-organisations-lack-shared-metrics-for-ai-agent-trustworthiness",
+    "title": "What breaks when organisations lack shared metrics for AI ...",
+    "snippet": "What breaks when organisations lack shared metrics for AI agent trustworthiness?",
+    "rank": 14,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://www.aiacceleratorinstitute.com/the-canary-test-ai-agents-keep-failing",
+    "title": "AI agent tool selection: what canary tests reveal",
+    "snippet": "New research plants canary tools inside AI agents to expose hidden tool-selection failures. See why benchmark rank doesn't guarantee safety.",
+    "rank": 15,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://delos.so/blog/ai-agent-testing",
+    "title": "AI Agent Testing: Why 84% Fail & The Framework That ...",
+    "snippet": "84% of enterprise AI agents fail in production within 6 months. Learn the AI agent testing pyramid, 5 failure modes, and the continuous ...",
+    "rank": 16,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://pedropizarrodiaz.it/blog/ai-agent-metrics-before-production.html",
+    "title": "AI Agent Metrics to Define Before You Build",
+    "snippet": "A three-level AI agent measurement model for runtime reliability, task quality, operating value and safety before production.",
+    "rank": 17,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://library.eval-ai.com/agent-metrics",
+    "title": "Agent Metrics - Eval AI Library — Documentation",
+    "snippet": "Agent Metrics overview — 5 specialized metrics for evaluating AI agents: tool correctness, task success, role adherence, knowledge retention, ...",
+    "rank": 18,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://katalon.com/resources-center/blog/metrics-that-matter-for-agentic-testing",
+    "title": "AI Testing Metrics That Actually Matter (Beyond Pass/Fail ...",
+    "snippet": "This blog explores a new class of KPIs designed to measure how well your virtual test team is performing including Agent Assist Rate, Human ...",
+    "rank": 19,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://tldr.takara.ai/p/2605.17467",
+    "title": "VerifyMAS: Hypothesis Verification for Failure Attribution in ...",
+    "snippet": "Which Agent Causes Task Failures and When? On ... Crucially, the generated optimizations boost overall task success rates by an average of 22.4\\%.",
+    "rank": 20,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://futurism.com/ai-agents-failing-industry",
+    "title": "The Percentage of Tasks AI Agents Are Currently Failing At ...",
+    "snippet": "The best AI Agents are currently failing about 70 percent of the tasks assigned to them, as investments are expected to drop off a cliff.",
+    "rank": 21,
+    "query": "measuring agent task success rate failure taxonomy"
+  },
+  {
+    "url": "https://www.agentixlabs.com/blog/agent-evaluation-observability/from-logs-to-run-reviews-agent-observability-for-production-agents",
+    "title": "From Logs to Run Reviews: Agent Observability for ...",
+    "snippet": "Move beyond logs. Learn the traces, evals, and run reviews you need to debug AI agents, prevent silent failures, and control cost in production.",
+    "rank": 22,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://www.buildmvpfast.com/blog/tracing-ai-agent-workflows-opentelemetry-multi-step-2026",
+    "title": "OpenTelemetry for AI Agents: Tracing Multi-Step Workflows",
+    "snippet": "Here's how to instrument multi-step agent workflows with OpenTelemetry, from spans and traces to the tools that make debugging actually ...",
+    "rank": 23,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://medium.com/@Quaxel/the-agent-reliability-gap-12-early-failure-modes-91dba5a2c1ae",
+    "title": "The Agent Reliability Gap: 12 Early Failure Modes",
+    "snippet": "How to design tests, traces, and guardrails so your AI agents fail loudly in staging instead of silently in production.",
+    "rank": 24,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://nhimg.org/community/ai-beyond-identity/ai-agent-observability-gaps-what-teams-need-to-see-in-production",
+    "title": "AI agent observability gaps: what teams need to see in ...",
+    "snippet": "AI programmes must treat traceability, enrichment, and real-time evaluation as core production controls, not optional instrumentation.",
+    "rank": 25,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://nhimg.org/articles/ai-observability-for-agent-workflows-now-depends-on-local-first-control",
+    "title": "AI observability for agent workflows now depends on local- ...",
+    "snippet": "AI engineering now creates governance pressure around traceability, permissions, and review boundaries before agents become the default ...",
+    "rank": 26,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://app.thetestingacademy.com/blog/test-ai-agent-retry-and-recovery-behavior",
+    "title": "Test AI Agent Retry and Recovery Behavior",
+    "snippet": "Learn test ai agent retry and recovery behavior. Build practical checks, clear evidence, and a repeatable QA workflow for production delivery.",
+    "rank": 27,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://kernel.yaala.ai/docs/advanced/traceability",
+    "title": "Traceability and Observability - Agent Kernel",
+    "snippet": "Traceability and Observability. Track, monitor, and debug all agent operations with built-in tracing and observability features.",
+    "rank": 28,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://praesidia.ai/blog/observability-for-ai-agents",
+    "title": "Observability for AI Agents: Logs, Metrics, and Traces - Praesidia",
+    "snippet": "How logs, metrics, and distributed traces apply to AI agents—what to instrument, where costs hide, and how to connect all three for fast ...",
+    "rank": 29,
+    "query": "agent observability tracing retries production deployment"
+  },
+  {
+    "url": "https://arize.com/ai-agents/agent-evaluation",
+    "title": "Agent evaluation: How to evaluate AI agents in production",
+    "snippet": "Agent evaluation is the process of testing whether an AI agent can complete its assigned task correctly and behave as expected while doing so. It measures both ...",
+    "rank": 30,
+    "query": "AI agent evaluation"
+  }
+]

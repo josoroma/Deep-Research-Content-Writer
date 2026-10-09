@@ -1,0 +1,444 @@
+{
+  "copies_identical": true,
+  "file_count": 73,
+  "files": [
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/.run.lock",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/.run.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/checkpoints.sqlite",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/checkpoints.sqlite",
+      "bytes": 6803456,
+      "sha256": "0bd66a11d53bf7305294bb18b4126a8bc5fb240ad43d2eefcf1775493f9bd179"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/clean_results.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/clean_results.json",
+      "bytes": 12641,
+      "sha256": "14e111c6b1493526890a52ec2cee9daf853abc0b78241b9f4ab48d1058177a7f"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/corpus_state.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/corpus_state.json",
+      "bytes": 22413,
+      "sha256": "ac1bbb2934eec7214179517a9cb52ea7cdf0e222495c96e0aa1763a02a82eba0"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/logs/execution.log",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/logs/execution.log",
+      "bytes": 110716,
+      "sha256": "692a51a83bae2c8bdd180af48836fcefb726191e0bc28de26113d15ac9fa2c01"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/logs/telemetry.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/logs/telemetry.json",
+      "bytes": 1157,
+      "sha256": "7bb5c5b9465e4710b163132dda6a2a3d78647c745571dd9bc0c0ff0b910398a3"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/output/2026-10-09-21-39-06-content.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/output/2026-10-09-21-39-06-content.md",
+      "bytes": 38547,
+      "sha256": "41ba27cd5965c1bfc2088afbed67f25f01b56d351338081590fc590f0e309d05"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/output/authoring.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/output/authoring.json",
+      "bytes": 662,
+      "sha256": "78f061994e14d3752c95371569547d2c2a7dacecb35fb6f52bfcb636d7e9235c"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/output/authoring_state.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/output/authoring_state.json",
+      "bytes": 517,
+      "sha256": "7367e6aaf01acb43095e3bcd83782a794171eb4b774aab7bddbc768abfe2eb8d"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/output/run.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/output/run.json",
+      "bytes": 7040,
+      "sha256": "c4af44e0f382d1e4ab21da8cb56c619b1767d84e9fd2c29aec8445d3861dcce3"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/request.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/request.json",
+      "bytes": 345,
+      "sha256": "e9300ef1cf4d5e9622a3895ff194bcc177e9b913d5da26979ab02cda273304e8"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/001_rag-vs-fine-tuning-choosing-the-right-method-for-your-llm.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/001_rag-vs-fine-tuning-choosing-the-right-method-for-your-llm.md",
+      "bytes": 12883,
+      "sha256": "8a47f841bf65a36900515087f07be4068de2d2529559400e58f572516a4cc4fa"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/003_rag-vs-fine-tuning-which-one-is-right-for-you.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/003_rag-vs-fine-tuning-which-one-is-right-for-you.md",
+      "bytes": 16025,
+      "sha256": "44bb3d4e2e82edd6962d8e3218313516da2c6e051a6f501ce0af518caad477f0"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/004_rag-vs-fine-tuning-which-to-use-in-2026-codelamda.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/004_rag-vs-fine-tuning-which-to-use-in-2026-codelamda.md",
+      "bytes": 9244,
+      "sha256": "01cc9a88a1db69f5b0c1b12f725d325308973b9eec9aaeb369d6f0358339752e"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/006_rag-vs-fine-tuning-for-enterprise-llm-deployment.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/006_rag-vs-fine-tuning-for-enterprise-llm-deployment.md",
+      "bytes": 8226,
+      "sha256": "d22b6e95c8f6cd227604e66f5c5283ce75214923de65d57ff2bc6254c5baa4a1"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/008_fine-tuning-vs-rag-key-differences-explained-2026-guide.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/008_fine-tuning-vs-rag-key-differences-explained-2026-guide.md",
+      "bytes": 21312,
+      "sha256": "00d1e8fc057b6a8928be98a431c8ebea1038669ba1e99f6358a1791cbdedc5de"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/009_rag-vs-fine-tuning-which-ai-strategy-should-you-choose.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/009_rag-vs-fine-tuning-which-ai-strategy-should-you-choose.md",
+      "bytes": 6096,
+      "sha256": "e5d7d907152413f3b9d19dd697246950b05edc7da92cd37beecc6a038b094096"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/010_comparing-retrieval-augmented-generation-with-fine-tuning.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/010_comparing-retrieval-augmented-generation-with-fine-tuning.md",
+      "bytes": 9156,
+      "sha256": "969856d3260ad3e269c5b0e2ffe9b11bbb953c2e6e4692edc8f8ceeae8e7b200"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/011_pretraining-vs-fine-tuning-vs-rag-choosing-the-right-ai-appr.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/011_pretraining-vs-fine-tuning-vs-rag-choosing-the-right-ai-appr.md",
+      "bytes": 10291,
+      "sha256": "d3e7b3ffa4ff62538532a79233a0ef5c6b9b569221bd7bef60ec0da9d1d66748"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/013_rag-vs-fine-tuning-and-more-google-cloud-blog.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/013_rag-vs-fine-tuning-and-more-google-cloud-blog.md",
+      "bytes": 8583,
+      "sha256": "854d414443eac6ff4a54dfb00a5d07dbf16418061f17e8cfb307bdda6dbfafe7"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/015_rag-vs-fine-tuning.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/015_rag-vs-fine-tuning.md",
+      "bytes": 19673,
+      "sha256": "8e9157f0d2c91135d18c475ed51968cd97e777c29e42b2b5b5236a137b1f243e"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/017_fine-tuning-vs-rag-a-decision-framework-for-2026.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/017_fine-tuning-vs-rag-a-decision-framework-for-2026.md",
+      "bytes": 11687,
+      "sha256": "bf872f749093055a265b4130ac8c66f5fc0c2e8d2f95d62ad48b000e85533ec4"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/020_rag-vs-fine-tuning-2026-decision-guide-comparison-metacto.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/020_rag-vs-fine-tuning-2026-decision-guide-comparison-metacto.md",
+      "bytes": 32520,
+      "sha256": "3b0fb19129a3763f23fc7bc3bc02f8d7d65a2b8cc23e97dc9028f70def96fe81"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/021_rag-vs-fine-tuning-which-strategy-is-best-for-customizing-ll.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/021_rag-vs-fine-tuning-which-strategy-is-best-for-customizing-ll.md",
+      "bytes": 7379,
+      "sha256": "7f8d6139eb0f5789a6a87a96218887f614f8181830bfa14d36a2930df7d69a97"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/025_what-existing-security-threats-do-ai-and-llms-amplify.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/025_what-existing-security-threats-do-ai-and-llms-amplify.md",
+      "bytes": 8125,
+      "sha256": "274e838dae158ca6e7e266a699617f1a4c7b67067b803e5bd082e51a5af9fb7c"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/026_why-does-ai-increase-the-attack-surface-for-enterprise-data.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/026_why-does-ai-increase-the-attack-surface-for-enterprise-data.md",
+      "bytes": 10783,
+      "sha256": "09d522bc3c7b3d09bf90aa6640067529f80aca59f76d5a8516fe3998634f361a"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/028_llm-security-top-digest-from-security-incidents-and-ciso-gui.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/028_llm-security-top-digest-from-security-incidents-and-ciso-gui.md",
+      "bytes": 15822,
+      "sha256": "155c69ce9b0b5fe7ccc450c518d5e63cdd0e81bace50a4f7cc1b0a36f1baafcb"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/029_how-to-optimize-llms-for-enterprise-success.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/029_how-to-optimize-llms-for-enterprise-success.md",
+      "bytes": 8267,
+      "sha256": "70389ae076c1ee69947e95b9d2d9ca683dbf45d32ffb5cf39d66e11fea00c146"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/030_preventing-data-leaks-strategies-for-secure-enterprise-ai.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/030_preventing-data-leaks-strategies-for-secure-enterprise-ai.md",
+      "bytes": 5711,
+      "sha256": "ada4fc1058207f4bf639e27c90dea15407036b425b94897665f82a1686d49f7c"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/index.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/index.md",
+      "bytes": 3087,
+      "sha256": "6dc47d4142f49523ce695d9999f145129e25a2d7d802743e5f7cfc438f30c34c"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/summary.md",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/summary.md",
+      "bytes": 56284,
+      "sha256": "c7b4a35aebc44bb4ed370d1791a6ca405ffa4b696165ac3ad6f763a0c74ce142"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/research/synthesis.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/research/synthesis.json",
+      "bytes": 67506,
+      "sha256": "bcefa30e87d4e7212f1a0b5f622ccecd01eb562b56e55b1fba10d764dd23a7db"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/search_plan.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/search_plan.json",
+      "bytes": 1010,
+      "sha256": "4b9f12b01cf8a80caee95f1b7d4deda0306c12967b7e73ae26bc9973e003252a"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/search_results.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/search_results.json",
+      "bytes": 21996,
+      "sha256": "43fdd07accd06a76befeb2870edbb0afa46dd809e33cfc2ee61b94a328ede520"
+    },
+    {
+      "source": "runs/rag-vs-fine-tuning-20261009T213906Z/search_state.json",
+      "archive": "runs.example/runs/rag-vs-fine-tuning-20261009T213906Z/search_state.json",
+      "bytes": 22270,
+      "sha256": "aea7ce6fd344a961d6db9c031358dd4002a96342a6df495fa1a32c95fce9a318"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/.run.lock",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/.run.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/clean_results.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/clean_results.json",
+      "bytes": 12120,
+      "sha256": "bb02587f014a76dfff6a7b621832ea2b2a7712bcbef6ad4e165d016ec19c874b"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/corpus_state.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/corpus_state.json",
+      "bytes": 21374,
+      "sha256": "c8c2c14410815c2c5bd67f45ab82925e45d83e785825ae652c79fa3e51f879dd"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/logs/execution.log",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/logs/execution.log",
+      "bytes": 109370,
+      "sha256": "f8f14937c0750b73b7b8dfb571efc4543e37339150b695ce156900e4a9a96d1f"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/logs/telemetry.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/logs/telemetry.json",
+      "bytes": 1181,
+      "sha256": "89c1a4e81fbb6d824bd7bd6cd760d9e79e1906945dc067f756afe9d7e04f8506"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/output/2026-10-09-21-40-43-content.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/output/2026-10-09-21-40-43-content.md",
+      "bytes": 38243,
+      "sha256": "08e293f2de5b7c254006adfaf9328f43401bf7d003a6eaa123cb5fe488506f95"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/output/authoring.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/output/authoring.json",
+      "bytes": 627,
+      "sha256": "4b5c27bdc0ff9aa789818f70dfc6b429228b8aaef9a38d2fb8167a09b4eef3a8"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/output/authoring_state.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/output/authoring_state.json",
+      "bytes": 517,
+      "sha256": "1b8e92ac040d73c7187fb2703c8e869f529ff99a8e1db358b2fcf16c7a81afbd"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/output/run.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/output/run.json",
+      "bytes": 7032,
+      "sha256": "c3069bb8a1b16affe7f8eb6285ae73282444d5df36e3e4382b5ae88a9e86c301"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/request.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/request.json",
+      "bytes": 331,
+      "sha256": "c6956045be03803f89503cbf0a3b59f8f1e20aaef7af2ef91851fc1c2a44edcc"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/001_ai-agent-evaluation-key-steps-and-methods-fiddler-ai.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/001_ai-agent-evaluation-key-steps-and-methods-fiddler-ai.md",
+      "bytes": 19556,
+      "sha256": "6db70b1261e90ef6dac74ec19ba8a77caeabb24184ff7e6c1c006032fc9f9505"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/004_agent-factory-recap-a-deep-dive-into-agent-evaluation-practi.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/004_agent-factory-recap-a-deep-dive-into-agent-evaluation-practi.md",
+      "bytes": 12302,
+      "sha256": "d8759d1e7f659d3049427caccb2d46f26ec2d7fb19ec0fc1697bd24c14e17626"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/005_llm-evaluation-framework-trajectories-vs-outputs.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/005_llm-evaluation-framework-trajectories-vs-outputs.md",
+      "bytes": 21348,
+      "sha256": "41dea2158194f459bcdb5367f4660d054a36fa7d51c27cdcbccace5da44877d2"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/006_ai-agent-evaluation-building-reliable-systems-beyond-simple.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/006_ai-agent-evaluation-building-reliable-systems-beyond-simple.md",
+      "bytes": 25586,
+      "sha256": "97d3d5d86b897863e53e6f39ac279802c16d5e1147c878357880083b29f62e7d"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/008_benchmarking-llm-tool-use-in-the-wild.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/008_benchmarking-llm-tool-use-in-the-wild.md",
+      "bytes": 73747,
+      "sha256": "f1e4fa8647008aad5f35e325b270449b7afec011e2d17cbbcb3c1b03aef402d8"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/009_a-comprehensive-survey-of-benchmarks-for-evaluating-tool-and.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/009_a-comprehensive-survey-of-benchmarks-for-evaluating-tool-and.md",
+      "bytes": 30439,
+      "sha256": "b69144403f5f7070a6ff3efd75eff6a4eb55f56bc9e87de2d6ec385154bb85c9"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/010_a-benchmark-for-tool-selection-given-a-user-query.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/010_a-benchmark-for-tool-selection-given-a-user-query.md",
+      "bytes": 2841,
+      "sha256": "ca4c3c6ac9ca6c03c4f05adf45ca1e7f659c07667866ac1a9ebdf18d1f2e02d1"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/012_agentic-tool-use-enterprise.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/012_agentic-tool-use-enterprise.md",
+      "bytes": 16287,
+      "sha256": "8536387ae991a3c31293bb7060b45719e3acd43a08f547027e66885a31fc18d1"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/013_realm-bench-a-real-world-planning-benchmark-for-llms-and-mul.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/013_realm-bench-a-real-world-planning-benchmark-for-llms-and-mul.md",
+      "bytes": 41852,
+      "sha256": "113ae0bfac987f735e372ef23f103e173d71a3c1849e5ab4f55b2b86ea95c869"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/014_what-breaks-when-organisations-lack-shared-metrics-for-ai-ag.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/014_what-breaks-when-organisations-lack-shared-metrics-for-ai-ag.md",
+      "bytes": 7349,
+      "sha256": "32023f001ed8b98da8ec1735c805352bb1214b7c50d410259343e92916a4a625"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/015_ai-agent-tool-selection-what-canary-tests-reveal.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/015_ai-agent-tool-selection-what-canary-tests-reveal.md",
+      "bytes": 5816,
+      "sha256": "0824eae77b0f78fe2a593487666c0db7cd1afb6a3c03ec556ca00b63ce984e6a"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/016_ai-agent-testing-why-84-fail-the-framework-that-fixes-it-wor.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/016_ai-agent-testing-why-84-fail-the-framework-that-fixes-it-wor.md",
+      "bytes": 7583,
+      "sha256": "93c1b8b439d0fc2f8a9d3a460176292e55fa861990edccb97dfacfa3f29af3ff"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/017_ai-agent-metrics-to-define-before-you-build-pedro-pizarro.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/017_ai-agent-metrics-to-define-before-you-build-pedro-pizarro.md",
+      "bytes": 3755,
+      "sha256": "73475f2f3c9b9e9f08227ff37fc3eeb0f0db69cbff1127256ed8fb3b6518e529"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/018_overview-eval-ai-library-documentation.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/018_overview-eval-ai-library-documentation.md",
+      "bytes": 3690,
+      "sha256": "2eec62d2e260addcae1d72980611db23d1d93f541eb3fd11a071227005b3eff5"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/021_the-percentage-of-tasks-ai-agents-are-currently-failing-at-m.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/021_the-percentage-of-tasks-ai-agents-are-currently-failing-at-m.md",
+      "bytes": 5852,
+      "sha256": "454e90e1b0c39c83c6f42dd918b5886f8c77ab047901806fb3c2c7d1da337876"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/022_from-logs-to-run-reviews-agent-observability-for-production.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/022_from-logs-to-run-reviews-agent-observability-for-production.md",
+      "bytes": 10906,
+      "sha256": "f79456727839f8d198e63086bdaf523e57edac9a2ca2bf5b5b0dec9717a2b28a"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/023_opentelemetry-for-ai-agents-tracing-multi-step-workflows.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/023_opentelemetry-for-ai-agents-tracing-multi-step-workflows.md",
+      "bytes": 21631,
+      "sha256": "560eaeafad6103cc0414c0dcaf54e55362a7e3e05a5bdf53b3e1851c911b40d4"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/025_ai-agent-observability-gaps-what-teams-need-to-see-in-produ.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/025_ai-agent-observability-gaps-what-teams-need-to-see-in-produ.md",
+      "bytes": 4041,
+      "sha256": "a5e6354dd340f0e66459f73da0784fe9f6b0caea929afc1c5a74d431d931fced"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/026_ai-observability-for-agent-workflows-now-depends-on-local-fi.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/026_ai-observability-for-agent-workflows-now-depends-on-local-fi.md",
+      "bytes": 16028,
+      "sha256": "dd816525b78547437d811e738d2d636c3cb66d0d973c6f6393d5203da8cab10f"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/028_traceability-and-observability-agent-kernel.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/028_traceability-and-observability-agent-kernel.md",
+      "bytes": 18414,
+      "sha256": "f15a5ea158b4c8056b9814430d1de3729bd7afbacf7c294b08d2291f8a839400"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/029_observability-for-ai-agents-logs-metrics-and-traces.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/029_observability-for-ai-agents-logs-metrics-and-traces.md",
+      "bytes": 11884,
+      "sha256": "2be47381fdc382cebf0ac67312f246fa885d865b5df59c63328e731cecac95e0"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/030_agent-evaluation-how-to-evaluate-ai-agents-in-production.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/030_agent-evaluation-how-to-evaluate-ai-agents-in-production.md",
+      "bytes": 54013,
+      "sha256": "6fb6f9c8cf7085997206a05b20f173e7909bbc215eef847593574a9bbb9ccd9d"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/index.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/index.md",
+      "bytes": 4105,
+      "sha256": "408345925f7def2fdd0357e0bb2dc7a42676020392da16ae397b1981834b6587"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/summary.md",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/summary.md",
+      "bytes": 18263,
+      "sha256": "f7621adfc34c4c2ce31cdef5e8b6897830a021774dc77213792d7cc9984cd1a5"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/research/synthesis.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/research/synthesis.json",
+      "bytes": 44646,
+      "sha256": "effe0e75f3d88693899aaca3792277e46d90d789b057a843b51ad5d6bb23f020"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/search_plan.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/search_plan.json",
+      "bytes": 928,
+      "sha256": "c804422b56586540f6b526237b824ef8a83a783c2bcb424402c539bf25a4eb67"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/search_results.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/search_results.json",
+      "bytes": 21872,
+      "sha256": "c760aa948a0f97b11e2d2af232ddba6c77a044b81691dffb9ef68e440218b63b"
+    },
+    {
+      "source": "runs-api/ai-agent-evaluation-20261009T214043Z/search_state.json",
+      "archive": "runs.example/runs-api/ai-agent-evaluation-20261009T214043Z/search_state.json",
+      "bytes": 21232,
+      "sha256": "7b79cc7ee34470bb881461d5c397dbc987470aa6381e8a2dcc70ca95da4da0c4"
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "run_id": "rag-vs-fine-tuning-20261009T213906Z",
+  "topic": "RAG vs fine-tuning",
+  "model": "openrouter:deepseek/deepseek-v4.1-flash",
+  "status": "degraded",
+  "status_reasons": [
+    "blog_length",
+    "too_few_sources"
+  ],
+  "phase_timings_seconds": {},
+  "urls_found": 30,
+  "urls_clean": 30,
+  "urls_fetched": 30,
+  "urls_extracted": 18,
+  "urls_thin": 2,
+  "urls_failed": 0,
+  "extraction_failures": 12,
+  "url_outcomes": [
+    {
+      "rank": 1,
+      "url": "https://www.superannotate.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-01"
+    },
+    {
+      "rank": 2,
+      "url": "https://www.datacamp.com/tutorial/rag-vs-fine-tuning",
+      "outcome": "robots_disallowed",
+      "reason": "robots_rule",
+      "source_id": null
+    },
+    {
+      "rank": 3,
+      "url": "https://vectorize.io/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-03"
+    },
+    {
+      "rank": 4,
+      "url": "https://www.codelamda.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-04"
+    },
+    {
+      "rank": 5,
+      "url": "https://community.ibm.com/community/user/blogs/wendy-munoz/2025/11/28/rag-vs-fine-tuning-best-practices-using-the-ibm-ai",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 6,
+      "url": "https://www.v2solutions.com/whitepapers/rag-vs-fine-tuning-for-enterprise-llms",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-06"
+    },
+    {
+      "rank": 7,
+      "url": "https://machinelearningmastery.com/rag-vs-fine-tuning-for-domain-adaptation-when-to-use-which",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 8,
+      "url": "https://orq.ai/blog/finetuning-vs-rag",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-08"
+    },
+    {
+      "rank": 9,
+      "url": "https://developer.ibm.com/articles/awb-rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-09"
+    },
+    {
+      "rank": 10,
+      "url": "https://upstash.com/blog/comparing-rag-with-ft",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-10"
+    },
+    {
+      "rank": 11,
+      "url": "https://www.coreweave.com/blog/pretraining-vs-fine-tuning-vs-rag-whats-best-for-your-ai-project",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-11"
+    },
+    {
+      "rank": 12,
+      "url": "https://centricconsulting.com/blog/fine-tuning-llms-versus-retrieval-augmented-generation_ai",
+      "outcome": "robots_disallowed",
+      "reason": "robots_rule",
+      "source_id": null
+    },
+    {
+      "rank": 13,
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/to-tune-or-not-to-tune-a-guide-to-leveraging-your-data-with-llms",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-13"
+    },
+    {
+      "rank": 14,
+      "url": "https://pub.towardsai.net/the-llm-architecture-war-the-quadrature-of-rag-and-fine-tuning-058a583b97f9",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 15,
+      "url": "https://www.agicent.com/blog/rag-vs-fine-tuning",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-15"
+    },
+    {
+      "rank": 16,
+      "url": "https://arxiv.org/pdf/2510.20260",
+      "outcome": "unsupported_content",
+      "reason": "non_html_content_type",
+      "source_id": null
+    },
+    {
+      "rank": 17,
+      "url": "https://redwerk.com/blog/fine-tuning-vs-rag-decision-framework",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-17"
+    },
+    {
+      "rank": 18,
+      "url": "https://medium.com/@abhishawhaval/rag-vs-fine-tuning-the-enterprise-ai-decision-that-could-make-or-break-your-llm-strategy-fb6f381c1352",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 19,
+      "url": "https://medium.com/nerd-for-tech/advanced-retrieval-augmented-generation-rag-and-fine-tuning-techniques-for-llms-lora-qlora-dbc3153866cb",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 20,
+      "url": "https://www.metacto.com/blogs/rag-vs-fine-tuning-vs-other-llm-techniques-choosing-the-right-approach",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-20"
+    },
+    {
+      "rank": 21,
+      "url": "https://www.runpod.io/blog/rag-vs-fine-tuning-llm-customization",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-21"
+    },
+    {
+      "rank": 22,
+      "url": "https://medium.com/@chinmayd49/rag-production-optimizations-and-trade-offs-a623e5834e65",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 23,
+      "url": "https://aibusiness.com/verticals/leveraging-existing-information-security-investments-to-secure-ai-data",
+      "outcome": "unreachable",
+      "reason": "http_403",
+      "source_id": null
+    },
+    {
+      "rank": 24,
+      "url": "https://www.boschaishield.com/resources/blog/7-recommendations-for-a-safe-integration-and-adoption-of-generative-ai-and-llms-in-the-enterprise",
+      "outcome": "too_thin",
+      "reason": "no_parser_reached_200_words",
+      "source_id": null
+    },
+    {
+      "rank": 25,
+      "url": "https://www.mend.io/blog/what-existing-security-threats-do-ai-and-llms-amplify-what-can-we-do-about-them",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-25"
+    },
+    {
+      "rank": 26,
+      "url": "https://nhimg.org/faq/why-does-ai-increase-the-attack-surface-for-enterprise-data",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-26"
+    },
+    {
+      "rank": 27,
+      "url": "https://venturebeat.com/business/how-to-minimize-data-risk-for-generative-ai-and-llms-in-the-enterprise",
+      "outcome": "unreachable",
+      "reason": "retry_exhausted:http_429",
+      "source_id": null
+    },
+    {
+      "rank": 28,
+      "url": "https://adversa.ai/blog/llm-security-top-digest-from-security-incidents-and-ciso-guides-to-mitigations-and-eu-ai-act",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-28"
+    },
+    {
+      "rank": 29,
+      "url": "https://www.cio.com/article/4118719/how-to-optimize-llms-for-enterprise-success.html",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-29"
+    },
+    {
+      "rank": 30,
+      "url": "https://www.coveo.com/blog/secure-enterprise-ai-strategies",
+      "outcome": "extracted",
+      "reason": null,
+      "source_id": "S-30"
+    }
+  ],
+  "blog_path": "output/2026-10-09-21-39-06-content.md",
+  "citation_count": 18,
+  "tokens_used": 0,
+  "cost_usd": 0.0,
+  "duration_seconds": 522.2184188340034,
+  "retries": 0
+}

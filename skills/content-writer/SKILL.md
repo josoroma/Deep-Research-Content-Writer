@@ -1,0 +1,166 @@
+---
+name: content-writer
+description: >-
+  Given a topic, run paged Google searches (3 pages × 10 = up to 30 URLs), fetch
+  and clean each result into a local Markdown source file with front-matter, then
+  write a 2000–5000 word evidence-grounded blog post that cites only those sources.
+  Use when the user asks to "research a topic and write a blog post", "gather
+  sources and draft an article", or names a topic to research end-to-end.
+---
+
+# Content Writer
+
+Autonomous research→corpus→blog pipeline built on the `deepagents` harness
+(planning tool + virtual filesystem + sub-agents on LangGraph). One topic in;
+a cited Markdown blog post plus a traceable source corpus out.
+
+## When to use
+
+Trigger when the user gives a research topic/goal and wants a sourced long-form
+article (e.g. "2026 agentic AI frameworks"). Not for quick Q&A, single-page
+summaries, or publishing to a CMS.
+
+## Contract
+
+**Input:** `topic` (3–250 chars). Optional: `goal` (trimmed, up to 1000 chars), `pages=3`, `per_page=10`, `max_urls=30`.
+
+**Output (under `runs/<run_id>/`):**
+- `research/NNN_<slug>.md` — one cleaned source per URL, with front-matter
+- `research/index.md` — corpus table (`source_id | title | host | words | url`)
+- `research/synthesis.json` — validated findings, source excerpts, format choice, adaptive outline, and optional diagram plan
+- `research/summary.md` — deterministic readable rendering of the evidence plan
+- `output/{yyyy-mm-dd-hh-mm-ss}-content.md` — the cited article
+- `output/run.json` — metrics, provenance, failures
+
+## Operating rules (hard constraints)
+
+1. **Agents orchestrate; tools execute.** Never fetch URLs or call search APIs from
+   agent reasoning — only through the typed tools below.
+2. **Every source is a file.** Raw HTML never enters the writer's context; the writer
+   reads only clean `.md` files via `read_file`.
+3. **Cite only the corpus.** Every non-obvious claim in the blog carries an inline
+   `[S-NN]` that resolves to a source file. No source → no claim.
+4. **Never abort on one failure.** A dead URL or thin page is recorded and skipped.
+5. **Respect the budget:** `max_urls=30`, fetch retries ≤ 3, blog generated once
+   (plus citation-fix passes only). Respect `robots.txt` and rate-limit per host.
+6. **No paywalled/gated content, no CAPTCHA solving, no SERP scraping** — searches go
+   through an approved search API.
+
+## Workflow
+
+Track these phases with `write_todos`; each is resumable from the LangGraph checkpoint.
+
+1. **Plan** — validate `topic`, derive 2–3 query variants, create `run_id`, seed todos.
+2. **Search** (`search_agent`) — for `page in 1..pages`: `google_search(query, page)`.
+   Collect up to `max_urls`; persist `search_results.json`.
+3. **Normalize** — canonicalize URLs (strip `utm_*`, fragments), dedupe, apply host
+   denylist, keep ranking order → `clean_results.json`.
+4. **Fetch + extract** (`research_agent`) — loop over clean URLs and call
+   `collect_source` for each. That deterministic tool uses `fetch_url` →
+   `extract_markdown` (trafilatura → readability → bs4 fallback) internally and
+   writes `research/NNN_<slug>.md`. Skip bodies < 200 words as `too_thin`.
+   The agent never receives raw HTML.
+5. **Index** — write `research/index.md`.
+6. **Synthesize** (`analyst_agent`) — read every source, assess evidence and limits,
+   then choose a format and outline from topic, optional goal, and findings. Write
+   `research/synthesis.json`; the coordinator validates it and renders the summary.
+7. **Write** (`writer_agent`) — write once from the validated adaptive outline.
+   Use a title, generated top TOC, adaptive body, References, then a final cited
+   Why this format explanation. Preserve nuance and uncertainty. Optional Mermaid
+   flowcharts/sequences require cited prose captions and rendering validation.
+   Keep the soft 2000–5000 word target without filler. Inline `[S-NN]` throughout.
+8. **Citation gate** — verify every `[S-NN]` resolves to a source file; re-invoke the
+   writer to fix/drop any dangling citation. Not done until zero remain.
+9. **Report** — write `output/run.json`.
+
+## Source file format
+
+```markdown
+---
+source_id: S-07
+url: https://example.com/article
+title: The article title
+author: Jane Doe
+published: 2026-08-14
+fetched: 2026-09-30T12:00:00Z
+word_count: 1420
+---
+# The article title
+
+<clean markdown body>
+```
+
+## Sub-agents & tools
+
+| Sub-agent | Does | Tools |
+|---|---|---|
+| `search_agent` | paged queries → URLs | `google_search` |
+| `research_agent` | fetch + extract + write one file per URL | `collect_source` |
+| `analyst_agent` | synthesize corpus → validated evidence plan | filesystem tools, read-only `validate_synthesis` |
+| `writer_agent` | draft cited blog | `ls`, `read_file`, `write_file` |
+
+The orchestrator coordinates `normalize_results`, `build_index`, `validate_citations`,
+and `write_run_report`. `fetch_url` and `extract_markdown` stay registered but are
+called only inside `collect_source`, never by an agent (PD-005).
+
+Typed tool signatures (Pydantic v2 I/O — never raw dicts):
+- `google_search(query: str, page: int) -> list[SearchResult]`
+- `fetch_url(url: HttpUrl) -> FetchedPage`
+- `extract_markdown(page: FetchedPage, source_id: str) -> Source`
+- `collect_source(rank: int, url: HttpUrl) -> SourceMetadata` (metadata only)
+- filesystem tools (`ls`/`read_file`/`write_file`/`edit_file`) come from the harness.
+
+## Wiring (reference)
+
+```python
+from deepagents import create_deep_agent
+from deepagents.backends import FilesystemBackend
+from langchain.agents.middleware import TodoListMiddleware
+
+from prompts.catalog import load_prompt
+from schemas.state import ResearchAgentState
+from tools.registry import TOOLS
+
+subagents = [
+    {"name": "search_agent", "description": "Run paged searches, collect URLs.",
+     "system_prompt": load_prompt("search_agent"),
+     "tools": [TOOLS["google_search"].as_langchain_tool()]},
+    {"name": "research_agent", "description": "Fetch each URL and write one source.",
+     "system_prompt": load_prompt("research_agent"),
+     "tools": [TOOLS["collect_source"].as_langchain_tool()]},
+    {"name": "analyst_agent", "description": "Synthesize the corpus into summary.md.",
+     "system_prompt": load_prompt("analyst_agent")},
+    {"name": "writer_agent", "description": "Draft the cited blog from corpus + summary.",
+     "system_prompt": load_prompt("writer_agent")},
+]
+
+agent = create_deep_agent(
+    model=llm.for_agent("orchestrator"),
+    tools=[TOOLS[name].as_langchain_tool() for name in (
+        "normalize_results", "build_index", "validate_citations", "write_run_report")],
+    system_prompt=load_prompt("orchestrator"),
+    middleware=[TodoListMiddleware()],
+    subagents=subagents,
+    backend=FilesystemBackend(root_dir=workspace.root, virtual_mode=True),
+    state_schema=ResearchAgentState,
+)
+```
+
+`agents/deep_research.py` is the implementation. It disables the harness's
+auto-added `general-purpose` sub-agent so only the four PD-005 sub-agents exist.
+
+## Failure handling
+
+| Failure | Behavior |
+|---|---|
+| URL unreachable / non-200 | retry ≤3 w/ backoff, record `unreachable`, continue |
+| Extraction empty/thin | fallback parser, else record `too_thin`, continue |
+| < 24 usable sources | continue; status `degraded` in `run.json` |
+| Dangling `[S-NN]` | re-invoke writer; block "done" until clean |
+| Sub-agent exception | orchestrator logs it, retries the phase once |
+
+## Definition of done
+
+~30 results processed (≥80% extracted) · corpus + `index.md` · `summary.md` ·
+`output/{yyyy-mm-dd-hh-mm-ss}-content.md` 2000–5000 words with **zero dangling citations** + References ·
+`output/run.json` written · trace visible in LangSmith.

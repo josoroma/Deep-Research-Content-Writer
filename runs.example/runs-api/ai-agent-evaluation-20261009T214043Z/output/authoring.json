@@ -1,0 +1,18 @@
+{
+  "run_id": "ai-agent-evaluation-20261009T214043Z",
+  "workspace": "runs-api/ai-agent-evaluation-20261009T214043Z",
+  "status": "completed",
+  "contract_version": 2,
+  "format_label": "Evidence-graded implementation guide (practitioner playbook with documented-vs-untested labeling)",
+  "synthesis_path": "research/synthesis.json",
+  "summary_path": "research/summary.md",
+  "blog_path": "output/2026-10-09-21-40-43-content.md",
+  "word_count": 5160,
+  "citations_checked": 22,
+  "repair_passes": 0,
+  "dangling_source_ids": [],
+  "mismatched_source_ids": [],
+  "violations": [],
+  "reason": "blog_length",
+  "error": null
+}

@@ -1,0 +1,210 @@
+Traceback (most recent call last):
+  File "/Users/josoroma/sites/langchain/services/observability.py", line 447, in invoke
+    result = operation(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/workflows/research_run.py", line 78, in run_research
+    outcome = RunService(context, production=fake_model is None).execute()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/application/run_service.py", line 218, in execute
+    run = self._phase_authoring(run)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/application/run_service.py", line 150, in _phase_authoring
+    result = run_authoring(
+             ^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/services/observability.py", line 434, in invoke
+    return operation(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/workflows/authoring_run.py", line 86, in run_authoring
+    result = pipeline.execute()
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/services/authoring_pipeline.py", line 61, in execute
+    plan = self._synthesize()
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/services/authoring_pipeline.py", line 85, in _synthesize
+    self._attempt_synthesis()
+  File "/Users/josoroma/sites/langchain/services/authoring_pipeline.py", line 122, in _attempt_synthesis
+    "do not write a draft or change the saved request."
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/workflows/authoring_run.py", line 62, in invoke
+    agent.invoke({"messages": [HumanMessage(content=prompt)], "run": current}, config=config)
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langgraph/pregel/main.py", line 3913, in invoke
+    for chunk in self.stream(
+                 ^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langgraph/pregel/main.py", line 2967, in stream
+    for _ in runner.tick(
+             ^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langgraph/pregel/_runner.py", line 207, in tick
+    run_with_retry(
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langgraph/pregel/_retry.py", line 617, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 707, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langgraph/_internal/_runnable.py", line 447, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 1543, in model_node
+    result = wrap_model_call_handler(request, _execute_model_sync)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 357, in composed
+    outer_result = outer(request, inner_handler)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/deepagents/middleware/filesystem.py", line 3290, in wrap_model_call
+    response = handler(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 347, in inner_handler
+    inner_result = inner(req, handler)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 357, in composed
+    outer_result = outer(request, inner_handler)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/deepagents/middleware/subagents.py", line 1017, in wrap_model_call
+    return handler(request)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 347, in inner_handler
+    inner_result = inner(req, handler)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 357, in composed
+    outer_result = outer(request, inner_handler)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/deepagents/middleware/summarization.py", line 1545, in wrap_model_call
+    return handler(request.override(messages=truncated_messages))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 347, in inner_handler
+    inner_result = inner(req, handler)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 357, in composed
+    outer_result = outer(request, inner_handler)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/middleware/todo.py", line 256, in wrap_model_call
+    return handler(request.override(system_message=new_system_message))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 347, in inner_handler
+    inner_result = inner(req, handler)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 357, in composed
+    outer_result = outer(request, inner_handler)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain_anthropic/middleware/prompt_caching.py", line 182, in wrap_model_call
+    return handler(request)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 347, in inner_handler
+    inner_result = inner(req, handler)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/deepagents/middleware/unsupported_content.py", line 191, in wrap_model_call
+    return handler(self._filter_request(request))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain/agents/factory.py", line 1506, in _execute_model_sync
+    output = model_.invoke(messages)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain_core/runnables/base.py", line 6014, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 488, in invoke
+    self.generate_prompt(
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 1877, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 1684, in generate
+    self._generate_with_cache(
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain_core/language_models/chat_models.py", line 2022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langchain_openrouter/chat_models.py", line 572, in _generate
+    response = self.client.chat.send(messages=message_dicts, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/openrouter/chat.py", line 830, in send
+    http_res = self.do_request(
+               ^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/openrouter/basesdk.py", line 291, in do_request
+    http_res = utils.retry(do, utils.Retries(retry_config[0], retry_config[1]))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/openrouter/utils/retries.py", line 222, in retry
+    return retry_with_backoff(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/openrouter/utils/retries.py", line 292, in retry_with_backoff
+    return func()
+           ^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/openrouter/utils/retries.py", line 195, in do_request
+    res = func()
+          ^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/openrouter/basesdk.py", line 269, in do
+    http_res = client.send(req, stream=stream)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpx/_client.py", line 928, in send
+    raise exc
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpx/_client.py", line 922, in send
+    response.read()
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpx/_models.py", line 881, in read
+    self._content = b"".join(self.iter_bytes())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpx/_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+                     ^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpx/_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+                            ^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpx/_client.py", line 153, in __iter__
+    for chunk in self._stream:
+                 ^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpcore/_sync/connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+                ^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 342, in __iter__
+    raise exc
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/.local/share/uv/python/cpython-3.12-macos-aarch64-none/lib/python3.12/ssl.py", line 1232, in recv
+    return self.read(buflen)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/.local/share/uv/python/cpython-3.12-macos-aarch64-none/lib/python3.12/ssl.py", line 1105, in read
+    return self._sslobj.read(len)
+           ^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/josoroma/sites/langchain/.venv/bin/content-writer", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/Users/josoroma/sites/langchain/workflows/cli.py", line 215, in main
+    return _run_topic(args, resolved, request, variants)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/workflows/cli.py", line 184, in _run_topic
+    summary = run_research(request, settings, runs_root=runs_root)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/sites/langchain/services/observability.py", line 454, in invoke
+    observer.finish(result, error)
+  File "/Users/josoroma/sites/langchain/services/observability.py", line 381, in finish
+    self.client.flush(timeout=self.settings.telemetry_timeout_seconds)
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langsmith/client.py", line 4218, in flush
+    self.flush_compressed_traces(timeout=remaining)
+  File "/Users/josoroma/sites/langchain/.venv/lib/python3.12/site-packages/langsmith/client.py", line 4183, in flush_compressed_traces
+    done, _ = cf.wait(futures, timeout=timeout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/.local/share/uv/python/cpython-3.12-macos-aarch64-none/lib/python3.12/concurrent/futures/_base.py", line 305, in wait
+    waiter.event.wait(timeout)
+  File "/Users/josoroma/.local/share/uv/python/cpython-3.12-macos-aarch64-none/lib/python3.12/threading.py", line 655, in wait
+    signaled = self._cond.wait(timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/josoroma/.local/share/uv/python/cpython-3.12-macos-aarch64-none/lib/python3.12/threading.py", line 359, in wait
+    gotit = waiter.acquire(True, timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

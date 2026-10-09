@@ -1,0 +1,1308 @@
+{
+  "contract_version": 2,
+  "run_id": "ai-agent-evaluation-20261009T212330Z",
+  "topic": "AI agent evaluation",
+  "goal": "Create a practical implementation guide for evaluating tool-using AI agents, covering task datasets, success criteria, failure analysis, observability, and bounded retries; distinguish documented techniques from untested examples.",
+  "input_fingerprint": "b1c5ffef4e7fac624dae6ce6dbde57889570274d3377255386cb9105accae086",
+  "reader_objective": "Build a working evaluation setup for tool-using agents: choose task datasets, define success criteria, analyze failures, instrument observability, bound retries, and gate releases — while knowing which parts of the advice are documented in research or measured practice, and which are only vendor or single-team examples.",
+  "objective_origin": "explicit",
+  "considered_source_ids": [
+    "S-01",
+    "S-04",
+    "S-05",
+    "S-06",
+    "S-07",
+    "S-08",
+    "S-09",
+    "S-10",
+    "S-12",
+    "S-13",
+    "S-14",
+    "S-15",
+    "S-16",
+    "S-17",
+    "S-18",
+    "S-20",
+    "S-22",
+    "S-23",
+    "S-24",
+    "S-25",
+    "S-26",
+    "S-27",
+    "S-28",
+    "S-29",
+    "S-30"
+  ],
+  "evidence_types": [
+    "research preprints and survey analysis",
+    "benchmark and leaderboard documentation",
+    "practitioner implementation guides",
+    "vendor product documentation and marketing",
+    "single-team baseline evaluation report",
+    "secondary editorial summary",
+    "community forum question"
+  ],
+  "limitations": [
+    "About half the corpus is vendor or vendor-sponsored content (S-01, S-06, S-14, S-16, S-17, S-20, S-24, S-25, S-27, S-29); it is cited for described practice and for its own numbers, not as independent verification.",
+    "S-10 is an unanswered community forum thread and S-15 is a secondary editorial summarising another vendor's guide; neither is used as primary evidence for a technique.",
+    "Numeric results are point-in-time and tied to specific model versions and harnesses (BFCL September 2024 data in S-09, terminal-bench 2.0 in S-06, 2024–2026 paper and leaderboard snapshots), so they indicate difficulty rather than current rankings.",
+    "No source in the corpus reports an experiment isolating the effect of trajectory scoring, bounded retries, or CI gating on production outcomes.",
+    "Two research papers assume conditions (a bounded 5-step agent budget in S-28, preregistration in S-07) that readers may not be able to replicate."
+  ],
+  "findings": [
+    {
+      "finding_id": "trajectory-not-output",
+      "statement": "Across research and practitioner sources, tool-using agents are evaluated on the execution path as well as the final answer, because a correct or polished response can hide wrong tool selection, skipped prerequisites, and broken reasoning.",
+      "evidence": [
+        {
+          "source_id": "S-05",
+          "excerpt": "Correct final answers can hide broken reasoning.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "The practical consequence: an agent can produce a polished, accurate-sounding final message while having called the wrong tool, updated the wrong record or skipped a required check. If your evaluation only reads the last message, it will pass that agent.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "An agent can produce correct output through an inefficient or incorrect process.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-23",
+          "excerpt": "An agent that reaches the right answer by calling the wrong tools, or by calling the right tools in the wrong order, is an agent sitting on a reliability cliff. It worked this time. It won’t always.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "An agent that gets the right answer by luck won't be reliable.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "No source in the corpus measures how much trajectory scoring improves outcomes compared with output-only scoring.",
+        "S-05 also notes that trajectory evaluation adds overhead and is not always worth it for single-turn or deterministic pipelines."
+      ]
+    },
+    {
+      "finding_id": "evidence-contract",
+      "statement": "The practical starting point is to define success before choosing evaluators: the observable result, the evidence that proves it (often system state rather than the agent's message), permitted and prohibited actions, constraints, and how the agent should behave when the task cannot be completed.",
+      "evidence": [
+        {
+          "source_id": "S-29",
+          "excerpt": "Define success before choosing [evaluators](https://arize.com/docs/ax/evaluate/create-evaluators). Record the result the agent should produce, the actions it may take, the constraints it must follow, and how it should respond when the task cannot be completed.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "An AI agent evaluation framework is a repeatable system for testing whether an agent completes its tasks correctly, consistently and within budget.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-23",
+          "excerpt": "This is where goal fidelity becomes the more useful construct. Goal fidelity asks not just whether the agent crossed the finish line, but whether it did so in a way that actually reflects the intent behind the task.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "Success definitions are use-case specific; the corpus offers no shared rubric beyond the goal-success and goal-accuracy pair attributed to AWS in S-24."
+      ]
+    },
+    {
+      "finding_id": "ground-truth-includes-steps",
+      "statement": "For agent datasets, ground truth is documented as including expected tool calls and intermediate steps, not only expected final answers.",
+      "evidence": [
+        {
+          "source_id": "S-05",
+          "excerpt": "For AI agents, ground truth must include expected tool calls and reasoning steps.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-12",
+          "excerpt": "We define dependent tool calling as the need to call multiple tools in sequence such that the output of a previous tool must be used to motivate the input for a subsequent tool.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "A prompt-only test misses a changed tool schema. A final-answer grader misses an unauthorized tool call that happened to produce polished prose. Record the trajectory as well as the result.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-23",
+          "excerpt": "Reference traces should reflect expert judgment about not just correctness but efficiency: the minimal, well-formed path through the tool space that a skilled operator would take.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "S-23 concedes this annotation work is hard and slow; S-29 similarly warns against enforcing one exact sequence when several paths are valid."
+      ]
+    },
+    {
+      "finding_id": "datasets-from-real-work",
+      "statement": "Practitioner sources converge on seeding the evaluation set from real user requests and confirmed production failures, starting small (roughly 5–50 cases) and adding ambiguous, adversarial, and failure-inducing cases rather than only happy paths.",
+      "evidence": [
+        {
+          "source_id": "S-24",
+          "excerpt": "Start with 20 to 50 tasks, which is the starting range Anthropic recommends. Take them from real user requests and real failures, not from scenarios your team imagines. For each, record the input, the starting state, and the expected outcome and tool calls. This golden dataset is the core of everything that follows, so spend time making each success definition unambiguous.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "| Offline evals | Prevent regressions before deploy | 5–50 real tasks, golden traces | Pass/fail assertions, rubric scores, tool-call correctness | Repo + CI, trace capture/diff | 30–60 min/week | ",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "- indirect prompt injection and data-exfiltration attempts;",
+          "role": "supports",
+          "context": "One bullet from the list of case sources the author recommends seeding the suite from."
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "Start by seeding your datasets from production traces. When you identify a failure in production, convert that trace into a test case with the corrected trajectory as ground truth.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "Hand-written examples usually describe tasks clearly and provide all the information the agent needs. Production requests are less controlled. Users omit details, mix multiple requests, provide conflicting context, and encounter tools or services that fail.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-10",
+          "excerpt": "I am looking for a benchmark dataset which would allow me to evaluate how well GPT matches uesr intent with those functions (as a baseline).",
+          "role": "qualifies",
+          "context": "The one community query in the corpus asks for an off-the-shelf tool-selection dataset and receives no answer, suggesting ready-made task sets are scarce."
+        }
+      ],
+      "qualifications": [
+        "The 5–50 case ranges are recommendations from a small-team roadmap (S-22) and a vendor-authored guide (S-24); no source reports how suite size relates to escaped defects."
+      ]
+    },
+    {
+      "finding_id": "synthetic-cold-start",
+      "statement": "When no dataset exists, sources describe generating one synthetically — LLM-generated tasks, expert or golden solutions, and human verification — and this is presented as benchmark-construction practice and single-team recipes rather than as validated guidance.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "Both of these workflows require a dataset, but what if you don't have one? This is the \"cold start problem,\" and we solve it with synthetic data generation. We walked through a four-step recipe:",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "To evaluate the tool-selection and tool-use after integration of the APIs is completed, Amazon teams created golden datasets for regression testing. The datasets are generated synthetically using LLMs from historical API invocation logs upon user queries.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-12",
+          "excerpt": "each of the model generated substeps (Thought, Action and Action Input) is annotated with process supervision labels",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "The recipes come from a vendor podcast recap (S-04), a benchmark paper (S-12), and one published Amazon practice (S-30); none reports measured similarity between synthetic and production case distributions."
+      ]
+    },
+    {
+      "finding_id": "code-before-judges",
+      "statement": "The recommended grading order is deterministic code checks first, narrowly scoped LLM judges only where language judgment is required, and human review where automated verdicts cannot be trusted.",
+      "evidence": [
+        {
+          "source_id": "S-26",
+          "excerpt": "Use code for anything code can judge. Deterministic checks are cheaper, more reproducible, and easier to debug than an LLM grader.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "Use the most direct evidence and the least subjective method capable of deciding the case.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "Use three kinds of graders, in this order of preference:",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "- maximum tool-call and token budgets;",
+          "role": "supports",
+          "context": "Example of a condition that can be asserted deterministically."
+        }
+      ],
+      "qualifications": [
+        "S-24 warns that deterministic string matching must not stand in for semantic properties (\"Contains refund\" does not prove policy compliance)."
+      ]
+    },
+    {
+      "finding_id": "judge-bias-and-calibration",
+      "statement": "LLM-as-a-judge is widely used for semantic checks, but every source that documents it also documents bias and instability and recommends rubric constraints, multiple judge passes, and calibration against human-labelled examples before judge scores drive decisions.",
+      "evidence": [
+        {
+          "source_id": "S-05",
+          "excerpt": "Judge reliability has become a key design consideration that teams must address from the start. LLM judges exhibit bias and inconsistency, like scoring responses differently based on presentation order, favoring verbose answers over concise ones, and drifting in their scoring behavior over time. Teams need to actively mitigate these problems rather than treating judge outputs as ground truth.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "LLM judges carry known biases. The MT-Bench research that established the method in 2023 found three: a preference for whichever answer appears first, a preference for longer answers, and a preference for output written by the judge's own model family.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "LLM Judges are susceptible to multiple biases that distort evaluations.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "This approach scales incredibly well, but its judgments are only as good as the model's training and biases.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "### **Trusting evaluators before calibrating them**",
+          "role": "supports",
+          "context": "Heading of the listed mistake that follows from uncalibrated judges."
+        }
+      ],
+      "qualifications": [
+        "No source reports a reliability figure for a calibrated judge on agent trajectories, so the mitigation list is advice rather than a measured result."
+      ]
+    },
+    {
+      "finding_id": "repeat-runs-passk",
+      "statement": "Because agent behaviour is stochastic, sources recommend running each important case several times and reporting consistency metrics such as pass@1, pass@k, and pass^k instead of a single success or failure.",
+      "evidence": [
+        {
+          "source_id": "S-24",
+          "excerpt": "The gap between them is large. An agent with 75% success per attempt scores about 98% on pass@3 but only about 42% on pass^3.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "A successful run shows that the agent can complete the task once. Reliability evaluation measures whether acceptable behavior persists across repeated attempts and realistic variations.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "One successful run says little when sampling and external tools vary. Run important cases several times and record the distribution.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "Because agents are non-deterministic, you can give the same prompt twice and get two different--but equally valid--outcomes.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "You can’t replay a trace and expect identical behavior.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "Trial counts are only loosely specified (\"several\" in S-26); S-26 also notes that confidence intervals express sampling uncertainty and do not fix a biased dataset."
+      ]
+    },
+    {
+      "finding_id": "trace-content",
+      "statement": "Documented trace requirements cover inputs and outputs, every tool call with arguments and results, retrieved context, intermediate reasoning, token counts and costs, and timing — and runs should be stored hierarchically because agents branch, backtrack, and delegate.",
+      "evidence": [
+        {
+          "source_id": "S-06",
+          "excerpt": "Every agent interaction produces a trace. That trace must contain the user’s input and the agent’s final response, all intermediate reasoning steps, every tool call with input parameters and returned outputs, context assembled at each decision point, token counts and costs per operation, and timing information showing where latency accumulates.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "Agent traces form trees or graphs rather than sequences.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "Traditional tracing tools display spans in a flat, linear sequence.",
+          "role": "supports",
+          "context": "Used by the source to explain why linearised spans lose conversational structure."
+        },
+        {
+          "source_id": "S-18",
+          "excerpt": "Each step of the process, its timing, which steps failed or were retried and where the run waited for a human.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "Every agent interaction is captured as a hierarchical trace showing:",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "S-15 and S-16 give a further reason to record state after every side effect: a successful HTTP response does not prove the intended external state change occurred."
+      ]
+    },
+    {
+      "finding_id": "otel-conventions",
+      "statement": "OpenTelemetry's GenAI semantic conventions are the emerging vendor-neutral schema for agent telemetry — spans and attributes such as gen_ai.tool.name and gen_ai.usage.* — but sources describe the conventions as still experimental.",
+      "evidence": [
+        {
+          "source_id": "S-06",
+          "excerpt": "[OpenTelemetry’s GenAI semantic conventions](https://opentelemetry.io/blog/2025/ai-agent-observability/) provide emerging standards for structured trace logging enabling consistent monitoring across different agent frameworks.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-16",
+          "excerpt": "span.set_attribute(\"gen_ai.tool.name\", \"read_file\")",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-16",
+          "excerpt": "[GenAI semantic conventions remain experimental](https://opentelemetry.io/blog/2025/ai-agent-observability/) but are rapidly stabilizing.",
+          "role": "qualifies",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "Agentic observability ingests OpenTelemetry spans and traces from your agent applications.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "Vendor documentation (S-16, S-20) describes support for these conventions; no source reports an independent interoperability or overhead test."
+      ]
+    },
+    {
+      "finding_id": "agent-slis-beyond-apm",
+      "statement": "Uptime, latency, and error rate are documented as insufficient for agents; sources propose agent-specific indicators such as task success rate, tool-call accuracy, hallucination rate, cost per task, and end-to-end latency measured per completed task.",
+      "evidence": [
+        {
+          "source_id": "S-25",
+          "excerpt": "Traditional SRE doesn't catch this. It never had to. For a stateless API returning data from a database, availability and latency tell you almost everything you need to know. For an AI agent, they tell you almost nothing about the failures that matter.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-18",
+          "excerpt": "It cannot tell you why an agent refunded the wrong order, because the failure is in the reasoning, not the server.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-25",
+          "excerpt": "Datadog's 2026 State of AI Engineering found that most production incidents from AI agents are discovered by users, not by the team that built the agent.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-16",
+          "excerpt": "Traditional monitoring shows \"everything working\" while users report failures.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-18",
+          "excerpt": "- **Task success rate:** how often the agent reaches the right outcome.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "The supporting texts are vendor and vendor-adjacent blogs; the Datadog figure in S-25 is cited secondhand without sample detail."
+      ]
+    },
+    {
+      "finding_id": "bounded-retries-budgets",
+      "statement": "Sources agree on explicit stop conditions for tool-using agents: caps on tool calls, retries per tool, tokens and cost, approval before state-changing writes, and escalation instead of unbounded retrying or looping.",
+      "evidence": [
+        {
+          "source_id": "S-22",
+          "excerpt": "Add strict stop conditions for retries, tool-call counts, and token budgets so runs don’t become flaky or expensive.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "- max retries per tool (e.g., **<= 2** )",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "- maximum tool-call and token budgets;",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "- no write before an approval event;",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "Code checks for retry limits and required escalations; LLM judge for recovery quality",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "**Recovery** : did it stop after a 429 or spin in a retry loop?",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-25",
+          "excerpt": "The autonomy policy is the key addition. Instead of just alerting when quality drops, you constrain what the agent is allowed to do in response to quality drops.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "The numeric caps (8 tool calls, 2 retries per tool, specific SLO percentages) come from one small-team roadmap (S-22) and vendor playbooks (S-25, S-26); no source reports how those values were derived or how they generalise.",
+        "S-27 adds a separate bound that evaluation cannot enforce: infrastructure failures mid-run can force a full restart, so retry budgets interact with platform state durability."
+      ]
+    },
+    {
+      "finding_id": "redundant-calls-path-convergence",
+      "statement": "Inefficient and repeated tool use is a measurable evaluated failure mode, captured through repeated-call error rates, retry and recovery metrics, tool-call failure rate, and path-convergence scores.",
+      "evidence": [
+        {
+          "source_id": "S-08",
+          "excerpt": "Across the spectrum, “Wrong Name / Missing Info” and “Redundant Call” (23.06% in Gemini-2.0-Thinking) emerge as the most prevalent errors, highlighting systemic deficits in intent understanding and context management.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "**Agent path convergence** measures how consistently an agent reaches a result without taking unnecessary steps. It is useful for finding agents that loop, retry the same action, return to the router without new evidence, or follow longer paths than comparable successful runs.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-20",
+          "excerpt": "- **Retry & Recovery Rate** - How often agents recover from errors",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-23",
+          "excerpt": "One practical signal that’s easy to overlook in agent testing is tool call failure rate — the proportion of invocations that return errors, timeouts, or malformed responses that the agent then has to recover from.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "The prevalence of “Redundant Call” errors reveals a widespread deficiency in long-range planning for most capable models, indicating that they struggle with context management over time.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "S-29's convergence score is a described formula whose shortest observed run is only a proxy for efficiency; S-08's percentages come from one benchmark harness with human-annotated ground truth."
+      ]
+    },
+    {
+      "finding_id": "failure-to-regression-loop",
+      "statement": "The documented failure workflow is a loop: confirm a production failure, capture the trace, turn it into a regression case with agreed expected behaviour, run it against candidate changes, and keep it in the suite.",
+      "evidence": [
+        {
+          "source_id": "S-29",
+          "excerpt": "**Production trace → confirmed failure → regression case → experiment → deployment**",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "When you identify a failure in production, convert that trace into a test case with the corrected trajectory as ground truth.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "Every time the agent fails in production, turn the failure into a test case.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-05",
+          "excerpt": "Production monitoring surfaces these failures by running evaluators on sampled live traffic and alerting when quality degrades.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "It’s essential to maintain quality because the pre-deployment evaluation might not fully capture the performance characteristics.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "The loop is described consistently across sources, but none quantifies its effect on escaped defects or regression frequency."
+      ]
+    },
+    {
+      "finding_id": "failure-taxonomies",
+      "statement": "Sources supply concrete failure categories to sort results into: wrong tool or missing information, redundant calls, refusal and escalation errors, missing citations or grounding, parameter errors, and poor uncertainty calibration.",
+      "evidence": [
+        {
+          "source_id": "S-28",
+          "excerpt": "**Key insight:** The baseline agent’s biggest weakness is not retrieval quality — it is uncertainty calibration. It does not know when it does not know.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-08",
+          "excerpt": "The data indicates two divergent failure philosophies: a “cautious” profile, exemplified by Gemini-2.0-Thinking, which prefers to refuse a task (24.56% Refusal rate) rather than risk an incorrect action (8.02% Wrong Name error), and an “eager” profile, seen in models like Grok-4, which minimizes refusals (3.72%) at the cost of a significantly higher propensity to select the wrong tool (24.07% Wrong Name error).",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "| no_citation | 5 | Answer lacked source citations | ",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-12",
+          "excerpt": "If the annotator marks a step as Incorrect, they then edit the step to be correct.",
+          "role": "supports",
+          "context": "Process supervision labelling that marks each intermediate step correct or incorrect."
+        },
+        {
+          "source_id": "S-14",
+          "excerpt": "Focus on detecting off-policy behavior, failed coordination, and missed goals as most agentic failures are misalignments and not necessarily bugs.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "S-08's error percentages and S-28's category counts each come from a single harness or team; the taxonomies overlap but are not standardised.",
+        "S-14's framing is from a vendor blog post about its own observability product."
+      ]
+    },
+    {
+      "finding_id": "ci-gate-every-behavior-change",
+      "statement": "Sources position the suite as a CI release gate that runs on every change capable of altering behaviour — prompt edits, model swaps, tool changes, retrieval changes — and blocks deploys on failed safety or quality conditions.",
+      "evidence": [
+        {
+          "source_id": "S-24",
+          "excerpt": "Run the suite on every change that can alter agent behavior, not only on code changes: a prompt edit, a model or model version swap, a new or changed tool, a change to retrieval data or the knowledge base, and an update to any connected API.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "Block the release if any condition is true:",
+          "role": "supports",
+          "context": "Introduces a pre-declared release policy covering safety failures, tag regressions, latency or token budgets, and new error classes."
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "- **Release gate** : block deploys if safety/cost checks fail.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "Set thresholds relative to your current production numbers rather than ideal targets. A gate that blocks every release gets switched off.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "Do not claim a win because the mean score rises while a critical workflow falls.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-26",
+          "excerpt": "The goal is not a magical universal score. It is a repeatable body of evidence that lets an accountable person decide whether this specific system change is safe and useful.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "All gate designs in the corpus are practitioner proposals; none reports measured reduction in production regressions after adoption."
+      ]
+    },
+    {
+      "finding_id": "published-thresholds-are-examples",
+      "statement": "Published gate and SLO numbers exist, but they come from single teams or vendors — for example a 95% tool-selection gate attributed to an AWS blueprint and a vendor guidance to set first SLOs slightly above the observed baseline.",
+      "evidence": [
+        {
+          "source_id": "S-24",
+          "excerpt": "Both are easy to grade with code, because the expected call is known. That makes them ideal CI gates. AWS's production blueprint blocks a deploy when tool selection accuracy falls below 95%.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-25",
+          "excerpt": "**Tighten SLOs as you learn.** Your first SLO for a new agent should sit 10-15% above your observed baseline.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-25",
+          "excerpt": "An SLO is a commitment: this agent will maintain X quality level Y% of the time over window Z.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "These figures are not field consensus: S-24 and S-25 are vendor-authored guides, so the numbers are illustrative starting points that must be re-derived for each deployment.",
+        "S-25 also notes that different agent types need different targets, which undercuts any single published threshold."
+      ]
+    },
+    {
+      "finding_id": "cost-latency-correctness",
+      "statement": "Cost and latency are presented as parts of correctness rather than pure operations metrics — cost is measured per successful task and latency at the tail of the whole run, including tool calls.",
+      "evidence": [
+        {
+          "source_id": "S-25",
+          "excerpt": "An agent hitting 94% task success while burning $0.40 per task when you budgeted $0.15 is operationally broken, even if it looks reliable by quality metrics.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-23",
+          "excerpt": "Task completion rate per dollar is a more useful north-star metric than raw success rate, especially when you’re comparing architectures or deciding whether a cheaper model swap degrades reliability enough to matter.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "Comprehensive agent evaluation is expensive. A single agent session can involve hundreds of LLM calls.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "- **Cost-Efficiency:** Most benchmarks prioritize capability over efficiency, ignoring resource consumption factors like token usage, API call costs, and inference time.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "The specific dollar and latency budgets in S-22 and S-25 are example values from single teams rather than derived targets."
+      ]
+    },
+    {
+      "finding_id": "human-review-boundary",
+      "statement": "Human review is positioned where uncertainty and consequence are highest — calibration labels, adjudication of disagreements, periodic audits, and any verdict that could permit a high-consequence action — with sampling used to contain evaluation cost.",
+      "evidence": [
+        {
+          "source_id": "S-29",
+          "excerpt": "### **Human review belongs at the boundary of uncertainty and consequence**",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-29",
+          "excerpt": "Human reviewers can apply the same pointwise, pairwise, and reference-guided protocols used by model-based judges.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "And read transcripts regularly: you will not know whether your graders are fair until you look at what they passed and failed.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-22",
+          "excerpt": "- Any tool that can cause irreversible damage is a **privileged tool** .",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "Rather than scoring every trace comprehensively, they sample representative subsets while monitoring aggregate metrics across all traffic.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "No source gives a review-volume or cost model for choosing sample sizes; the split between automated and human review remains a judgement call."
+      ]
+    },
+    {
+      "finding_id": "multi-agent-end-to-end",
+      "statement": "For multi-agent systems, per-agent scores mislead; sources recommend end-to-end evaluation plus explicit handoff, communication, and coordination measurements.",
+      "evidence": [
+        {
+          "source_id": "S-04",
+          "excerpt": "If you evaluate Agent A alone, its task completion score might be zero because it didn't actually issue the refund. But in reality, it performed its job perfectly by successfully handing off the task.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "we also need to measure the interagent communication patterns, coordination efficiency, and task handoff accuracy.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-01",
+          "excerpt": "- **Dependency tracing** : Monitor how one agent's output influences the behavior and decisions of downstream agents.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-17",
+          "excerpt": "a small error in one agent could lead to a catastrophic “snowballing” failure across the entire system",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "The multi-agent metrics named in S-30 (planning score, communication score, collaboration success rate) are described without published baselines or thresholds."
+      ]
+    },
+    {
+      "finding_id": "benchmarks-orientation-only",
+      "statement": "Public benchmarks and leaderboards are treated as orientation only: their scores do not transfer to a specific stack, and contamination, weak test suites, and idealised tasks inflate published results.",
+      "evidence": [
+        {
+          "source_id": "S-06",
+          "excerpt": "Benchmark performance doesn’t guarantee production success.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-24",
+          "excerpt": "And treat public benchmarks as orientation only: a model's τ-bench score says little about how it handles your tools, your data and your rules.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-04",
+          "excerpt": "**Benchmark Integrity:** As models get more powerful, there's a risk that benchmark questions leak into their training data, making scores less meaningful.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "A high score on a foundational benchmark like BFCL does not guarantee high performance on an agentic benchmark like MCP-Atlas.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": []
+    },
+    {
+      "finding_id": "benchmark-capability-gaps",
+      "statement": "Benchmark evidence documents where tool use breaks down: session-level accuracy below 15% on in-the-wild multi-turn tool use, task accuracy collapsing from strong function-calling scores to 7.2% on a multi-step agentic benchmark, and frontier agents failing about one in five realistic terminal tasks.",
+      "evidence": [
+        {
+          "source_id": "S-08",
+          "excerpt": "In terms of overall performance, none of the mainstream LLMs achieve a session accuracy higher than 15%",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "For example, GPT-4o scores 83.59% on BFCL, indicating very good basic function calling ability . However, on MCP-Atlas, its performance plummets to just 7.2%.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-06",
+          "excerpt": "shows that even top-performing agents succeed on only 81.8 percent of tasks",
+          "role": "supports",
+          "context": "Describing Terminal-bench 2.0 results as reported by the source."
+        },
+        {
+          "source_id": "S-13",
+          "excerpt": "presents an optimal solution with a total travel distance of 87 km, outperforming both GPT-4o-Task and DeepSeek R1",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-07",
+          "excerpt": "ReplicatorBench requires agents to first preregister their replication plan, then execute their analysis according to that plan, mirroring the standards of rigorous human research.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "All figures are point-in-time results tied to specific model versions and harnesses; none measures a reader's own deployment.",
+        "S-10 shows that practitioners looking for a ready-made tool-selection benchmark dataset historically found the landscape hard to navigate."
+      ]
+    },
+    {
+      "finding_id": "system-not-model",
+      "statement": "Evaluation targets a system — model plus prompt, tools, retrieval, memory, and orchestration — because the same base model scores very differently under different agent scaffolds and tool descriptions.",
+      "evidence": [
+        {
+          "source_id": "S-09",
+          "excerpt": "This implies that when we evaluate an \"agent,\" we are evaluating a *system* comprising the LLM and the agentic framework.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-30",
+          "excerpt": "The AI agent evaluation library operates across three layers: calculating and generating evaluation metrics for the agent’s final output, assessing individual agent components, and measuring the performance of the underlying LLMs that power the agent.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-25",
+          "excerpt": "A poorly written tool description degrades call accuracy before you ever look at a model.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-09",
+          "excerpt": "the same base model can have dramatically different success rates depending on the strategy",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": []
+    },
+    {
+      "finding_id": "vendor-claims",
+      "statement": "Several corpus sources are vendor or vendor-sponsored documents, so their platform capability, reliability, and interview-derived statistics are marketing claims rather than independently measured results.",
+      "evidence": [
+        {
+          "source_id": "S-01",
+          "excerpt": "The Fiddler AI Observability and Security platform offers a robust foundation for monitoring and scaling agentic AI",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-16",
+          "excerpt": "**Teams with stronger AI observability and evaluation practices report [2.2x better reliability](https://galileo.ai/blog/ai-agent-observability)** than non-elite teams, according to Galileo's survey data",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-27",
+          "excerpt": "Perpetual sandbox platforms like Blaxel publish a [public status page](https://status.blaxel.ai/), with [custom SLA terms](https://blaxel.ai/pricing) on enterprise plans.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-15",
+          "excerpt": "Tool calls fail between 3 and 15%",
+          "role": "qualifies",
+          "context": "Quoted from a vendor guide inside a third-party editorial; no method, sample, or measurement window is given."
+        }
+      ],
+      "qualifications": [
+        "Where a claim carries no method, sample, or reproduction detail (for example the 3–15% tool-failure rate in S-15), treat it as an unverified figure rather than a finding."
+      ]
+    },
+    {
+      "finding_id": "worked-example-baseline-report",
+      "statement": "One corpus item is a concrete worked example rather than a technique: a single-agent, bounded 5-step document agent scoring 63.3% across 30 cases, with failures dominated by missing citations and missed escalation.",
+      "evidence": [
+        {
+          "source_id": "S-28",
+          "excerpt": "**Agent:** Document Intelligence Agent (single-agent, bounded, 5-step budget)",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "The 63.3% pass rate is a realistic baseline for a first implementation. It is not a good production number — most teams would want 85%+ before shipping. But the value of this report is not the topline number. It is the failure distribution.",
+          "role": "supports",
+          "context": null
+        },
+        {
+          "source_id": "S-28",
+          "excerpt": "Seven of eleven failures involve either missing citations or missing escalation.",
+          "role": "supports",
+          "context": null
+        }
+      ],
+      "qualifications": [
+        "This is one team's published example on a 30-case dataset with a fixed rubric and a 0.7 pass threshold; it demonstrates a report format and failure analysis, not a generalisable benchmark result."
+      ]
+    }
+  ],
+  "gaps": [
+    "No source reports a controlled comparison of evaluation designs — trajectory versus output scoring, deterministic versus judge grading — on the same agent.",
+    "Retry, tool-call, and budget caps are recommended constants without any derivation or reported effect on task success or customer outcomes.",
+    "No shared public task set for tool selection appears in the corpus: the only community request found (S-10) is unanswered, and S-09 documents the benchmark landscape as fragmented.",
+    "Observability and trace-completeness comparisons are vendor-authored; no independent measurement of telemetry overhead, sampling loss, or cross-framework interoperability is present.",
+    "Multi-agent evaluation metrics (handoff, communication, collaboration) are described without published baselines or reference datasets.",
+    "Human-review effort and sampling economics are asserted rather than modelled: no source gives a cost or coverage calculation for review queues."
+  ],
+  "format": {
+    "label": "Staged implementation guide with provenance labels on each practice",
+    "why": "The goal asks readers to build and run an evaluation setup, and the corpus is dominated by practitioner walkthroughs plus benchmark papers that repeatedly converge on the same sequence — define success, build cases, grade, repeat runs, trace, analyse failures, bound budgets, gate releases ([S-24], [S-26], [S-29]). A staged guide lets each stage carry the evidence it actually has: research-grade numbers where they exist ([S-08], [S-09], [S-28]) and clearly labelled vendor or single-team examples where they do not ([S-01], [S-22], [S-25]). It also gives bounded retries and cost budgets a natural home as explicit stop conditions rather than an aside.",
+    "alternatives": [
+      "Annotated literature review or benchmark survey: strong for the research sources (S-07, S-08, S-09, S-12, S-13) but it would under-serve the reader's implementation goal and would overstate consensus on practice.",
+      "Hands-on tutorial with runnable harness code: the corpus contains snippets (S-16, S-25, S-26) but no validated end-to-end procedure, so a tutorial would imply reproducibility the sources do not demonstrate.",
+      "Decision brief for platform or vendor selection: only S-16, S-20, S-27 and S-29 address tooling, and all are vendor-authored, which is too thin a base for a buying decision."
+    ],
+    "confidence": "moderate"
+  },
+  "outline": [
+    {
+      "section_id": "scope-and-unit-of-test",
+      "title": "What you are actually evaluating",
+      "level": 2,
+      "purpose": "Set the unit under test as a system (model, prompt, tools, retrieval, orchestration) rather than a model, and warn that public benchmark scores do not transfer to a reader's stack.",
+      "finding_ids": [
+        "system-not-model",
+        "benchmarks-orientation-only"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "define-success",
+      "title": "Step 1 — Write success down as an evidence contract",
+      "level": 2,
+      "purpose": "Turn \"the agent worked\" into a checkable specification covering observable outcomes, allowed and prohibited actions, constraints, and failure behaviour.",
+      "finding_ids": [
+        "evidence-contract",
+        "trajectory-not-output"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "success-scopes",
+      "title": "Cover four scopes: outcome, trajectory, decisions, reliability",
+      "level": 3,
+      "purpose": "Give readers a spine for the specification so they do not stop at final-answer scoring, and connect the reliability scope to later repeated-run metrics.",
+      "finding_ids": [
+        "trajectory-not-output",
+        "repeat-runs-passk"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "success-criteria-tools-state",
+      "title": "Define tool- and state-level success criteria",
+      "level": 3,
+      "purpose": "Show how to express success as evidence from systems and traces — expected tool calls, arguments, and resulting state — rather than as message wording.",
+      "finding_ids": [
+        "ground-truth-includes-steps",
+        "redundant-calls-path-convergence"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "task-datasets",
+      "title": "Step 2 — Build the task dataset",
+      "level": 2,
+      "purpose": "Describe how to assemble a first suite that reflects real workloads instead of imagined ones, and how large it needs to be to start.",
+      "finding_ids": [
+        "datasets-from-real-work",
+        "ground-truth-includes-steps"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "dataset-sources",
+      "title": "Where cases come from",
+      "level": 3,
+      "purpose": "List the documented sources of cases: real user requests, confirmed production failures, ambiguous inputs, tool failures, permission boundaries, and injection attempts.",
+      "finding_ids": [
+        "datasets-from-real-work",
+        "failure-to-regression-loop"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "cold-start-datasets",
+      "title": "When you have no dataset yet",
+      "level": 3,
+      "purpose": "Present synthetic generation honestly as a documented cold-start recipe from vendors, one published Amazon practice, and benchmark construction, with its verification burden stated.",
+      "finding_ids": [
+        "synthetic-cold-start",
+        "worked-example-baseline-report"
+      ],
+      "limitation": "No source measures how closely synthetic cases match production distributions, so treat generated cases as a starting point that must be validated against real traffic."
+    },
+    {
+      "section_id": "graders",
+      "title": "Step 3 — Choose graders from the least subjective method upward",
+      "level": 2,
+      "purpose": "Give readers a decision rule for grading: deterministic checks first, narrow judge rubrics next, human judgement at the boundary of uncertainty and consequence.",
+      "finding_ids": [
+        "code-before-judges",
+        "judge-bias-and-calibration"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "deterministic-checks",
+      "title": "Deterministic checks first",
+      "level": 3,
+      "purpose": "Show which agent properties code can judge — tool names and argument ranges, budget ceilings, approval ordering, expected sandbox state — and warn against string matching for semantic claims.",
+      "finding_ids": [
+        "code-before-judges",
+        "bounded-retries-budgets"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "judge-rubrics",
+      "title": "Narrow judge rubrics and their documented biases",
+      "level": 3,
+      "purpose": "Explain when a judge earns its cost, and enumerate the documented position, verbosity, and self-enhancement biases the rubric must defend against.",
+      "finding_ids": [
+        "judge-bias-and-calibration"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "calibration-review",
+      "title": "Calibrate before you trust, and review what you cannot calibrate",
+      "level": 3,
+      "purpose": "Describe judge calibration against human labels, adjudication of disagreements, and periodic transcript review, with sampling to control cost.",
+      "finding_ids": [
+        "judge-bias-and-calibration",
+        "human-review-boundary"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "repeated-runs",
+      "title": "Step 4 — Run cases more than once and report consistency",
+      "level": 2,
+      "purpose": "Make the case for repeated trials and consistency metrics, and show how pass@k and pass^k answer different questions about an agent that talks to users.",
+      "finding_ids": [
+        "repeat-runs-passk"
+      ],
+      "limitation": "The corpus gives consistency metrics but no guidance on trial counts or how to trade trial volume against evaluation cost."
+    },
+    {
+      "section_id": "observability-tracing",
+      "title": "Step 5 — Trace the run and keep the trace usable",
+      "level": 2,
+      "purpose": "Turn tracing into a concrete capture list and a storage decision, since every later evaluation step depends on what the trace preserved.",
+      "finding_ids": [
+        "trace-content",
+        "otel-conventions"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "what-to-capture",
+      "title": "What every trace needs",
+      "level": 3,
+      "purpose": "Give a per-layer capture list (request, retrieval, reasoning, tool calls with arguments and results, state after side effects, tokens, cost, timing) and explain why hierarchical storage matters.",
+      "finding_ids": [
+        "trace-content"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "telemetry-standards",
+      "title": "Standardising on OpenTelemetry GenAI conventions",
+      "level": 3,
+      "purpose": "Explain the emerging convention names for tool and usage attributes, and flag that the conventions are still experimental so instrumentation should not be the only source of truth.",
+      "finding_ids": [
+        "otel-conventions"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "failure-analysis",
+      "title": "Step 6 — Sort failures into categories and feed them back",
+      "level": 2,
+      "purpose": "Move readers from a pass rate to a diagnosed failure distribution, then into the loop that turns each confirmed failure into a permanent regression case.",
+      "finding_ids": [
+        "failure-taxonomies",
+        "failure-to-regression-loop"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "failure-categories",
+      "title": "Categories that show up in practice",
+      "level": 3,
+      "purpose": "Give readers a starting taxonomy — wrong tool or missing information, redundant calls, refusal and escalation errors, missing citations, parameter errors, poor uncertainty calibration — drawn from benchmark and worked-example evidence.",
+      "finding_ids": [
+        "failure-taxonomies",
+        "worked-example-baseline-report"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "trace-to-regression",
+      "title": "From trace to regression case",
+      "level": 3,
+      "purpose": "Describe the loop step by step: confirm the failure, keep the smallest reproducing state, record expected behaviour, and run it against every candidate change.",
+      "finding_ids": [
+        "failure-to-regression-loop",
+        "datasets-from-real-work"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "budgets-and-bounded-retries",
+      "title": "Step 7 — Bound retries, tool calls, and spend, and wire them to autonomy",
+      "level": 2,
+      "purpose": "Give every stop condition a home: service-level indicators, retry and loop caps, approval gates, and cost or latency ceilings treated as correctness criteria.",
+      "finding_ids": [
+        "bounded-retries-budgets",
+        "agent-slis-beyond-apm",
+        "cost-latency-correctness"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "slis-and-slos",
+      "title": "Pick agent-level indicators, then set thresholds from impact",
+      "level": 3,
+      "purpose": "Replace availability and error rate with task success, tool-call accuracy, hallucination rate, cost per task, and tail latency, and show how published thresholds are starting points only.",
+      "finding_ids": [
+        "agent-slis-beyond-apm",
+        "published-thresholds-are-examples"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "stop-conditions",
+      "title": "Stop conditions, retry caps, and approval gates",
+      "level": 3,
+      "purpose": "Specify the bounds and explain the escalation path when a bound is hit, including approval before state-changing writes and autonomy reduction when quality drops.",
+      "finding_ids": [
+        "bounded-retries-budgets"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "efficiency-metrics",
+      "title": "Measuring loops, waste, and cost",
+      "level": 3,
+      "purpose": "Show how to detect redundant calls, retry storms, and long tails with path-convergence, retry and recovery rates, tool-call failure rate, and cost per successful task.",
+      "finding_ids": [
+        "redundant-calls-path-convergence",
+        "cost-latency-correctness"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "ci-release-gates",
+      "title": "Step 8 — Make the suite a release gate",
+      "level": 2,
+      "purpose": "Turn the suite into a deploy decision: what triggers a full run, what conditions block a release, and why gates must be declared before results are seen.",
+      "finding_ids": [
+        "ci-gate-every-behavior-change",
+        "published-thresholds-are-examples"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "gate-triggers",
+      "title": "What triggers a full run",
+      "level": 3,
+      "purpose": "List the changes that alter behaviour even when application code does not: prompt edits, model swaps, tool schema changes, retrieval or knowledge-base updates, and connected API changes.",
+      "finding_ids": [
+        "ci-gate-every-behavior-change"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "gate-policy",
+      "title": "Writing the gate policy and choosing thresholds",
+      "level": 3,
+      "purpose": "Give a defensible policy structure — hard safety failures block, tagged regressions block, operational budgets block — plus the rule that thresholds come from observed variance, not ambition.",
+      "finding_ids": [
+        "ci-gate-every-behavior-change",
+        "repeat-runs-passk",
+        "published-thresholds-are-examples"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "multi-agent-and-long-horizon",
+      "title": "Multi-agent and long-horizon cases",
+      "level": 2,
+      "purpose": "Explain why per-agent scoring breaks down in multi-agent systems, what to measure instead, and why the same reasoning extends to long-running tasks where context decays.",
+      "finding_ids": [
+        "multi-agent-end-to-end",
+        "system-not-model"
+      ],
+      "limitation": "Multi-agent metrics in the corpus come from vendor and vendor-adjacent posts without published baselines."
+    },
+    {
+      "section_id": "public-benchmarks",
+      "title": "What public benchmarks can and cannot tell you",
+      "level": 2,
+      "purpose": "Help readers read leaderboards correctly: use them to locate capability gaps and known failure modes, not to predict their own agent's production reliability.",
+      "finding_ids": [
+        "benchmarks-orientation-only",
+        "benchmark-capability-gaps"
+      ],
+      "limitation": null
+    },
+    {
+      "section_id": "limits-of-evidence",
+      "title": "Limits of this evidence base",
+      "level": 2,
+      "purpose": "State plainly which parts of the guide rest on research or measured practice and which rest on vendor documentation, single-team examples, or unanswered community questions — so readers know where to validate locally.",
+      "finding_ids": [
+        "vendor-claims",
+        "worked-example-baseline-report"
+      ],
+      "limitation": "No controlled comparisons of the recommended evaluation designs exist in the corpus, and numeric caps and thresholds are illustrative rather than derived."
+    }
+  ],
+  "diagrams": [
+    {
+      "diagram_id": "failure-regression-loop",
+      "section_id": "failure-analysis",
+      "kind": "flowchart",
+      "purpose": "Show the loop rather than a one-way pipeline: confirmed production failures become regression cases that later act as the CI gate, which is the connection readers most often miss.",
+      "finding_ids": [
+        "failure-to-regression-loop",
+        "ci-gate-every-behavior-change",
+        "failure-taxonomies"
+      ],
+      "caption": "The failure-to-regression loop described in [S-29] and [S-05], with case curation as practised in [S-24] and gating as proposed in [S-26]: a trace sampled from production is confirmed as a failure and assigned a category, the smallest reproducing case with agreed expected behaviour enters the suite, candidate prompts, models, tools, and retrieval changes are run against it, and a failed check blocks the release instead of reaching users."
+    },
+    {
+      "diagram_id": "bounded-retry-trace",
+      "section_id": "stop-conditions",
+      "kind": "sequenceDiagram",
+      "purpose": "Make the bounded-retry path concrete and show which events the trace must record for the recovery evaluator to check retry limits, approval ordering, and required escalation.",
+      "finding_ids": [
+        "bounded-retries-budgets",
+        "trace-content"
+      ],
+      "caption": "One traced tool-using run with a failing call, one bounded retry, and escalation instead of an unbounded loop, following the stop conditions described in [S-22], [S-26] and [S-29] and the trace contents described in [S-06] and [S-18]; the diagram marks the arguments, result, state check, retry count, and escalation event that a recovery evaluator needs in order to verify retry limits and required escalations, and it shows the same events being replayed as a regression case after the fix."
+    }
+  ],
+  "closing_rationale": "This plan takes the shape of a staged implementation guide because the corpus is dominated by practitioner walkthroughs and benchmark documentation that converge on the same sequence — define success, build cases, grade, repeat runs, trace, analyse failures, bound budgets, gate releases — across independent authors [S-24] [S-26] [S-29] [S-22], and because the reader's goal is to build and run an evaluation setup rather than to survey a field. The strongest and most consistent evidence concerns what to capture and measure: process evaluation over final answers [S-05] [S-24], ground truth that includes expected tool calls [S-05] [S-12], hierarchical traces with tool arguments and costs [S-06] [S-18], agent-level indicators instead of uptime and error rate [S-25] [S-18], explicit stop conditions and retry caps [S-22] [S-26], and CI gates that run on prompt, model, tool, and retrieval changes [S-24] [S-26]. The guide therefore spends most of its structure on those stages. The weaker evidence is handled by labelling rather than by strengthening: numeric caps and thresholds such as 8 tool calls, 2 retries per tool, a 95% tool-selection gate, and first SLOs 10-15% above baseline come from one small-team roadmap and vendor-authored playbooks [S-22] [S-24] [S-25], the observability and management-platform descriptions are vendor documents [S-01] [S-16] [S-20] [S-27], the multi-agent metrics come from vendor and vendor-adjacent posts [S-30] [S-17], the 3–15% tool-failure figure is quoted third-hand [S-15], and the 63.3% pass rate comes from a single published 30-case example [S-28]. Those items appear as examples with their provenance stated, never as findings. The quantitative claims that are strongest are point-in-time measurements from publicly documented harnesses — session accuracy below 15% on in-the-wild multi-turn tool use [S-08], a drop from 83.59% on function calling to 7.2% on a multi-step agentic benchmark [S-09], and one in five realistic terminal tasks failing even for top agents [S-06] — and they are used to justify the practices, not to predict any reader's results. Two formats fit less well and are noted in the plan: an annotated literature review would showcase the research sources but leave the implementation goal unserved and imply consensus that the vendor-heavy half of the corpus does not support, and a hands-on tutorial would claim reproducibility the sources never demonstrate, since the corpus contains snippets and recipes rather than a validated harness. The closing bias is toward honest scope: the final section keeps the vendor claims, the single-team exemplar, and the empty spaces — no controlled comparison of evaluation designs, no published baseline for multi-agent metrics, no answer to the community request for an off-the-shelf tool-selection dataset [S-10] — visible instead of rounding them up into confident advice."
+}

@@ -1,0 +1,185 @@
+uv lock --check
+Resolved 133 packages in 4ms
+/Library/Developer/CommandLineTools/usr/bin/make lint format-check typecheck test
+uv run --locked ruff check .
+All checks passed!
+uv run --locked ruff format --check .
+164 files already formatted
+uv run --locked mypy --strict
+Success: no issues found in 154 source files
+uv run --locked pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.12.9, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/josoroma/sites/langchain
+configfile: pyproject.toml
+testpaths: tests
+plugins: platformdirs-4.12.2, cov-7.1.0, langsmith-0.14.2, anyio-4.15.1
+collected 797 items / 3 deselected / 794 selected
+
+tests/test_agent_boundary.py ........................................... [  5%]
+.....                                                                    [  6%]
+tests/test_agent_docs.py ...............................                 [  9%]
+tests/test_api_application.py ........................                   [ 12%]
+tests/test_api_http.py ..............................                    [ 16%]
+tests/test_api_worker.py .............                                   [ 18%]
+tests/test_artifact_reader.py ..........                                 [ 19%]
+tests/test_authoring.py ................                                 [ 21%]
+tests/test_cli.py .........                                              [ 22%]
+tests/test_contracts.py ......................................           [ 27%]
+tests/test_corpus.py ................                                    [ 29%]
+tests/test_deep_agent.py ........                                        [ 30%]
+tests/test_epic2_demo.py .                                               [ 30%]
+tests/test_epic3_demo.py .                                               [ 30%]
+tests/test_error_contract.py ........................................... [ 36%]
+........................................................................ [ 45%]
+..............                                                           [ 47%]
+tests/test_evaluation.py ............................                    [ 50%]
+tests/test_evidence_authoring.py ...................................     [ 55%]
+tests/test_extraction_service.py ..................................      [ 59%]
+tests/test_fetch_run.py ....................                             [ 61%]
+tests/test_fetch_service.py ............................................ [ 67%]
+..                                                                       [ 67%]
+tests/test_fetch_smoke.py .......                                        [ 68%]
+tests/test_live_smoke_offline.py ........                                [ 69%]
+tests/test_llm_service.py ..............                                 [ 71%]
+tests/test_observability.py ..............                               [ 73%]
+tests/test_offline_suite.py .....                                        [ 73%]
+tests/test_postgres_jobs.py ..............                               [ 75%]
+tests/test_production_wiring.py .......                                  [ 76%]
+tests/test_prompts_and_architecture.py ................................. [ 80%]
+..                                                                       [ 80%]
+tests/test_reporting.py ......                                           [ 81%]
+tests/test_search_provider.py ....................                       [ 84%]
+tests/test_search_session.py ........................................... [ 89%]
+............                                                             [ 90%]
+tests/test_search_workflow.py ..............                             [ 92%]
+tests/test_settings.py .................                                 [ 94%]
+tests/test_state_and_tools.py ......................                     [ 97%]
+tests/test_workflow_end_to_end.py ......                                 [ 98%]
+tests/test_workspace.py ...........                                      [ 99%]
+tests/test_workspace_backend.py ..                                       [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.12.9-final-0 _______________
+
+Name                                       Stmts   Miss Branch BrPart   Cover   Missing
+---------------------------------------------------------------------------------------
+agents/__init__.py                             0      0      0      0 100.00%
+agents/deep_research.py                       36      0      2      0 100.00%
+agents/search_planner.py                      23      0      4      0 100.00%
+api/__init__.py                                2      0      0      0 100.00%
+api/dependencies.py                           43      2      4      0  95.74%   55, 65
+api/errors.py                                 56      1      6      0  98.39%   102
+api/main.py                                   52      8      8      2  83.33%   46-52, 93
+api/middleware.py                             22      1      2      1  91.67%   43
+api/routers/__init__.py                        2      0      0      0 100.00%
+api/routers/health.py                         20      1      4      1  91.67%   34
+api/routers/jobs.py                           38      2      6      1  93.18%   95, 99
+api/routers/runs.py                           60      1      4      1  96.88%   52
+application/__init__.py                        0      0      0      0 100.00%
+application/context.py                        50      1      4      1  96.30%   68->70, 102
+application/fixtures.py                       51      1      6      1  96.49%   92, 139->exit
+application/job_service.py                    91      6     14      0  92.38%   248-249, 261-268
+application/migrations.py                     75      7     20      4  88.42%   36, 67, 73, 75, 146-149
+application/ports.py                          25      0      0      0 100.00%
+application/run_service.py                   164     21     36     15  82.00%   77, 124, 136, 142->150, 158, 166, 187, 220-226, 243->246, 246->249, 249->251, 252-258, 279, 282-285, 290, 297, 306-307
+evaluations/__init__.py                        0      0      0      0 100.00%
+evaluations/agent_architecture.py             61      1     46      1  98.13%   35, 63->62
+evaluations/agent_boundary.py                 47      0     18      0 100.00%
+evaluations/api_fixture_demo.py               46     46      0      0   0.00%   12-109
+evaluations/authoring_fixtures.py             21      1      4      1  92.00%   28
+evaluations/corpus_live_smoke.py              32     32      2      0   0.00%   3-51
+evaluations/dataset.py                        17      0      0      0 100.00%
+evaluations/epic2_demo.py                     81      0      2      0 100.00%
+evaluations/epic3_demo.py                     67      1      2      1  97.10%   91, 102->exit
+evaluations/epic4_demo.py                     67      3      6      0  95.89%   158-160
+evaluations/epic5_demo.py                     65      2      4      0  97.10%   171-172
+evaluations/epic6_demo.py                     64      2      2      0  96.97%   123-124
+evaluations/epic7_demo.py                     35     35      2      0   0.00%   7-80
+evaluations/epic8_demo.py                     37     37      4      0   0.00%   7-69
+evaluations/epic9_demo.py                    142     34     22      1  75.00%   185-187, 194-210, 246-264
+evaluations/epic10_demo.py                    29      2      0      0  93.10%   82-83
+evaluations/fakes.py                          26      0      2      0 100.00%
+evaluations/fetch_fixtures.py                 50      0     18      0 100.00%
+evaluations/fetch_live_smoke.py               40      0      4      1  97.73%   64->66
+evaluations/judge.py                          48      5      4      2  86.54%   57, 69, 100-117
+evaluations/langsmith_live_smoke.py           55     55     10      0   0.00%   3-101
+evaluations/live_smoke.py                     33      0      6      0 100.00%
+evaluations/observability_fixtures.py         33      0      2      0 100.00%
+evaluations/observability_stack_smoke.py      63     63      8      0   0.00%   3-105
+evaluations/offline_eval.py                   35      2      4      2  89.74%   59, 71
+evaluations/otlp_receiver.py                  41     20      8      0  55.10%   33-59
+evaluations/release.py                        56      7     12      2  83.82%   41, 59, 73-77
+evaluations/run_eval.py                       76     17     10      1  72.09%   51-52, 57-81, 133-135
+evaluations/scoring.py                       148      5     14      3  95.06%   143, 159, 184, 279, 283
+evaluations/search_live_smoke.py              24     13      2      0  42.31%   13-15, 19-28
+evaluations/workflow_fixtures.py              71     14     16      2  77.01%   41->44, 48, 87, 92-94, 116-127
+prompts/__init__.py                            0      0      0      0 100.00%
+prompts/catalog.py                            12      2      6      2  77.78%   14, 22
+schemas/__init__.py                            0      0      0      0 100.00%
+schemas/api.py                                80      0      0      0 100.00%
+schemas/authoring.py                         134      9     24      9  88.61%   54, 56, 63, 112, 123, 125, 131, 133, 136
+schemas/common.py                             13      0      0      0 100.00%
+schemas/config.py                            120      0     24      0 100.00%
+schemas/content.py                            61      3     14      3  92.00%   28, 30, 61
+schemas/errors.py                             44      0      2      0 100.00%
+schemas/jobs.py                               30      0      0      0 100.00%
+schemas/requests.py                           10      0      0      0 100.00%
+schemas/responses.py                          49      0      0      0 100.00%
+schemas/search.py                             34      0      2      0 100.00%
+schemas/state.py                              37      0     10      0 100.00%
+schemas/tool_io.py                            57      0      0      0 100.00%
+schemas/workspace.py                           6      0      0      0 100.00%
+services/__init__.py                           0      0      0      0 100.00%
+services/artifact_reader.py                  125      8     50      8  90.86%   81, 84, 102, 124, 141, 164, 187, 205
+services/artifacts.py                         24      1      4      1  92.86%   25
+services/authoring.py                        115      3     22      1  97.08%   129-130, 146
+services/authoring_pipeline.py               156     11     56     11  89.62%   88, 132->134, 142->154, 144, 151, 163, 167, 184-188, 201-202, 211->213, 223
+services/checkpoints.py                       32      8      2      0  70.59%   54-56, 61-65
+services/content_paths.py                     33      3     14      2  89.36%   28->32, 36-37, 40
+services/corpus.py                           115      8     28      9  88.11%   89, 91, 95, 97->99, 104, 108, 119, 141, 177
+services/diagrams.py                          64      7     20      5  85.71%   27, 43-44, 63, 76, 82, 85
+services/document_finalizer.py                71      8     26      9  82.47%   27, 31, 64, 69->73, 72, 75, 79, 92, 98
+services/execution_log.py                     36      0     12      1  97.92%   54->43
+services/extraction_service.py               141      5     42      7  93.44%   67->70, 84, 88, 90->92, 98, 145, 148
+services/fetch_service.py                    232      1     66      1  99.33%   155
+services/job_store.py                         83      1     20      1  98.06%   33
+services/llm_service.py                       19      0      6      0 100.00%
+services/markdown_document.py                 51      0     14      0 100.00%
+services/observability.py                    272     12     76      8  94.25%   75, 78, 86, 120-121, 158, 286-287, 302, 317->319, 345->362, 383-384, 438
+services/postgres_jobs.py                     97      1     14      1  98.20%   175
+services/reliability.py                       13      0      2      0 100.00%
+services/reporting.py                         63      1     16      1  97.47%   73
+services/run_metrics.py                       54      4      8      0  93.55%   41-42, 99-100
+services/search_provider.py                   97      0     26      0 100.00%
+services/search_session.py                   112      0     28      0 100.00%
+services/source_backend.py                    41      6     12      2  84.91%   40-41, 47-48, 65, 72
+services/synthesis.py                        105     10     32      6  86.86%   51-52, 98, 100, 103, 118, 126-128, 153
+services/workspace.py                         54      3     14      3  91.18%   59, 64, 95
+services/workspace_lock.py                    46      2      8      4  88.89%   42, 45->51, 61, 62->67
+tools/__init__.py                              0      0      0      0 100.00%
+tools/authoring_tools.py                      39      3      8      4  85.11%   43, 69, 72, 81->83
+tools/base.py                                 77      0     22      0 100.00%
+tools/content_tools.py                        16      0      2      0 100.00%
+tools/corpus_tools.py                         87      7     22      6  88.07%   61, 85, 88, 135-136, 145, 154, 157->159
+tools/registry.py                             30      0      8      0 100.00%
+tools/report_tools.py                         40      2      6      2  91.30%   57, 61
+tools/search_tools.py                         36      0     10      2  95.65%   35->37, 55->54
+tools/state_tools.py                          11      0      4      0 100.00%
+tools/stubs.py                                35      3      6      1  90.24%   58, 64, 70, 126->exit
+workers/__init__.py                            0      0      0      0 100.00%
+workers/research_worker.py                   188     38     28      8  75.00%   122->128, 142-147, 151-157, 174-175, 202-210, 221-222, 247, 254, 288-289, 293, 305->308, 317, 323-327, 334-335, 354-363
+workflows/__init__.py                          0      0      0      0 100.00%
+workflows/authoring_run.py                    65      2      6      0  97.18%   39-40
+workflows/cli.py                             117      6     34      6  92.05%   97, 102, 122, 143, 148, 206
+workflows/corpus_run.py                       72      5      8      2  91.25%   53-54, 74, 96->99, 119-120
+workflows/fetch_run.py                        79      2     14      1  96.77%   99-100, 147->150
+workflows/reporting_run.py                    39     10     10      3  69.39%   41->43, 66-83, 85, 87-88
+workflows/research_run.py                     65     13     10      3  73.33%   61->63, 83, 85, 111-131
+workflows/resume.py                           21      1      6      1  92.59%   38
+workflows/search_run.py                       64      0      8      0 100.00%
+---------------------------------------------------------------------------------------
+TOTAL                                       6439    658   1266    178  88.27%
+Coverage XML written to file coverage.xml
+Required test coverage of 80% reached. Total coverage: 88.27%
+====================== 794 passed, 3 deselected in 42.08s ======================

@@ -1,0 +1,153 @@
+[project]
+name = "content-writer"
+version = "0.1.0"
+description = "Evidence-grounded content authoring with DeepAgents on LangGraph"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.13,<5",
+    "deepagents>=0.7,<0.8",
+    "fastapi>=0.142.2",
+    "httpx>=0.28,<1",
+    "langchain>=1,<2",
+    "langchain-openrouter>=0.2,<1",
+    "langgraph>=1,<2",
+    "langgraph-checkpoint-postgres>=3.1.2",
+    "langgraph-checkpoint-sqlite>=2,<4",
+    "langsmith>=0.14,<1",
+    "markdown-it-py>=3,<5",
+    "markdownify>=1,<2",
+    "opentelemetry-exporter-otlp-proto-http>=1.38,<2",
+    "opentelemetry-sdk>=1.38,<2",
+    "protego>=0.5,<1",
+    "psycopg[binary,pool]>=3.3.6",
+    "pydantic>=2,<3",
+    "pydantic-settings>=2,<3",
+    "pyyaml>=6,<7",
+    "readability-lxml>=0.8,<1",
+    "trafilatura>=2,<3",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.hooks.custom]
+path = "ops/build_hooks.py"
+
+[project.scripts]
+content-writer = "workflows.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "agents", "tools", "workflows", "prompts", "schemas", "services",
+    "evaluations", "api", "application", "workers",
+]
+artifacts = ["application/_migrations/*.sql"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/agents", "/tools", "/workflows", "/prompts", "/schemas", "/services",
+    "/evaluations", "/api", "/application", "/workers",
+    "/tests", "/pyproject.toml", "/uv.lock", "/.python-version",
+    "/README.md", "/.pre-commit-config.yaml", "/Makefile", "/ops",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+# docs/ENGINEERING.md explains each family. New rules are added here with a
+# per-path ratchet below, never with a blanket ignore.
+select = [
+    "E", "F", "I", "UP", "B",
+    "C90",                       # McCabe complexity
+    "PLR0911", "PLR0912", "PLR0915",  # returns, branches, statements per function
+    "BLE",                       # blind `except Exception`
+    "S",                         # bandit security checks
+    "SIM", "RET", "PIE",         # simpler control flow, incl. PIE790 redundant `...`
+    "PLC0415",                   # imports at module level; break cycles with a leaf module
+    "D1",                        # public docstrings
+    "RUF100",                    # every noqa must suppress something
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-returns = 6
+max-branches = 12
+max-statements = 50
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+# FastAPI requires Depends() call results as parameter defaults.
+"api/**" = ["B008"]
+# Tests and fixtures: asserts are the point, docstrings are optional, fixtures
+# use deterministic randomness, and helpers may stay long and branchy.
+"tests/**" = ["S", "D1", "C90", "PLR", "BLE", "SIM117"]
+"evaluations/**" = ["S101", "S603", "S607"]
+"scripts/**" = ["S101", "D1"]
+"ops/**" = ["D1"]
+"docs/**" = ["D1"]
+# Ratchet: modules written before the docstring rule. Remove a line once its
+# package is documented; never add one for new code.
+"services/**" = ["D101", "D102", "D103", "D105", "D107"]
+"schemas/**" = ["D101", "D102", "D103", "D105", "D107"]
+"evaluations/*.py" = ["D101", "D102", "D103", "D105", "D107"]
+"tools/**" = ["D101", "D102", "D103", "D105", "D107"]
+"workflows/**" = ["D101", "D102", "D103", "D105", "D107"]
+"prompts/**" = ["D101", "D102", "D103", "D105", "D107"]
+"agents/**" = ["D101", "D102", "D103", "D105", "D107"]
+# Ratchet: functions already over the complexity limits; split before editing.
+"evaluations/agent_architecture.py" = ["C901", "PLR0912"]
+"evaluations/epic9_demo.py" = ["C901", "PLR0915"]
+"services/extraction_service.py" = ["C901"]
+"services/fetch_service.py" = ["C901", "PLR0911", "PLR0912"]
+"services/observability.py" = ["C901", "PLR0912"]
+"tools/corpus_tools.py" = ["C901", "PLR0915"]
+# Ratchet: runtime type narrowing written as assert; convert to explicit checks.
+"workflows/{authoring_run,corpus_run,fetch_run,search_run}.py" = ["S101"]
+"tools/{corpus_tools,stubs}.py" = ["S101"]
+# Queries interpolate only the module constant `_COLUMNS`; every value is a
+# bound %s parameter. Review any new f-string query here by hand.
+"services/postgres_jobs.py" = ["S101", "S608"]
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+python_version = "3.12"
+strict = true
+files = ["agents", "tools", "workflows", "prompts", "schemas", "services", "evaluations", "tests", "docs", "api", "application", "workers"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-config --strict-markers -m 'not live' --cov --cov-report=term-missing --cov-report=xml --cov-fail-under=80"
+markers = ["live: opt-in real provider request, excluded from the offline suite"]
+
+[[tool.mypy.overrides]]
+module = ["readability.*", "markdownify.*", "protego.*"]
+ignore_missing_imports = true
+
+[tool.coverage.run]
+branch = true
+source = ["agents", "tools", "workflows", "prompts", "schemas", "services", "evaluations", "api", "application", "workers"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+precision = 2
+
+[dependency-groups]
+dev = [
+    "mypy==1.18.1",
+    "pre-commit>=4,<5",
+    "pytest>=9,<10",
+    "pytest-cov>=7,<8",
+    "ruff==0.13.0",
+    "types-protobuf>=6,<8",
+    "types-pyyaml>=6,<7",
+]

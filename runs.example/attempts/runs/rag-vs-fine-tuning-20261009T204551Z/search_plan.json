@@ -1,0 +1,42 @@
+{
+  "topic": "RAG vs fine-tuning",
+  "variants": [
+    "retrieval augmented generation versus fine tuning architecture tradeoffs",
+    "evaluating RAG and fine tuning latency cost production",
+    "hybrid retrieval fine tuning enterprise assistant security freshness"
+  ],
+  "provider": "serpapi",
+  "calls": [
+    {
+      "query": "RAG vs fine-tuning",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "retrieval augmented generation versus fine tuning architecture tradeoffs",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "evaluating RAG and fine tuning latency cost production",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "hybrid retrieval fine tuning enterprise assistant security freshness",
+      "page": 1,
+      "per_page": 10
+    },
+    {
+      "query": "RAG vs fine-tuning",
+      "page": 2,
+      "per_page": 10
+    },
+    {
+      "query": "RAG vs fine-tuning",
+      "page": 3,
+      "per_page": 10
+    }
+  ],
+  "max_urls": 30
+}

@@ -1,0 +1,18 @@
+{
+  "run_id": "rag-vs-fine-tuning-20261009T203530Z",
+  "workspace": "runs/rag-vs-fine-tuning-20261009T203530Z",
+  "status": "failed",
+  "contract_version": 2,
+  "format_label": null,
+  "synthesis_path": null,
+  "summary_path": null,
+  "blog_path": null,
+  "word_count": 0,
+  "citations_checked": 0,
+  "repair_passes": 0,
+  "dangling_source_ids": [],
+  "mismatched_source_ids": [],
+  "violations": [],
+  "reason": "synthesis_invalid",
+  "error": "AuthoringError"
+}
